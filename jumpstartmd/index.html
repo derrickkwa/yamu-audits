@@ -452,7 +452,7 @@
     <a href="#ch03">03 Where It Bleeds</a>
     <a href="#ch04">04 Quick Wins</a>
     <a href="#ch05">05 Opportunity</a>
-    <a href="#ch06">06 The Plan</a>
+    <a href="#ch06">06 Plan &amp; Ambition</a>
   </div>
 </nav>
 
@@ -596,8 +596,8 @@
 <section id="ch02">
   <div class="section-inner">
     <div class="ch-num"><span>02</span> · The Measurement Problem</div>
-    <h2>Several of the measurement instruments need attention before we can fully trust what we're reading.</h2>
-    <p class="implication">Six measurement surfaces look degraded at the same time. Our concern: downstream decisions (budget, creative, campaign structure, email cadence) are running on signal that's harder to trust than it should be. We'd propose working through these together in Month 1, because they shape our confidence in every other finding in this report.</p>
+    <h2>Six measurement instruments need attention. Fixing them is Week-1 work and unlocks every downstream decision.</h2>
+    <p class="implication">Six measurement surfaces are degraded at once. Downstream decisions (budget, creative, campaign structure, email cadence) are running on signal that's harder to trust than it should be. This is the most fixable problem in the report — it's a Month-1 implementation sprint, not a strategic debate — and clearing it is the prerequisite for reading whether any of the bigger bets are working. Data hygiene on its own is one of the two pillars we think moves the business this year (the other is the creator engine in Chapter 05).</p>
 
     <div class="stats-row">
       <div class="stat-card red">
@@ -681,6 +681,7 @@
         <div class="divider"></div>
         <p class="body">Meta + Google + Brand + PMax all scaled in lockstep for 55 weeks. Without independent variation (budget perturbation or geo holdout), no algorithm can separate correlated inputs. Our read: the math isn't failing, the data input to it is the constraint.</p>
         <div class="callout amber"><strong>A trap we'd want to flag:</strong> the MMM optimiser output suggests a +398% Meta budget increase. Acting on that number is a known failure mode in this kind of model. The cleanest way we see to narrow brand-search incrementality below 89pp of uncertainty is a geo pause, which we'd scope in Month 2–3.</div>
+        <div class="callout blue"><strong>Worth naming explicitly:</strong> JumpstartMD's spend level is high enough that proper geo-incrementality testing is actually feasible — most DTC accounts can't generate the signal needed. Once the attribution backbone is fixed, Bay Area vs LA/OC is a natural geo holdout pair, and Search Brand is a natural channel-level holdout. Few of our clients are at this scale; this is a capability that actually pays off here.</div>
       </div>
     </details>
 
@@ -698,8 +699,8 @@
 <section id="ch03">
   <div class="section-inner">
     <div class="ch-num"><span>03</span> · Where Paid Media Bleeds</div>
-    <h2>In the CRO data, about 90% of paid traffic isn't reaching the offer, and several of the campaigns meant to fix that look structured in ways worth revisiting.</h2>
-    <p class="implication">The LP scroll rate we're seeing is 9.75%. Two of the three best-converting paid LPs return 404; one was 7.21% CVR, 2× the current main LP. LA/OC spend looks 17× less efficient than Bay Area. Audience Network shows $11,196 CPL on 0 bookings. Frustration-framed creative averages $449 CPL versus hope-framed $202. Static is 71% of Meta spend at $235 CPL while video averages $106 (2.2× more efficient) but only 29% of spend. Retargeting is 1.3% of Meta spend while returning users convert at 4.4× cold rates. None of these require new bets — just moving spend to what the data already suggests works.</p>
+    <h2>The creative itself is solid. The structure around it — where spend goes, which LPs it lands on, which placements pick it up — is where the leaks are.</h2>
+    <p class="implication">To be clear up front: we're not reading this as "your creative is bad." The Meta library has real range and two creator partnerships already outperforming the rest (Chapter 05 covers that). What the data surfaces is structural: 90% of paid traffic doesn't scroll past the first screen on the primary LP; two of the three best-converting paid LPs return 404; LA/OC spend looks 17× less efficient than Bay Area; Audience Network shows $11,196 CPL on 0 bookings; frustration-framed creative averages $449 CPL versus hope-framed $202; static is 71% of spend at $235 CPL while video averages $106 but only 29% of spend; retargeting is 1.3% of Meta spend while returning users convert at 4.4× cold rates. None of these require new creative bets — just moving spend and structure to match what the data already suggests works.</p>
 
     <div class="stats-row">
       <div class="stat-card red">
@@ -832,6 +833,55 @@
           </div>
         </div>
         <div class="callout">Our proposed structure: consolidate the account to 3 CBOs (WL Purchase, HRT Purchase, Warm Retargeting). Archive the 34 non-performing. Reactivate ApptBookedPaid if the pause was unintentional (worth confirming with you). Exclude Audience Network from every campaign.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Creative deep-dive: what 91 Meta creatives actually tell us, by feature</summary>
+      <div class="expand-body">
+        <p class="body">We ran the Meta library (91 creatives) through feature classification — format, framing, hook type, on-screen text density, creator-vs-in-house production, named-clinician presence. Signal below. Worth clicking in on, because it's the basis for what the first creator briefs (Chapter 05) are built from.</p>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Format — video wins, account leans static.</p>
+        <table>
+          <thead><tr><th>Format</th><th>Count</th><th>Share of spend</th><th>Avg CPL</th><th>Read</th></tr></thead>
+          <tbody>
+            <tr><td>Video (UGC-style)</td><td style="color:var(--green); font-weight:700;">12</td><td>29%</td><td style="color:var(--green); font-weight:700;">$106</td><td>2.2× more efficient</td></tr>
+            <tr><td>Static</td><td>79</td><td>71%</td><td style="color:var(--red);">$235</td><td>Over-produced, under-performing</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Emotional framing — hope beats frustration 2.2×.</p>
+        <table>
+          <thead><tr><th>Framing</th><th>Avg CPL</th><th>Read</th></tr></thead>
+          <tbody>
+            <tr><td>Hope / relief</td><td style="color:var(--green); font-weight:700;">$202</td><td>Working — lead with this</td></tr>
+            <tr><td>Frustration / pain</td><td style="color:var(--red); font-weight:700;">$449</td><td>Pause the 12 active variants Week 1</td></tr>
+            <tr><td>Clinical / authority</td><td>$238</td><td>Neutral — under-tested</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Source — creator partnerships outperform in-house, at a fraction of the volume.</p>
+        <table>
+          <thead><tr><th>Source</th><th>Count</th><th>Read</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Creator UGC (HealingFromPCOS, TakeControlScience)</strong></td><td style="color:var(--green); font-weight:700;">2</td><td>Both in top decile of library performance</td></tr>
+            <tr><td>In-house production (static + stock UGC)</td><td>89</td><td>Most of the library, wider performance range</td></tr>
+          </tbody>
+        </table>
+        <p class="body" style="margin-top:10px;">Named clinicians (Dr Jeff, Dr Ana, who appear on the homepage) aren't in any paid creative that we could find. That's an unused asset on top of the creator gap.</p>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Copy angle — five angles tested, three are under-scaled relative to performance.</p>
+        <table>
+          <thead><tr><th>Angle</th><th>Relative performance</th><th>Current share of spend</th><th>Read</th></tr></thead>
+          <tbody>
+            <tr><td>Food-noise / clinical-permission</td><td style="color:var(--green);">Top</td><td>Low</td><td>Scale — primary angle for creator briefs</td></tr>
+            <tr><td>Integrated HRT + GLP-1</td><td style="color:var(--green);">Top (thin sample)</td><td>Very low</td><td>Scale in menopausal track</td></tr>
+            <tr><td>Pharmaceutical-grade / non-compounded</td><td>Medium</td><td>Low</td><td>Test at scale; Safe Harbor angle</td></tr>
+            <tr><td>Generic transformation</td><td style="color:var(--amber);">Below avg</td><td>High</td><td>Reduce — dominant today</td></tr>
+            <tr><td>Generic GLP-1 education</td><td style="color:var(--red);">Low</td><td>Medium</td><td>Pause</td></tr>
+          </tbody>
+        </table>
+        <div class="callout blue"><strong>What this tells us about the Month-1 creative brief:</strong> the two biggest unlocks are (1) more video, source-mixed (creator + in-house), and (2) shifting the angle mix toward clinical-permission and integrated-HRT rather than generic transformation. The creator engine in Chapter 05 is how we scale the winners; this breakdown is the template those briefs are built against.</div>
       </div>
     </details>
 
@@ -1018,7 +1068,7 @@
 
     <div class="what-wed-do">
       <div class="wwd-label">What we'd propose</div>
-      <p><strong>Week 1:</strong> after-hours auto-responder · 404 LP restore · Lead Nurture Email re-enable brief · <strong>brief 4 video UGC creators pattern-matched to HealingFromPCOS and TakeControlScience</strong>. <strong>Week 2–4:</strong> first video batch ships; pause the 12 frustration-framed creatives as video lands. <strong>Week 4–8:</strong> GLP-1 Medication Upsell flow built and shipped (week-4 med nudge, week-8 side-effect plus non-scale wins, week-12 clinical check-in). <strong>By Day 60:</strong> 50% of Meta spend on video (from 29%). Cadence and sequencing worth walking through with you.</p>
+      <p><strong>Week 1:</strong> after-hours auto-responder · 404 LP restore · Lead Nurture Email re-enable brief · <strong>brief 4 video UGC creators via Meta Creator Marketplace — one per messaging pillar</strong> (v0 of the creator engine detailed in Chapter 05; staying under Found's 11-ad volume, competing on clinical depth). <strong>Week 2–4:</strong> first video batch ships; pause the 12 frustration-framed creatives as video lands. <strong>Week 4–8:</strong> GLP-1 Medication Upsell flow built and shipped (week-4 med nudge, week-8 side-effect plus non-scale wins, week-12 clinical check-in). <strong>By Day 60:</strong> 50% of Meta spend on video (from 29%). Cadence and sequencing worth walking through with you.</p>
     </div>
   </div>
 </section>
@@ -1029,8 +1079,8 @@
 <section id="ch05">
   <div class="section-inner">
     <div class="ch-num"><span>05</span> · The Opportunity</div>
-    <h2>Two compounding assets look uncaptured in the data. We'd want to explore both with you.</h2>
-    <p class="implication">The menopausal integrated-care segment looks like named white space. HoG verbatim: "a big opportunity the current agency hasn't cracked." No major telehealth competitor we reviewed bundles HRT + GLP-1 + body composition. Google Search Menopause capacity sits idle behind a quality-constrained LP. Separately, referral shows up as the highest-every-metric channel in the Salesforce data: $459 LTV, 58.7% win rate, 51.8% active retention, 16.7% of leads with zero program running. Thirteen of fifteen clinics have already crossed what we're reading as the WoM inflection threshold where per-clinic opportunity rate 2.5×'s. The CEO benchmarks Medvi's affiliate model.</p>
+    <h2>Three compounding assets look uncaptured in the data. We'd want to explore all three with you.</h2>
+    <p class="implication">The menopausal integrated-care segment looks like named white space. HoG verbatim: "a big opportunity the current agency hasn't cracked." No major telehealth competitor we reviewed bundles HRT + GLP-1 + body composition. Separately, referral shows up as the highest-every-metric channel in the Salesforce data: $459 LTV, 58.7% win rate, 51.8% active retention, 16.7% of leads with zero program running. Thirteen of fifteen clinics have already crossed what we're reading as the WoM inflection threshold. And a third asset we'd highlight: the account has two creator partnerships (HealingFromPCOS, TakeControlScience) already outperforming the rest of the library, with no structured creator engine behind them. Given Shaan's stated interest in Medvi's affiliate-driven scale and Yamu's Meta Creator Marketplace access, creator-led acquisition looks to us like the most direct path to lift paid-LTV toward referral-LTV. Peer endorsement is structurally closer to how referred members convert than cold ads are.</p>
 
     <div class="stats-row">
       <div class="stat-card green">
@@ -1052,6 +1102,11 @@
         <div class="stat-num">74%</div>
         <div class="stat-label">Wegovy Rx written for women</div>
         <div class="stat-bench">Menopause demand validated</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-num">2</div>
+        <div class="stat-label">creator partnerships outperforming the library</div>
+        <div class="stat-bench">No structured engine behind them</div>
       </div>
       <div class="chart-area" style="flex:2; min-width:260px;">
         <div class="chart-label">WoM flywheel · 13 of 15 clinics past inflection</div>
@@ -1166,9 +1221,72 @@
       </div>
     </details>
 
+    <details class="expand">
+      <summary>Creator-led acquisition: the bridge between paid ($120 LTV) and referral ($459 LTV)</summary>
+      <div class="expand-body">
+        <p class="body">Shaan's #1 proposal ask was an affiliate/influencer strategy with financial modeling, with Medvi as the reference point. Our read: the account is already hinting at why. Two of the highest-performing assets in the entire Meta library are creator partnerships (HealingFromPCOS, TakeControlScience). The rest of the creative looks like in-house production. There's no structured engine underneath the two wins.</p>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Why we think creator-led acquisition closes part of the $120 → $459 LTV gap.</p>
+        <p class="body">Referral members convert to medication at 34.7% because a peer-endorsement carries pre-qualification; the new member arrives already trusting the clinical model. Cold Meta ads carry none of that; paid members convert at 14.6%. Creator content sits between the two: it's mediated by someone the viewer has already chosen to follow, often someone who shares the viewer's own identity tension (PCOS, peri-menopausal, post-40 metabolic change). Our hypothesis is that creator-acquired members should land materially closer to referral economics than cold-ad economics, especially when the creator is a real patient rather than a generic content producer.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Channel</th><th>Current LTV</th><th>Mechanism</th><th>Our expected LTV</th></tr></thead>
+          <tbody>
+            <tr><td>Cold Meta (static)</td><td style="color:var(--red); font-weight:700;">$120</td><td>Algorithm-mediated, no trust bridge</td><td>$120 (baseline)</td></tr>
+            <tr><td>Creator UGC (current, ad-hoc)</td><td>Part of blended paid</td><td>Peer-mediated, partial trust bridge</td><td style="color:var(--amber);">$180–280 (our estimate)</td></tr>
+            <tr><td>Structured creator partnership + affiliate</td><td>—</td><td>Peer endorsement + creator accountability loop</td><td style="color:var(--green);">$280–360 (our estimate)</td></tr>
+            <tr><td>Referral (member-to-peer)</td><td style="color:var(--green); font-weight:700;">$459</td><td>Full peer endorsement, pre-qualified</td><td>$459 (benchmark)</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">What competitors are doing — and the number of creators this points us toward.</p>
+        <p class="body">Our competitive sweep (Meta Ads Library across 10 major competitors) shows one brand has committed to creator UGC as its primary paid mode: <strong>Found runs 11 active creator UGC ads across 4+ angles</strong> (maintenance, perimenopause, 15+ medication options, anti-trend). Their 91-day maintenance creator ad is the longest-running in the entire competitive set. Lindora, Medi-Weightloss, Ro, WeightWatchers, and LifeMD don't use creator UGC at all — Lindora runs branded statics, the telehealth majors hide everything behind DCO. Our read: Found is the category pace-setter for creator UGC, and the differentiation play for JumpstartMD is <em>not</em> to out-volume them.</p>
+        <table>
+          <thead><tr><th>Competitor</th><th>Creator UGC strategy</th><th>Our read for JSMD</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Found</strong></td><td>11 active creator UGC ads; 13–91d durations; 4+ angles</td><td>The pacesetter. We won't out-volume them.</td></tr>
+            <tr><td>Lindora</td><td>0 creator UGC; 6 branded statics</td><td>Gap: in-person competitor not using creators</td></tr>
+            <tr><td>Medi-Weightloss</td><td>0 creator UGC; 1 franchise video</td><td>Gap</td></tr>
+            <tr><td>Ro / WW / LifeMD</td><td>DCO black-boxed; can't observe</td><td>Unknown; assume volume</td></tr>
+            <tr><td><strong>JumpstartMD</strong></td><td>2 creator partnerships (HealingFromPCOS, TakeControlScience), ad-hoc, no engine</td><td>Enough signal to know the format works here; no structure to scale it</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Why 4 creators Week 1, 6–8 by M3 — and not 15 or 20.</p>
+        <p class="body">The numbers are anchored to the content-pillar structure, not picked arbitrarily. We've defined four messaging pillars for JSMD (food noise / perimenopause / clinician-not-bot / credence stack — see the next expandable). One creator per pillar at Week 1 = 4 creators. That's the minimum volume to get a clean read across pillars in a 30-day window. Scaling to 6–8 by M3 = 1.5–2 creators per pillar, which matches Found's per-angle creator ratio (11 ads ÷ 4+ angles ≈ 2–3 creators per angle) without matching Found's total volume.</p>
+        <p class="body" style="margin-top:8px;">The reason we stay under Found's total is the competitor analysis finding: <em>"JumpstartMD will not out-volume Found on creator UGC, but can out-execute on the one thing creators can't deliver — clinical proof and integrated HRT. Out-execution on depth, not ideation on format."</em> Found's whole operating model is creator volume. JSMD's edge is clinical depth (weekly vitals, InBody, HRT integration). Running 15–20 creators chases Found on Found's strengths — agency production scale, creator sourcing pipelines, creative ops — where we don't win. Running fewer than 4 means we can't test across pillars and the signal stays too noisy to steer the program.</p>
+        <div class="callout blue"><strong>What we'd propose building:</strong> start at 4 creators Week 1 (one per messaging pillar). Scale to 6–8 active partnerships by M3, rotating quarterly. Mix of Meta Creator Marketplace (Yamu has access), direct Instagram scouting, and member-turned-creator pipeline (real patients offered a partnership — the 17-year patient base is a sourcing moat Found structurally can't match). Medvi-style affiliate layer M3: tracked referral links + revenue share at/near Meta CAC (Shaan has stated willingness to pay at that level). Cadence: 2–3 new creator drops per month + 3–5 derivative cuts per drop for paid amplification. Pace to review against Found's durations: if our creator ads hit 60d at healthy CAC, we're on Found's trajectory with half the volume.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Content strategy + messaging territory — what creators (and the brand) would actually say</summary>
+      <div class="expand-body">
+        <p class="body">A creator engine only works if what the creators say lands in a messaging territory the brand can own. Our read of the brand-foundation work and the competitive sweep: the territory is available, but under-claimed in paid. The central claim is simple, and creators can deliver it in their own voice without scripting.</p>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">The central claim (what every creator, ad, and LP should be saying in their own words):</p>
+        <div class="callout blue" style="font-size:15px;"><strong>The difference between a drug and a treatment is the clinical team behind it.</strong> California's 17-year physician-led clinic network — not a telehealth subscription to a prescription.</div>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Four content pillars we'd propose for creator briefs:</p>
+        <table>
+          <thead><tr><th>Pillar</th><th>Who it serves</th><th>Creator treatment</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. Food noise, named</strong></td><td>Shame-burdened seeker (Seg 1)</td><td>Creator describes her own "food noise" in her own words; clinician explains it as a neurological symptom, not willpower failure. Relief without shame.</td></tr>
+            <tr><td><strong>2. Perimenopause is biology, not diet failure</strong></td><td>Perimenopausal metabolic patient (Seg 3)</td><td>Female creator, 40+, explains what changed in her body and what the integrated HRT + GLP-1 protocol did. Symptom-mirror, not transformation arc.</td></tr>
+            <tr><td><strong>3. Clinician, not prescription bot</strong></td><td>Telehealth refugee (Seg 5)</td><td>Creator who has been through telehealth disappointment describes the switch. In-person clinic visits, named physician, weekly vitals, body composition scan. Non-judgmental intake.</td></tr>
+            <tr><td><strong>4. Since 2007 / 1.5M pounds / 14 clinics</strong></td><td>All segments (credence layer)</td><td>Proof stack as a quiet opener or closer on every creator video. Not hero-claim — background-claim that keeps the clinical legitimacy intact.</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">What the messaging must never do (our take):</p>
+        <p class="body">No moralising weight-loss language ("earned it," "willpower," "finally ready"). No before/after transformation photography as creative crutch. No "finite program" / "graduation" framing (GLP-1 is chronic-disease management). No compounded-equals-branded claims. No disparaging prior telehealth choices (the Safe Harbor trust mechanism breaks instantly). These are the guardrails that keep the category-reframe territory coherent.</p>
+        <div class="callout">Publishing cadence we'd propose: <strong>bi-weekly creator drops</strong> (2–3 per month), each with 3–5 derivative cuts for paid. <strong>Weekly owned-channel content</strong> (JumpstartMD Insider newsletter — already proven at 13× program-avg CTR). <strong>Monthly physician-led long-form</strong> (blog + AI Overview-optimised, feeds the SEO build in Tier 3).</div>
+      </div>
+    </details>
+
     <div class="what-wed-do">
       <div class="wwd-label">What we'd propose</div>
-      <p><strong>Menopause:</strong> LP V2, GEO rewrite, and 3 menopausal creative variants all shipped in the same M1–M2 sprint. Search Menopause budget scale post-IS recovery. <strong>Referral:</strong> program design M2 → CEO review plus soft launch M3 (active members 6+ months, Bay Area) → full launch Q3. <strong>WoM acceleration:</strong> San Jose and Menlo Park local paid plus reactivation push to bring them past the inflection threshold; every other clinic has crossed. Happy to walk through the sequencing and unknowns with you.</p>
+      <p><strong>Menopause:</strong> LP V2, GEO rewrite, and 3 menopausal creative variants all shipped in the same M1–M2 sprint. Search Menopause budget scale post-IS recovery. <strong>Referral:</strong> program design M2 → CEO review plus soft launch M3 (active members 6+ months, Bay Area) → full launch Q3. <strong>Creator engine:</strong> 4 new creator partnerships briefed Week 1 via Meta Creator Marketplace; 6–8 active at any time by M3; Medvi-style affiliate layer at or near Meta CAC (per Shaan's stated willingness). <strong>WoM acceleration:</strong> San Jose and Menlo Park local paid plus reactivation push to bring them past the inflection threshold. Happy to walk through sequencing, creator sourcing, and affiliate economics together.</p>
     </div>
   </div>
 </section>
@@ -1179,8 +1297,38 @@
 <section id="ch06">
   <div class="section-inner">
     <div class="ch-num"><span>06</span> · The Plan</div>
-    <h2>Here's the 90-day shape we'd propose — a starting point for the conversation.</h2>
-    <p class="implication">Our view: the sequence matters. Until attribution works, every scaling decision compounds the wrong signal. Once it does, the critical path to paid LTV lift looks to us like creative qualification upstream plus the Medication Upsell flow downstream. The menopause and referral bets compound outside the paid channel. Everything we don't see as load-bearing for Tier 1 has been deliberately deferred. The 90-day window below is for the work we believe moves the outcome — worth walking through and pressure-testing together.</p>
+    <h2>Here's an idea of a plan — and an honest read on what we think it delivers against doubling topline in 12 months.</h2>
+    <p class="implication">The sequence matters. Until attribution works, every scaling decision compounds the wrong signal. Once it does, the path to paid-LTV lift is creative qualification upstream plus the Medication Upsell flow downstream. The menopause, referral, and creator bets compound outside the paid channel. Everything not load-bearing for Tier 1 has been deliberately deferred. Below: the 90-day shape we'd start from, and a rough model on whether this adds up to doubling in 12 months. Both are starting points, but we're confident on the moves; the unknowns are in sizing, not direction.</p>
+
+    <details class="expand" open>
+      <summary>The doubling-revenue question — our rough math on the 12-month ambition</summary>
+      <div class="expand-body">
+        <p class="body">The stated ambition is doubling topline in 12 months (roughly $14–18M → $28–36M), on the way to $100M. We want to address this honestly, because it shapes what Q2 should actually be trying to do. Our rough model below isn't a commitment — it's a starting point for a real conversation about what a year of work can deliver.</p>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">What the levers add up to, on our current read:</p>
+        <table>
+          <thead><tr><th>Lever</th><th>Mechanism</th><th>Topline contribution (our estimate)</th><th>Confidence</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Paid-media LTV lift</strong></td><td>Creative qualification + Medication Upsell flow: $120 → $250+ per paid-acquired member</td><td style="color:var(--green); font-weight:700;">+15–25%</td><td>MEDIUM</td></tr>
+            <tr><td><strong>Menopause capture</strong></td><td>Dedicated LP + GEO rewrite + Search Menopause budget scale; uncontested territory</td><td style="color:var(--green); font-weight:700;">+10–20%</td><td>MEDIUM</td></tr>
+            <tr><td><strong>Creator engine + affiliate layer</strong></td><td>6–8 active partnerships, Medvi-style economics; closes part of the $120 → $459 gap via peer endorsement</td><td style="color:var(--green); font-weight:700;">+15–25%</td><td>MEDIUM (depends on sourcing velocity)</td></tr>
+            <tr><td><strong>Referral program</strong></td><td>Formalising the flywheel already running at 16.7% of leads; compounding into Q3+</td><td style="color:var(--green); font-weight:700;">+10–20%</td><td>MEDIUM-HIGH</td></tr>
+            <tr><td><strong>WoM clinic-level acceleration</strong></td><td>San Jose + Menlo Park past inflection; Irvine ramping</td><td style="color:var(--amber); font-weight:700;">+5–10%</td><td>MEDIUM</td></tr>
+            <tr><td><strong>After-hours + LP + email recovery</strong></td><td>Tier 3 quick wins — existing leads converting better</td><td style="color:var(--amber); font-weight:700;">+5–10%</td><td>HIGH</td></tr>
+            <tr><td><strong>Async booking live (Q3)</strong></td><td>Structural unlock on 28% of leads currently decaying</td><td style="color:var(--amber); font-weight:700;">+5–10%</td><td>LOW (JSMD eng dependency)</td></tr>
+            <tr><td><strong>Organic/SEO compounding (Q3+)</strong></td><td>Schema + GEO + content; 10.2% CVR channel properly instrumented</td><td style="color:var(--amber); font-weight:700;">+5–15%</td><td>MEDIUM (12-month horizon)</td></tr>
+            <tr><th style="color:var(--text);">Rough additive range</th><td></td><th style="color:var(--text);">+70–135%</th><td></td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Our honest read:</p>
+        <p class="body">Doubling topline (+100%) sits inside this range but at the top end. It assumes most levers land near the upper bound <em>and</em> compound rather than cannibalise. The levers aren't fully independent: creator and paid share the same member funnel, referral and WoM share the same flywheel, menopause pulls some buyers who would have converted on WL anyway. Our working estimate is that the realistic central case looks more like <strong>+60–80% topline over 12 months</strong>, with a plausible stretch to +100% if the creator engine + referral program both hit their upside and JSMD ships async booking on schedule.</p>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">What we think is worth doing:</p>
+        <p class="body">Aim at doubling, model against +65–75%, and treat the gap as something to close together with the CEO and HoG every 90 days. The Q2 work isn't priced against the ambition — it's priced against unlocking the levers that make the ambition possible. If we run Q2 well and the LTV lift + menopause capture signals clear the gates, Q3 scaling is where doubling actually gets decided. If any of the MEDIUM-confidence bets fall short, we'd want to come back early rather than over-promise. Worth walking through each row of the table with you.</p>
+        <div class="callout blue"><strong>What would push us toward the upper bound:</strong> creator sourcing velocity (getting to 6–8 active partnerships by M3), referral program design that feels natural to active members (incentive design is the variable we're least certain on), async booking shipping inside Q3 rather than slipping, and Salesforce offline conversion wiring landing in Month 1 so we can actually read the paid-LTV lift cohort by cohort.</div>
+      </div>
+    </details>
 
     <div class="roadmap">
       <div class="roadmap-col">
@@ -1219,7 +1367,8 @@
           <div class="roadmap-item">
             <div class="roadmap-dot red"></div>
             <div>
-              <div class="roadmap-item-text">Brief 4 video UGC creators (HealingFromPCOS / TakeControlScience templates)</div>
+              <div class="roadmap-item-text">Brief 4 video UGC creators via Meta Creator Marketplace — one per messaging pillar (food noise / perimenopause / clinician-not-bot / credence). Patterned on HealingFromPCOS and TakeControlScience.</div>
+              <div class="roadmap-item-val red">Creator engine v0 — stays under Found's volume, competes on depth</div>
             </div>
           </div>
         </div>
@@ -1255,7 +1404,14 @@
           <div class="roadmap-item">
             <div class="roadmap-dot amber"></div>
             <div>
-              <div class="roadmap-item-text">Referral program design + CEO stakeholder review</div>
+              <div class="roadmap-item-text">Creator engine v1: 6–8 active partnerships rotating (1.5–2 per pillar — matches Found's per-angle ratio at half the total volume). Content pillar briefs written for all 4 pillars.</div>
+              <div class="roadmap-item-val amber">Bridge paid → referral LTV</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">Referral program design + CEO stakeholder review + affiliate economics model (Medvi-style)</div>
             </div>
           </div>
           <div class="roadmap-item">
@@ -1302,6 +1458,13 @@
           <div class="roadmap-item">
             <div class="roadmap-dot green"></div>
             <div>
+              <div class="roadmap-item-text">Creator affiliate layer live: tracked referral links, Medvi-style revenue share at/near Meta CAC</div>
+              <div class="roadmap-item-val green">Creator engine v2</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
               <div class="roadmap-item-text">First paid-media 60-day medication-conversion cohort read</div>
               <div class="roadmap-item-val green">Tier 1 signal check</div>
             </div>
@@ -1320,8 +1483,8 @@
         <div class="roadmap-target-label">Q3 target</div>
         <div class="roadmap-target-val accent">$250+</div>
       </div>
-      <div style="font-size:13px; color:#9ca3af; max-width:240px; line-height:1.6;">
-        Plus referral mix shift, menopausal capacity opened, email program recovered. Each phase compounds the last.
+      <div style="font-size:13px; color:#9ca3af; max-width:280px; line-height:1.6;">
+        Topline model for the 12-month ambition ($14–18M → $28–36M): our central case is +60–80%, with a plausible stretch toward +100% if creator engine and referral program land their upside. Doubling is the ambition we're aiming at; the plan is priced against unlocking the levers that make it possible.
       </div>
     </div>
 
@@ -1355,7 +1518,7 @@
 
     <div class="what-wed-do">
       <div class="wwd-label">The one-line version</div>
-      <p>From what the data shows us: the business has a 17-year clinical moat, what looks like an uncontested integrated-care territory, and a flywheel its own customers are already running. The work we'd propose is fixing the instruments that have been obscuring that, and making the marketing match the medicine. Let's walk through it together.</p>
+      <p>From what the data shows us: the business has a 17-year clinical moat, what looks like an uncontested integrated-care territory, a flywheel its own customers are already running, and a creator engine sitting half-built with two proven partnerships in it. The work we'd propose is fixing the instruments that obscure that picture, making the marketing match the medicine, and running a structured creator engine alongside so paid economics move toward referral economics. Doubling is the ambition; we'd like to walk through what it takes together.</p>
     </div>
   </div>
 </section>
