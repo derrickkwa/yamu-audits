@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JumpstartMD · Growth Audit · April 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f9fafb;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --red-border: #fecaca;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --green-border: #bbf7d0;
+    --amber: #d97706;
+    --amber-bg: #fffbeb;
+    --amber-border: #fde68a;
+    --accent: #6366f1;
+    --accent-bg: #eef2ff;
+    --accent-border: #c7d2fe;
+    --text: #111827;
+    --text-2: #374151;
+    --text-3: #6b7280;
+    --text-4: #9ca3af;
+    --border: #e5e7eb;
+    --border-2: #f3f4f6;
+    --nav-h: 60px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+  }
+  .nav-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 2px;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+  .nav-brand span { color: var(--text-3); font-weight: 400; }
+  nav a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-3);
+    padding: 6px 11px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: color 0.15s, background 0.15s;
+    flex-shrink: 0;
+  }
+  nav a:hover { color: var(--text); background: var(--bg-alt); }
+  nav a.active { color: var(--accent); background: var(--accent-bg); }
+
+  .hero {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 64px 24px 52px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-4);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 3.8vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 18px;
+    max-width: 680px;
+  }
+  .hero p {
+    font-size: 16px;
+    color: var(--text-2);
+    max-width: 640px;
+    line-height: 1.75;
+    margin-bottom: 32px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+  .hero-stat-num {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .hero-stat-num.red { color: var(--red); }
+  .hero-stat-num.green { color: var(--green); }
+  .hero-stat-num.accent { color: var(--accent); }
+  .hero-stat-label { font-size: 12px; color: var(--text-4); }
+
+  section {
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: var(--nav-h);
+  }
+  section:nth-child(even) { background: var(--bg-alt); }
+  .section-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 56px 24px;
+  }
+  .ch-num {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-4);
+    margin-bottom: 10px;
+  }
+  .ch-num span { color: var(--accent); }
+  .section-inner h2 {
+    font-size: clamp(21px, 2.8vw, 30px);
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 10px;
+    max-width: 740px;
+  }
+  .implication {
+    font-size: 15px;
+    color: var(--text-2);
+    max-width: 680px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .stat-card {
+    flex: 1;
+    min-width: 128px;
+    max-width: 190px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 17px;
+  }
+  .stat-card.red { background: var(--red-bg); border-color: var(--red-border); }
+  .stat-card.green { background: var(--green-bg); border-color: var(--green-border); }
+  .stat-card.amber { background: var(--amber-bg); border-color: var(--amber-border); }
+  .stat-card.accent { background: var(--accent-bg); border-color: var(--accent-border); }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: var(--text);
+  }
+  .stat-card.red .stat-num { color: var(--red); }
+  .stat-card.green .stat-num { color: var(--green); }
+  .stat-card.amber .stat-num { color: var(--amber); }
+  .stat-card.accent .stat-num { color: var(--accent); }
+  .stat-label { font-size: 12px; color: var(--text-3); margin-bottom: 3px; }
+  .stat-bench { font-size: 11px; color: var(--text-4); }
+
+  .chart-area {
+    flex: 2;
+    min-width: 260px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .chart-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-4);
+    margin-bottom: 14px;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 9px;
+  }
+  .bar-name { font-size: 12px; color: var(--text-2); min-width: 150px; flex-shrink: 0; }
+  .bar-track {
+    flex: 1;
+    background: var(--border-2);
+    border-radius: 4px;
+    height: 9px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 9px;
+    border-radius: 4px;
+    background: var(--accent);
+  }
+  .bar-fill.red { background: var(--red); }
+  .bar-fill.green { background: var(--green); }
+  .bar-fill.amber { background: var(--amber); }
+  .bar-fill.gray { background: var(--border); }
+  .bar-val { font-size: 12px; font-weight: 700; color: var(--text-2); min-width: 60px; text-align: right; flex-shrink: 0; }
+  .bar-val.red { color: var(--red); }
+  .bar-val.green { color: var(--green); }
+  .bar-val.amber { color: var(--amber); }
+  .chart-note {
+    margin-top: 14px;
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 12px;
+    color: #92400e;
+    line-height: 1.55;
+  }
+
+  details.expand {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    background: var(--bg);
+  }
+  details.expand summary {
+    padding: 13px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    user-select: none;
+  }
+  details.expand summary::-webkit-details-marker { display: none; }
+  details.expand summary::before { content: '▸'; font-size: 11px; transition: transform 0.2s; display: inline-block; }
+  details.expand[open] summary::before { transform: rotate(90deg); }
+  details.expand summary:hover { background: var(--accent-bg); }
+  .expand-body { padding: 4px 18px 20px; border-top: 1px solid var(--border-2); }
+
+  .what-wed-do {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+  .wwd-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+  .what-wed-do p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+  .what-wed-do strong { color: var(--text); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-4);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border-2); color: var(--text-2); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .tag.red { background: var(--red-bg); color: var(--red); }
+  .tag.green { background: var(--green-bg); color: var(--green); }
+  .tag.amber { background: var(--amber-bg); color: var(--amber); }
+  .tag.gray { background: var(--bg-alt); color: var(--text-3); }
+
+  .friction-list { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+  .friction-item { display: flex; gap: 12px; align-items: flex-start; }
+  .friction-badge {
+    background: var(--red-bg);
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .friction-item p { font-size: 13px; color: var(--text-2); line-height: 1.65; margin: 0; }
+
+  .campaign-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .campaign-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 16px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .campaign-card.highlight { background: var(--red-bg); border-color: var(--red-border); }
+  .campaign-name { font-size: 12px; font-weight: 600; color: var(--text); flex: 2; font-family: "SF Mono", "Fira Code", monospace; word-break: break-word; }
+  .campaign-card.highlight .campaign-name { color: var(--red); }
+  .campaign-meta { display: flex; gap: 16px; flex-shrink: 0; }
+  .campaign-stat { text-align: right; }
+  .campaign-stat-val { font-size: 13px; font-weight: 700; color: var(--text); }
+  .campaign-stat-val.red { color: var(--red); }
+  .campaign-stat-label { font-size: 10px; color: var(--text-4); }
+
+  .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+  .roadmap-col { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .roadmap-header { padding: 14px 16px; border-bottom: 1px solid var(--border-2); }
+  .roadmap-month { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-4); margin-bottom: 3px; }
+  .roadmap-theme { font-size: 15px; font-weight: 700; color: var(--text); }
+  .roadmap-items { padding: 12px 16px; display: flex; flex-direction: column; gap: 9px; }
+  .roadmap-item { display: flex; gap: 10px; align-items: flex-start; }
+  .roadmap-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex-shrink: 0; }
+  .roadmap-dot.red { background: var(--red); }
+  .roadmap-dot.green { background: var(--green); }
+  .roadmap-dot.amber { background: var(--amber); }
+  .roadmap-item-text { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+  .roadmap-item-val { font-size: 11px; font-weight: 700; color: var(--accent); margin-top: 2px; }
+  .roadmap-item-val.red { color: var(--red); }
+  .roadmap-item-val.green { color: var(--green); }
+  .roadmap-target {
+    background: var(--text);
+    color: white;
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  .roadmap-target-label { font-size: 11px; color: #9ca3af; margin-bottom: 3px; }
+  .roadmap-target-val { font-size: 22px; font-weight: 800; color: white; }
+  .roadmap-target-val.accent { color: #a5b4fc; }
+
+  .callout {
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 13px;
+    color: #92400e;
+    line-height: 1.6;
+    margin-top: 14px;
+  }
+  .callout strong { color: #78350f; }
+  .callout.blue { background: var(--accent-bg); border-color: var(--accent-border); color: #3730a3; }
+  .callout.blue strong { color: #312e81; }
+  .callout.green { background: var(--green-bg); border-color: var(--green-border); color: #14532d; }
+  .callout.green strong { color: #052e16; }
+  .divider { height: 1px; background: var(--border-2); margin: 16px 0; }
+  p.body { font-size: 13px; color: var(--text-2); line-height: 1.75; margin-top: 8px; }
+  .trend-up { color: var(--green); font-weight: 700; }
+  .trend-dn { color: var(--red); font-weight: 700; }
+  .trend-fl { color: var(--text-3); }
+
+  .attr-stack { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+  .attr-row { display: flex; align-items: center; gap: 12px; padding: 11px 14px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; }
+  .attr-platform { font-size: 13px; font-weight: 700; color: var(--text); min-width: 150px; flex-shrink: 0; }
+  .attr-claim { font-size: 13px; color: var(--text-2); flex: 1; }
+  .attr-verdict { font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .attr-verdict.red { color: var(--red); }
+  .attr-verdict.amber { color: var(--amber); }
+  .attr-verdict.green { color: var(--green); }
+
+  footer {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 36px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  footer p { font-size: 12px; color: var(--text-4); max-width: 600px; }
+
+  @media (max-width: 640px) {
+    .stats-row { flex-direction: column; }
+    .stat-card { max-width: 100%; }
+    .chart-area { min-width: 100%; }
+    .bar-name { min-width: 110px; font-size: 11px; }
+    .roadmap { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+    .nav-brand { display: none; }
+    .campaign-meta { display: none; }
+    .attr-platform { min-width: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">JumpstartMD <span>· April 2026</span></div>
+    <a href="#ch01" class="active">01 Situation</a>
+    <a href="#ch02">02 Measurement</a>
+    <a href="#ch03">03 Where It Bleeds</a>
+    <a href="#ch04">04 Quick Wins</a>
+    <a href="#ch05">05 Opportunity</a>
+    <a href="#ch06">06 The Plan</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Growth Audit · April 2026</div>
+  <h1>Your best customers are 3.8× more valuable than the customers your ads are buying.</h1>
+  <p>Paid-media 12-month LTV is $120. Referral 12-month LTV is $459. Paid is acquiring a structurally lower-value cohort, and the instruments that would diagnose why have been broken for months. Video creative costs less than half what static does and sits at 29% of the spend mix.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num red">$120</div>
+      <div class="hero-stat-label">paid-media 12m LTV</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num green">$459</div>
+      <div class="hero-stat-label">referral 12m LTV</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num accent">3.4%</div>
+      <div class="hero-stat-label">share of search vs Hims 42%</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ -->
+<!-- CH01 — THE SITUATION        -->
+<!-- ═══════════════════════════ -->
+<section id="ch01">
+  <div class="section-inner">
+    <div class="ch-num"><span>01</span> · The Situation</div>
+    <h2>The business has a 17-year clinical moat. The marketing has been selling a commodity.</h2>
+    <p class="implication">14 California clinics. 1.5 million pounds lost since 2007. Integrated HRT + GLP-1 capability no major telehealth competitor bundles. Those assets are the differentiation. Paid creative, the LP flow, and category SoS all point away from them; the account is competing on the saturated conventions of a telehealth category (drug-first, convenience, transformation photos) rather than on the structural advantages no telehealth player can replicate. Paid-acquired members convert to medication at 14.6%. Referral-acquired members convert at 34.7%. Paid is buying a different, cheaper customer.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">$120</div>
+        <div class="stat-label">paid-media 12m LTV</div>
+        <div class="stat-bench">Salesforce cohort</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">$459</div>
+        <div class="stat-label">referral 12m LTV</div>
+        <div class="stat-bench">3.8× paid</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">14.6%</div>
+        <div class="stat-label">paid med conversion</div>
+        <div class="stat-bench">vs 34.7% referral</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">13/15</div>
+        <div class="stat-label">clinics past WoM inflection</div>
+        <div class="stat-bench">~390-opp threshold crossed</div>
+      </div>
+      <div class="chart-area" style="flex:2; min-width:260px;">
+        <div class="chart-label">LTV by acquisition channel</div>
+        <div class="bar-row">
+          <div class="bar-name">Referral</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:100%;"></div></div>
+          <div class="bar-val green">$459</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Blended average</div>
+          <div class="bar-track"><div class="bar-fill amber" style="width:66%;"></div></div>
+          <div class="bar-val amber">$305</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Paid media</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:26%;"></div></div>
+          <div class="bar-val red">$120</div>
+        </div>
+        <div class="chart-note">The blended LTV of $305 averages two very different cohorts. Referral-acquired members ($459) anchor the top; paid-acquired members ($120) drag the bottom. Any growth plan priced on the blended average underwrites the paid cohort's shortfall. The fix is creative qualification upstream plus the medication upsell flow downstream, both in this report.</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>Why paid-media LTV is 26% of referral LTV</summary>
+      <div class="expand-body">
+        <p class="body">The Salesforce cohort analysis isolates the difference to a single mechanism: medication conversion. Paid-acquired members convert to a medication tier (Tirzepatide, Semaglutide, etc.) at 14.6%. Referral-acquired members convert at 34.7%. Medication sits above the membership fee in the revenue stack, so the 20-point gap drives nearly all of the LTV delta.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Cohort</th><th>Medication conversion</th><th>12m LTV</th><th>Active retention</th></tr></thead>
+          <tbody>
+            <tr><td>Paid media</td><td style="color:var(--red); font-weight:700;">14.6%</td><td style="color:var(--red); font-weight:700;">$120</td><td>—</td></tr>
+            <tr><td>Referral</td><td style="color:var(--green); font-weight:700;">34.7%</td><td style="color:var(--green); font-weight:700;">$459</td><td style="color:var(--green);">51.8%</td></tr>
+            <tr><td>Referral — Physician</td><td>—</td><td>—</td><td style="color:var(--green); font-weight:700;">126.6% lead→opp</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">Creative is acquiring leads who never progress to medication. The hypothesis, testable in Month 4: creative qualification (shame-dissolution plus clinical-permission framing plus credence stack) pre-qualifies for medication intent upstream, and the missing GLP-1 Medication Upsell email flow closes the gap downstream.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>The 17-year moat is real, but currently unclaimed in paid creative</summary>
+      <div class="expand-body">
+        <p class="body">The competitive audit found no evidence that JumpstartMD's structural differentiators are used aggressively in paid creative. They appear on the homepage; they do not lead ads, LP hero sections, or video hooks.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Structural asset</th><th>Credence value</th><th>Status in paid creative</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Since 2007 · 1.5M pounds lost</strong></td><td>Cannot be replicated by any telehealth entrant in next 24 months</td><td><span class="tag red">Not in first 3 seconds of video</span></td></tr>
+            <tr><td><strong>14 California clinical locations</strong></td><td>Local mental availability + proximity trust</td><td><span class="tag amber">Generic mentions, no per-clinic creative</span></td></tr>
+            <tr><td><strong>Integrated HRT + GLP-1</strong></td><td>No major telehealth competitor bundles</td><td><span class="tag red">Not claimed in creative</span></td></tr>
+            <tr><td><strong>In-person weekly vitals + InBody + labs</strong></td><td>Structural monitoring depth telehealth can't deliver</td><td><span class="tag red">Not in creative</span></td></tr>
+            <tr><td><strong>Pharmaceutical-grade sourcing</strong></td><td>Direct answer to FDA compounding crackdown</td><td><span class="tag red">Not claimed</span></td></tr>
+            <tr><td><strong>Named clinicians (Dr Jeff, Dr Ana)</strong></td><td>Humanises "clinician-led"</td><td><span class="tag red">Homepage only</span></td></tr>
+          </tbody>
+        </table>
+        <div class="callout blue">The fix is to move the brand's own proof stack into the first three seconds of every video and above the fold on every LP. The assets exist. They aren't working yet because they aren't where buyers see them.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>SoS 3.4% in a category contracting −36% YoY</summary>
+      <div class="expand-body">
+        <p class="body">Category Demand for in-person clinic care is contracting YoY (−36.1%) while telehealth category search is at record highs. JumpstartMD SoS is 3.4% vs Hims &amp; Hers 42%, LifeMD 18%, Ro 10%. The brand can't win this SoS battle on volume, but the framing of the battle is wrong.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Player</th><th>Share of Search</th><th>Model</th></tr></thead>
+          <tbody>
+            <tr><td>Hims &amp; Hers</td><td style="font-weight:700;">42%</td><td>Telehealth, compounded</td></tr>
+            <tr><td>LifeMD</td><td style="font-weight:700;">18%</td><td>Telehealth</td></tr>
+            <tr><td>Ro</td><td style="font-weight:700;">10%</td><td>Telehealth, overlaps 24% of JSMD's branded auctions</td></tr>
+            <tr><td><strong>JumpstartMD</strong></td><td style="color:var(--red); font-weight:700;">3.4%</td><td>In-person, 14 California clinics, 17-year tenure</td></tr>
+          </tbody>
+        </table>
+        <div class="callout blue">The bet is to claim the territory competitors structurally can't match: integrated HRT+GLP-1 care, clinical permission, in-person supervision, at scale inside California. A well-positioned sub-category the brand owns beats a SoS fight the brand cannot win.</div>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">The lens</div>
+      <p>Split every performance conversation into two numbers: <strong>blended LTV</strong> (what the account averages) and <strong>paid-media LTV</strong> (what's actually being acquired by ad spend). The first is $305. The second is $120. The Q2 work closes the gap between them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ -->
+<!-- CH02 — MEASUREMENT          -->
+<!-- ═══════════════════════════ -->
+<section id="ch02">
+  <div class="section-inner">
+    <div class="ch-num"><span>02</span> · The Measurement Problem</div>
+    <h2>You can't steer a performance model with broken instruments.</h2>
+    <p class="implication">Six measurement surfaces are degraded at once. Every downstream decision (budget, creative, campaign structure, email cadence) runs on signal that is partially or fully untrustable. Fixing this is the prerequisite for every other move in this report, including Yamu's own commercial arrangement.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">6</div>
+        <div class="stat-label">broken measurement surfaces</div>
+        <div class="stat-bench">Meta, Google, SF, Reddit, HubSpot, GSC</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">60+ d</div>
+        <div class="stat-label">Meta CAPI misconfigured</div>
+        <div class="stat-bench">event_source_url + duplicates</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">Mixed</div>
+        <div class="stat-label">Google primary conversions</div>
+        <div class="stat-bench">Smart Bidding split across events</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">65–88 pp</div>
+        <div class="stat-label">MMM confidence interval width</div>
+        <div class="stat-bench">55 weeks of lockstep spend</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>The six broken instruments</summary>
+      <div class="expand-body">
+        <p class="body">Each surface is independently degraded. Together they mean no channel, flow, or creative decision in the last 60 days can be evaluated on reliable signal.</p>
+        <div class="attr-stack">
+          <div class="attr-row">
+            <div class="attr-platform">Meta CAPI</div>
+            <div class="attr-claim">Missing <code>event_source_url</code> 60+ days. 54% duplicate emails in the payload. Health-category review pending.</div>
+            <div class="attr-verdict red">BROKEN</div>
+          </div>
+          <div class="attr-row">
+            <div class="attr-platform">Google Ads</div>
+            <div class="attr-claim">Multiple primary conversions active. Smart Bidding is optimising across a mix of events (proxy + booked-and-paid) with no clear direction. The account isn't blind; it's cross-eyed.</div>
+            <div class="attr-verdict red">BROKEN</div>
+          </div>
+          <div class="attr-row">
+            <div class="attr-platform">Salesforce</div>
+            <div class="attr-claim">Offline Conversion API never wired to Meta or Google. The system of record for "Opportunity Booked and Paid" doesn't feed the platforms optimising to produce it.</div>
+            <div class="attr-verdict red">BROKEN</div>
+          </div>
+          <div class="attr-row">
+            <div class="attr-platform">Reddit</div>
+            <div class="attr-claim">Click-ID passthrough off. $14.8K spent over 45 days, 0 click-through conversions recorded.</div>
+            <div class="attr-verdict red">BROKEN</div>
+          </div>
+          <div class="attr-row">
+            <div class="attr-platform">HubSpot</div>
+            <div class="attr-claim">Aggregate email open rate 3.58% (healthy is 10%+, and MPP inflates opens, so the true rate is lower). Domain warm-up lists found in account = prior inbox-placement incident.</div>
+            <div class="attr-verdict red">CRISIS</div>
+          </div>
+          <div class="attr-row">
+            <div class="attr-platform">Search Console</div>
+            <div class="attr-claim">No visibility on our side, whether the property is unconfigured or access simply hasn't been granted. Organic is the <strong>best-converting channel on site (10.2% CVR, 2× average)</strong> and is flying blind either way.</div>
+            <div class="attr-verdict amber">NO ACCESS</div>
+          </div>
+        </div>
+        <div class="callout">Until all six are fixed, no paid scaling is safe. Yamu's performance model depends on a reconciliation read: Meta-reported vs Salesforce last-touch lead count delta under 15% at Week 8 is the gate.</div>
+
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>The MMM point estimates come with 65–88-point confidence intervals</summary>
+      <div class="expand-body">
+        <p class="body">A Marketing Mix Model was run (PyMC + Robyn + Meridian, V5). The headline channel contributions look clean at first glance, but the confidence intervals tell a different story.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Channel</th><th>Point estimate</th><th>CI width</th><th>Confidence</th></tr></thead>
+          <tbody>
+            <tr><td>Baseline (non-paid)</td><td style="font-weight:700;">91%</td><td>narrow</td><td class="trend-up">HIGH</td></tr>
+            <tr><td>Meta</td><td>21% of paid</td><td>65pp</td><td class="trend-fl">LOW</td></tr>
+            <tr><td>Brand Search</td><td>33% of paid</td><td style="color:var(--red);">89pp (4–93%)</td><td class="trend-dn">VERY LOW</td></tr>
+            <tr><td>Non-brand Search</td><td>24% of paid</td><td>72pp</td><td class="trend-dn">LOW</td></tr>
+            <tr><td>PMax</td><td>21% of paid</td><td>78pp</td><td class="trend-dn">LOW</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body">Meta + Google + Brand + PMax all scaled in lockstep for 55 weeks. Without independent variation (budget perturbation or geo holdout), no algorithm can separate correlated inputs. The math is not failing; the data is.</p>
+        <div class="callout amber"><strong>The trap:</strong> the MMM optimiser output suggests a +398% Meta budget increase. Acting on that number is a known failure mode. The only way to narrow brand-search incrementality below 89pp of uncertainty is to run a geo pause, scheduled for Month 2–3.</div>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p><strong>Weeks 1–3:</strong> Fix CAPI (event_source_url, duplicate payload, health-category review). Consolidate Google primary conversion to a single booked-and-paid event; demote the other primaries to secondary. Wire Salesforce offline events to Meta and Google. HubSpot iframe form_start via GTM. UTM hygiene across all ads. Confirm GSC access.</p>
+      <p style="margin-top:8px;"><strong>Week 6+:</strong> Reconcile Meta-reported vs Salesforce last-touch lead count weekly until delta drops under 15%. <strong>Month 2–3:</strong> brand-search geo holdout plus queue Meta Conversion Lift study.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ -->
+<!-- CH03 — WHERE PAID BLEEDS    -->
+<!-- ═══════════════════════════ -->
+<section id="ch03">
+  <div class="section-inner">
+    <div class="ch-num"><span>03</span> · Where Paid Media Bleeds</div>
+    <h2>90% of your paid traffic never sees your offer. The campaigns that should be fixing that are broken too.</h2>
+    <p class="implication">The LP scroll rate is 9.75%: a metric on fire. Two of the three best-converting paid LPs return 404; one was 7.21% CVR, 2× the current main LP. LA/OC spend is 17× less efficient than Bay Area. Audience Network shows $11,196 CPL on 0 bookings. Frustration-framed creative averages $449 CPL versus hope-framed $202. Static is 71% of Meta spend at $235 CPL while video averages $106 (2.2× more efficient) but only 29% of spend. Retargeting is 1.3% of Meta spend while returning users convert at 4.4× cold rates.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">9.75%</div>
+        <div class="stat-label">LP scroll rate</div>
+        <div class="stat-bench">90% never see the offer</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">2</div>
+        <div class="stat-label">best paid LPs returning 404</div>
+        <div class="stat-bench">One was 7.21% CVR</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">17×</div>
+        <div class="stat-label">LA/OC efficiency gap</div>
+        <div class="stat-bench">36% of Meta spend, 2% of opps</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">$11.2K</div>
+        <div class="stat-label">Audience Network CPL</div>
+        <div class="stat-bench">0 bookings</div>
+      </div>
+      <div class="chart-area" style="flex:2; min-width:260px;">
+        <div class="chart-label">Where Meta spend is going vs what's working</div>
+        <div class="bar-row">
+          <div class="bar-name">Static creative (71% spend)</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:100%;"></div></div>
+          <div class="bar-val red">$235 CPL</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Video creative (29% spend)</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:45%;"></div></div>
+          <div class="bar-val green">$106 CPL</div>
+        </div>
+        <div class="divider"></div>
+        <div class="bar-row">
+          <div class="bar-name">Frustration framing</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:100%;"></div></div>
+          <div class="bar-val red">$449 CPL</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Hope / relief framing</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:45%;"></div></div>
+          <div class="bar-val green">$202 CPL</div>
+        </div>
+        <div class="chart-note">Meta Creative Feature Analysis: video is 2.2× more efficient than static. Hope framing is 2.2× more efficient than frustration. The account is producing more of what's expensive and less of what works. Quick Win territory; see Chapter 04.</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>The two paid LPs that are 404</summary>
+      <div class="expand-body">
+        <p class="body">The CRO audit crawled the active paid ad destinations. Two of the three highest-converting LPs no longer exist, including the single best-performing variant in the account.</p>
+        <div class="divider"></div>
+        <div class="campaign-list">
+          <div class="campaign-card highlight">
+            <div class="campaign-name">/weight-loss-mt260320/</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val red">404</div><div class="campaign-stat-label">status</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">7.21%</div><div class="campaign-stat-label">prior CVR</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">2×</div><div class="campaign-stat-label">vs current main LP</div></div>
+            </div>
+          </div>
+          <div class="campaign-card highlight">
+            <div class="campaign-name">/online-weight-loss-6/</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val red">404</div><div class="campaign-stat-label">status</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">—</div><div class="campaign-stat-label">paid traffic active</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">—</div><div class="campaign-stat-label">direct revenue loss</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="callout">Fix: restore or 301-redirect both pages in Week 1. No creative work, no strategy; just stop bleeding money on clicks that land nowhere. <strong>Mobile LCP on the two primary LPs:</strong> 2.9s (<code>/weight-loss/</code>) and 3.6s (<code>/menopause-care/</code>), both failing Core Web Vitals. Root cause: TTFB 1.3–1.4s (threshold is 0.8s) from an uncached WordPress plus heavy plugin stack. Fix: WP Rocket + Cloudflare CDN drops TTFB to 0.3–0.5s.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>LA/OC is 17× less efficient than Bay Area, and eats 36% of the Meta budget</summary>
+      <div class="expand-body">
+        <p class="body">The MMM regional breakdown surfaced a major allocation anomaly. LA/OC consumes about $103K/yr in Meta spend (36% of the Meta budget) but generates only ~2% of Salesforce-attributed opportunities from those DMAs.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Region</th><th>Meta spend share</th><th>Opp share</th><th>Efficiency ratio</th></tr></thead>
+          <tbody>
+            <tr><td>Bay Area</td><td>~64%</td><td>~98%</td><td style="color:var(--green); font-weight:700;">1.5×</td></tr>
+            <tr><td>LA / Orange County</td><td style="color:var(--red); font-weight:700;">~36%</td><td style="color:var(--red); font-weight:700;">~2%</td><td style="color:var(--red); font-weight:700;">0.06× (17× worse)</td></tr>
+          </tbody>
+        </table>
+        <div class="callout amber"><strong>Three possible root causes:</strong> (1) targeting/creative mis-calibrated to the Orange County clinic, (2) tracking broken in those DMAs, (3) OC expansion not yet converting intent to bookings at clinic level. Diagnostic due by Day 60. Until then: pause LA/OC Meta and redirect to Bay Area plus menopausal creative test.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Meta campaign structure is a 34-campaign pileup</summary>
+      <div class="expand-body">
+        <p class="body">The account has ~34 active or semi-active campaigns, most non-performing, one paused that shouldn't be (ApptBookedPaid CBO), and an Audience Network placement that should never have been on.</p>
+        <div class="divider"></div>
+        <div class="campaign-list">
+          <div class="campaign-card highlight">
+            <div class="campaign-name">Audience Network placement (all campaigns)</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val red">$11,196</div><div class="campaign-stat-label">CPL</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val red">0</div><div class="campaign-stat-label">bookings</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">—</div><div class="campaign-stat-label">pure waste</div></div>
+            </div>
+          </div>
+          <div class="campaign-card highlight">
+            <div class="campaign-name">Frustration-framed creatives (n=12)</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val red">$449</div><div class="campaign-stat-label">avg CPL</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">vs $202</div><div class="campaign-stat-label">hope framing</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">—</div><div class="campaign-stat-label">pause Week 1</div></div>
+            </div>
+          </div>
+          <div class="campaign-card highlight">
+            <div class="campaign-name">34 non-performing legacy campaigns</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val red">—</div><div class="campaign-stat-label">mixed states</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">—</div><div class="campaign-stat-label">signal noise</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">Archive</div><div class="campaign-stat-label">Week 1</div></div>
+            </div>
+          </div>
+          <div class="campaign-card">
+            <div class="campaign-name">Retargeting (cold side of account)</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val">1.3%</div><div class="campaign-stat-label">of Meta spend</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val green">4.4×</div><div class="campaign-stat-label">CVR vs new users</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">Scale</div><div class="campaign-stat-label">Month 3</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="callout">Consolidate the account to 3 CBOs: WL Purchase, HRT Purchase, Warm Retargeting. Archive the 34 non-performing. Reactivate ApptBookedPaid if the pause was unintentional. Exclude Audience Network from every campaign.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Google Ads: $97.7K at 7.81× ROAS, but Smart Bidding is cross-eyed</summary>
+      <div class="expand-body">
+        <p class="body">The Google account runs at $97.7K / 90 days with a reported 7.81× ROAS. Headline looks healthy. Structurally, several levers are either disabled or ignored.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Issue</th><th>Evidence</th><th>Fix</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Primary conversion is a mix of events</strong></td><td>Multiple primaries active; Smart Bidding is splitting optimisation across proxy + booked-and-paid signals with no clear direction</td><td><span class="tag red">Consolidate Week 1</span></td></tr>
+            <tr><td><strong>Menopause Search capacity-constrained</strong></td><td>49% Impression Share lost to rank (quality-constrained, not budget)</td><td><span class="tag amber">LP V2 + GEO rewrite first</span></td></tr>
+            <tr><td><strong>Search WL budget-capped</strong></td><td>41% IS lost to budget: proven intent, under-funded</td><td><span class="tag green">Raise budget Week 2</span></td></tr>
+            <tr><td><strong>Negative keyword list 34% waste</strong></td><td>~34.2% of spend on terms that never convert</td><td><span class="tag green">Clean Week 2–3</span></td></tr>
+            <tr><td><strong>P-Max Online Membership paused</strong></td><td>Historical $20/conv: the account's most efficient campaign</td><td><span class="tag green">Reactivate Week 2</span></td></tr>
+            <tr><td><strong>Search WL Bay Area+Irvine paused</strong></td><td>$346/conv with budget-constrained IS loss</td><td><span class="tag green">Reactivate Week 2</span></td></tr>
+            <tr><td><strong>44 RSAs rated below Good/Excellent</strong></td><td>Asset quality capping Quality Score</td><td><span class="tag amber">Top 10 rewrite in Q2; rest Q3</span></td></tr>
+          </tbody>
+        </table>
+        <div class="callout blue"><strong>GBP is the highest-intent channel on the entire site.</strong> Google My Business converts at 11.57% CVR. Per-clinic post cadence plus photo updates has strong ROI but is execution-heavy; scheduled for Q3.</div>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p><strong>Week 1 pauses:</strong> Reddit, LA/OC Meta, 12 frustration-framed creatives, Audience Network. Archive 34 non-performing campaigns. Consolidate to 3 CBOs. <strong>Week 1–2:</strong> Restore the 2 LPs. <strong>Week 2–3:</strong> Google negatives cleanup, top-10 RSA rewrites, reactivate P-Max Online and Search WL Bay Area+Irvine, and raise budget on budget-constrained campaigns.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ -->
+<!-- CH04 — QUICK WINS           -->
+<!-- ═══════════════════════════ -->
+<section id="ch04">
+  <div class="section-inner">
+    <div class="ch-num"><span>04</span> · The Quick Wins</div>
+    <h2>There's material revenue recoverable from what's already running, without one additional dollar of ad spend.</h2>
+    <p class="implication">Five leaks are visible in the data, all fixable in Weeks 1–4, none requiring new budget. After-hours leads decay 22.9pp for lack of an auto-responder. Two paid LPs return 404. Lead Nurture Email is disabled. The GLP-1 Medication Upsell flow (the direct email mechanism for the 14.6% → 34.7% medication conversion gap) doesn't exist. Video creative outperforms static 2.2× on CPL while sitting at 29% of spend and 12 of 91 creative assets. Each of these is a produce-more-of-what-works move, not a new bet.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">22.9 pp</div>
+        <div class="stat-label">after-hours conversion gap</div>
+        <div class="stat-bench">28.1% of leads arrive after-hours</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">$106</div>
+        <div class="stat-label">video CPL</div>
+        <div class="stat-bench">vs $235 static (2.2×)</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">12 / 91</div>
+        <div class="stat-label">creatives that are video</div>
+        <div class="stat-bench">29% of spend</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">3</div>
+        <div class="stat-label">email flows disabled/missing</div>
+        <div class="stat-bench">Lead Nurture · Lapsed · Med Upsell</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">15.13%</div>
+        <div class="stat-label">CTR · appointment reminders</div>
+        <div class="stat-bench">Proof the list engages</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>Video creative is 2.2× more efficient than static, and is 29% of spend</summary>
+      <div class="expand-body">
+        <p class="body">The Meta Creative Feature Analysis classified 91 active creatives across format, framing, and hook type. The clearest signal: video outperforms static on every axis, and the account is producing more static.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Format / framing</th><th>CPL</th><th>Share of spend</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Video (UGC-style)</strong></td><td style="color:var(--green); font-weight:700;">$106</td><td>29%</td><td><span class="tag green">Scale to 50%</span></td></tr>
+            <tr><td>Static (all)</td><td style="color:var(--red); font-weight:700;">$235</td><td>71%</td><td><span class="tag red">Reduce</span></td></tr>
+            <tr><td>Hope / relief framing</td><td style="color:var(--green); font-weight:700;">$202</td><td>—</td><td><span class="tag green">Lead direction</span></td></tr>
+            <tr><td><strong>Frustration framing</strong></td><td style="color:var(--red); font-weight:700;">$449</td><td>—</td><td><span class="tag red">Pause Week 1</span></td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body">Two active creators on the account already produce the winning pattern: long-form UGC partnership videos with credentialed-clinician-tone voiceover, hope framing, and clear offer. They are the templates for new creative briefs:</p>
+        <div class="campaign-list">
+          <div class="campaign-card">
+            <div class="campaign-name">HealingFromPCOS (template)</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val green">UGC video</div><div class="campaign-stat-label">format</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">Hope + mechanism</div><div class="campaign-stat-label">framing</div></div>
+            </div>
+          </div>
+          <div class="campaign-card">
+            <div class="campaign-name">TakeControlScience (template)</div>
+            <div class="campaign-meta">
+              <div class="campaign-stat"><div class="campaign-stat-val green">UGC video</div><div class="campaign-stat-label">format</div></div>
+              <div class="campaign-stat"><div class="campaign-stat-val">Clinical-fluency + named doctor</div><div class="campaign-stat-label">framing</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="callout green"><strong>Modelled impact:</strong> at 50% video spend share by Day 60, blended CPL models to ~$70 (from ~$107) and ~400 additional leads per year at flat budget. Produce-more-of-what-works, not a new bet. Week 1: brief 4 new video UGC creators patterned on the templates above. Week 2–4: first batch live; pause the 12 frustration-framed creatives as video lands.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>The after-hours decay is structural, and fixable with an auto-responder</summary>
+      <div class="expand-body">
+        <p class="body">28.1% of Salesforce leads arrive when the phone team is offline (Mon–Fri 8:30–5). No async booking path exists today. The conversion consequence is direct and large:</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Lead arrival</th><th>Share of leads</th><th>Lead → opp rate</th><th>Gap</th></tr></thead>
+          <tbody>
+            <tr><td>Business hours</td><td>71.9%</td><td style="color:var(--green); font-weight:700;">60.5%</td><td>—</td></tr>
+            <tr><td><strong>After-hours</strong></td><td style="font-weight:700;">28.1%</td><td style="color:var(--red); font-weight:700;">37.6%</td><td style="color:var(--red); font-weight:700;">−22.9 pp</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">An auto-responder that confirms receipt and sets expectations ("we'll call Monday by 10am") is about 1 day of work for a 22.9pp absolute conversion recovery across 28% of leads. Ships in Week 1. The full async booking and payment path is a Q3 delivery; the auto-responder is the interim fix.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>The 404 LP story: direct revenue loss, one-day fix</summary>
+      <div class="expand-body">
+        <p class="body">Two paid LPs return 404. One was the best-performing variant in the account at 7.21% CVR, twice the rate of the current main LP. Restoring it (or 301-redirecting to the best current alternative) comes before any creative or LP redesign work.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Three email flows that are doing nothing; one is the single highest-LTV lever in the program</summary>
+      <div class="expand-body">
+        <p class="body">The HubSpot audit inventoried 297 workflows. Three findings are load-bearing:</p>
+        <div class="friction-list">
+          <div class="friction-item">
+            <div class="friction-badge">Fix 1</div>
+            <p><strong>Lead Nurture Email workflow: DISABLED.</strong> Nurture for new leads is SMS-only. The 28.1% of leads who arrive after hours get no email touchpoint. Re-enable in Month 1 with clinical-permission content (not the generic promotional content that was in place pre-disable).</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge">Fix 2</div>
+            <p><strong>GLP-1 / Medication Upsell Education flow: MISSING ENTIRELY.</strong> Paid-media medication conversion is 14.6% vs 34.7% referral. Tirzepatide is the #1 revenue product. No dedicated email flow educates active non-medication members on progression. The single highest-LTV email lever in the program doesn't exist. Build Week 4–8: week-4 med nudge, week-8 side-effect plus non-scale wins, week-12 clinical check-in.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge">Fix 3</div>
+            <p><strong>Lapsed Member Re-engagement Email: DISABLED.</strong> 56.7% of members are lapsed; avg lapse duration 3.6 months. 1,700+ contacts sitting with zero email touchpoint. <em>Deferred to Q3</em> because scaling volume before deliverability recovers damages the transactional channel; staged in the queue behind deliverability recovery.</p>
+          </div>
+        </div>
+        <div class="callout amber">Seven parallel Essential Journey versions (V1–V7) are running simultaneously. Measurement is impossible, deliverability risk compounds. Consolidate to one controlled version in Q3.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>The "JumpstartMD Insider" newsletter converts at 13× program average</summary>
+      <div class="expand-body">
+        <p class="body">Two sends in the archive hint at the format that breaks through the deliverability floor:</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Send</th><th>Sample</th><th>CTR</th><th>vs program avg</th></tr></thead>
+          <tbody>
+            <tr><td>"JumpstartMD Insider: Your spring reset starts here"</td><td>n = 3,789</td><td style="color:var(--green); font-weight:700;">2.51%</td><td style="color:var(--green);">13×</td></tr>
+            <tr><td>"JumpstartMD Insider: February Momentum"</td><td>n = 4,817</td><td style="color:var(--green); font-weight:700;">2.24%</td><td style="color:var(--green);">12×</td></tr>
+            <tr><td>Program aggregate (all sends)</td><td>—</td><td style="color:var(--red);">0.19%</td><td>baseline</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body">The pattern: brand-named, seasonally anchored, content-led. Not promotional. Appointment reminder flows convert at 15.13% CTR with n=238, proof the list engages when content matches genuine intent. The list is fatigued by promotional misfires, not dead.</p>
+        <div class="callout blue">Newsletter cadence scale-up is deferred to Q3 alongside deliverability recovery (to protect the transactional channel during recovery). The <em>voice</em> is clear now; the Lead Nurture rebuild should be written in it.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Google paused campaigns hold the account's most efficient history</summary>
+      <div class="expand-body">
+        <p class="body">Two paused campaigns in Google Ads are more efficient than anything currently running:</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Campaign</th><th>Status</th><th>Historical CPA</th><th>Why paused</th></tr></thead>
+          <tbody>
+            <tr><td>P-Max Online Membership</td><td><span class="tag red">Paused</span></td><td style="color:var(--green); font-weight:700;">$20 / conv</td><td>Unknown; no documented reason</td></tr>
+            <tr><td>Search WL Bay Area + Irvine</td><td><span class="tag red">Paused</span></td><td style="color:var(--green);">$346 / conv (budget-capped)</td><td>IS lost to budget, not quality</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">Reactivation is faster than new campaign builds. Both live by Week 2 of engagement.</div>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p><strong>Week 1:</strong> after-hours auto-responder · 404 LP restore · Lead Nurture Email re-enable brief · <strong>brief 4 video UGC creators pattern-matched to HealingFromPCOS and TakeControlScience</strong>. <strong>Week 2–4:</strong> first video batch ships; pause the 12 frustration-framed creatives as video lands. <strong>Week 4–8:</strong> GLP-1 Medication Upsell flow built and shipped (week-4 med nudge, week-8 side-effect plus non-scale wins, week-12 clinical check-in). <strong>By Day 60:</strong> 50% of Meta spend on video (from 29%).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ -->
+<!-- CH05 — THE OPPORTUNITY      -->
+<!-- ═══════════════════════════ -->
+<section id="ch05">
+  <div class="section-inner">
+    <div class="ch-num"><span>05</span> · The Opportunity</div>
+    <h2>Two compounding assets are sitting uncaptured. Both are yours for the taking.</h2>
+    <p class="implication">The menopausal integrated-care segment is named white space. HoG verbatim: "a big opportunity the current agency hasn't cracked." No major telehealth competitor bundles HRT + GLP-1 + body composition. Google Search Menopause capacity sits idle behind a quality-constrained LP. Separately, referral is the highest-every-metric channel in the business: $459 LTV, 58.7% win rate, 51.8% active retention, 16.7% of leads with zero program running. Thirteen of fifteen clinics have already crossed the WoM inflection threshold where per-clinic opportunity rate 2.5×'s. The CEO benchmarks Medvi's affiliate model.</p>
+
+    <div class="stats-row">
+      <div class="stat-card green">
+        <div class="stat-num">$459</div>
+        <div class="stat-label">referral 12m LTV</div>
+        <div class="stat-bench">3.8× paid media</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">58.7%</div>
+        <div class="stat-label">referral win rate</div>
+        <div class="stat-bench">51.8% active retention</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-num">49%</div>
+        <div class="stat-label">Menopause Search IS lost to rank</div>
+        <div class="stat-bench">Demand uncaptured</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">74%</div>
+        <div class="stat-label">Wegovy Rx written for women</div>
+        <div class="stat-bench">Menopause demand validated</div>
+      </div>
+      <div class="chart-area" style="flex:2; min-width:260px;">
+        <div class="chart-label">WoM flywheel · 13 of 15 clinics past inflection</div>
+        <div class="bar-row">
+          <div class="bar-name">13 compounded clinics (avg)</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:100%;"></div></div>
+          <div class="bar-val green">22 opps/mo</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">San Jose (pre-inflection)</div>
+          <div class="bar-track"><div class="bar-fill amber" style="width:40%;"></div></div>
+          <div class="bar-val amber">327 opps lifetime</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Menlo Park (dormant)</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:12%;"></div></div>
+          <div class="bar-val red">96 opps lifetime</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Irvine (just crossed)</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:85%;"></div></div>
+          <div class="bar-val green">19.8 opps/mo</div>
+        </div>
+        <div class="chart-note">WoM Tipping Point analysis: 13 of 15 clinics have crossed the ~390-opp lifetime threshold where monthly opp rate 2.5×'s (7–9/mo → 22/mo). Two haven't. Local paid push plus reactivation for San Jose and Menlo Park is an investable flywheel accelerator.</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>The menopausal white space: what the data says</summary>
+      <div class="expand-body">
+        <p class="body">S1 CT-09 (Market Research) and S4 Constellation 4 (Integrated Care Seeker) identify the menopausal metabolic segment as unclaimed. The competitive sweep confirms it:</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Provider</th><th>GLP-1</th><th>HRT</th><th>Body composition</th><th>Integrated</th></tr></thead>
+          <tbody>
+            <tr><td>Hims &amp; Hers</td><td>✓</td><td>—</td><td>—</td><td class="trend-dn">No</td></tr>
+            <tr><td>LifeMD</td><td>✓</td><td>—</td><td>—</td><td class="trend-dn">No</td></tr>
+            <tr><td>Ro</td><td>✓</td><td>—</td><td>—</td><td class="trend-dn">No</td></tr>
+            <tr><td>Medi-Weightloss / Lindora</td><td>✓</td><td>—</td><td>Partial</td><td class="trend-fl">Partial</td></tr>
+            <tr><td><strong>JumpstartMD</strong></td><td>✓</td><td>✓ (service line)</td><td>✓ (InBody)</td><td class="trend-up">Structural capability, un-marketed</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Demand signals.</p>
+        <p class="body">74% of Wegovy prescriptions in the US are written for women. The Menopause Search campaign loses 49% of Impression Share to rank: the demand is there but JSMD isn't eligible to serve it (quality-constrained, not budget-constrained). The <code>/menopause-care/</code> LP has Core Web Vitals failing (LCP 3.6s), zero cited statistics, zero physician quotes, and no FAQPage schema. The page is invisible to AI Overviews for exactly the segment HoG named as the biggest opportunity.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>The referral flywheel is already running, without a program</summary>
+      <div class="expand-body">
+        <p class="body">Referral is the best channel on every metric. The 16.7% of leads that arrive via referral today come with zero program infrastructure: no tracked links, no incentive mechanic, no Salesforce attribution field. An existing flywheel to formalise, not a new channel to build.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Metric</th><th>Paid</th><th>Referral</th><th>Delta</th></tr></thead>
+          <tbody>
+            <tr><td>12-month LTV</td><td>$120</td><td style="color:var(--green); font-weight:700;">$459</td><td style="color:var(--green);">3.8×</td></tr>
+            <tr><td>Medication conversion</td><td>14.6%</td><td style="color:var(--green); font-weight:700;">34.7%</td><td style="color:var(--green);">+20 pp</td></tr>
+            <tr><td>Win rate</td><td>—</td><td style="color:var(--green); font-weight:700;">58.7%</td><td>—</td></tr>
+            <tr><td>Active retention</td><td>—</td><td style="color:var(--green); font-weight:700;">51.8%</td><td>—</td></tr>
+            <tr><td>Share of leads</td><td>—</td><td>16.7%</td><td>No program running</td></tr>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <p class="body" style="font-weight:600; color:var(--text);">Why the gap is real, not a measurement artefact.</p>
+        <p class="body">Schmitt, Skiera &amp; Van den Bulte (2011, <em>Journal of Marketing</em>) document an 18% retention lift for referred customers on a 10,000-customer cohort over 33 months. JSMD's observed 3.8× LTV delta is materially larger than that benchmark, consistent with GLP-1 category economics where a peer endorsement pre-qualifies for medication conversion. The gap is real; it will compound with any structure added on top.</p>
+        <div class="callout">Program design M2, then CEO stakeholder review plus soft launch to a pilot cohort (active members 6+ months, Bay Area only) M3, then full launch Q3. CEO has publicly benchmarked Medvi's affiliate-driven scale.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>What Hims / Ro / LifeMD structurally cannot do</summary>
+      <div class="expand-body">
+        <p class="body">Telehealth commoditises a chronic-disease medication into an app transaction. That business model has a ceiling, and JumpstartMD's 14 physical clinics sit above it.</p>
+        <div class="divider"></div>
+        <div class="friction-list">
+          <div class="friction-item">
+            <div class="friction-badge" style="background:var(--green-bg); color:var(--green);">Moat 1</div>
+            <p><strong>In-person monitoring.</strong> Weekly vitals, InBody body composition scan, labs on file. A telehealth platform can ship a prescription; it cannot deliver the clinical infrastructure that tracks whether the medication is working.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge" style="background:var(--green-bg); color:var(--green);">Moat 2</div>
+            <p><strong>HRT + GLP-1 integrated care.</strong> No major telehealth player bundles hormonal and metabolic care under one clinical relationship. Building it requires clinicians, exam rooms, and labs: the physical infrastructure they have explicitly rejected.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge" style="background:var(--green-bg); color:var(--green);">Moat 3</div>
+            <p><strong>17 years of practice tenure + 1.5M pounds lost.</strong> Credence-goods law: in categories where outcomes can't be verified pre-purchase, longevity substitutes for proof. No telehealth brand younger than 2020 can claim this.</p>
+          </div>
+          <div class="friction-item">
+            <div class="friction-badge" style="background:var(--green-bg); color:var(--green);">Moat 4</div>
+            <p><strong>Concierge PPO insurance service.</strong> Handles the paperwork for out-of-network reimbursement. Direct answer to VoC's #1 operational pain point in the category ("$99 cancellation fees at Found," "unclear insurance billing across telehealth").</p>
+          </div>
+        </div>
+        <div class="callout blue">The attack surface of a telehealth brand is its own operating model. JumpstartMD's strategy is to claim the territory those brands structurally cannot, not to out-market Hims &amp; Hers.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Why the menopause bet lands as a paid + organic + AI-Overview compound</summary>
+      <div class="expand-body">
+        <p class="body">The menopause LP V2 build is a three-surface claim on the territory, not just a paid-search rebuild.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Surface</th><th>Lever</th><th>Expected impact</th></tr></thead>
+          <tbody>
+            <tr><td>Paid Search (Google)</td><td>Search Menopause budget raise post-LP V2 (currently ~4% of Google spend, 49% IS lost to rank)</td><td>Volume opens up once Quality Score rises</td></tr>
+            <tr><td>Paid Social (Meta HRT CBO)</td><td>3 menopausal creative variants: female clinician on-camera, body-composition-first proof</td><td>Fills the empty track for Seg 3</td></tr>
+            <tr><td><strong>Organic / AI Overviews</strong></td><td>GEO rewrite: cited statistics (Menopause Society, NIH, Mayo Clinic), 2 named physician quotes, FAQPage schema</td><td style="color:var(--green);">Princeton KDD 2024: +37% / +40% / +30% citation lift</td></tr>
+          </tbody>
+        </table>
+        <div class="callout green">All three surfaces built in the same M1–M2 sprint. The paid bet captures immediate demand; the organic and AI Overview build compounds into Q3 and beyond, a durable territorial claim on a segment no telehealth competitor can integrate.</div>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p><strong>Menopause:</strong> LP V2, GEO rewrite, and 3 menopausal creative variants all shipped in the same M1–M2 sprint. Search Menopause budget scale post-IS recovery. <strong>Referral:</strong> program design M2 → CEO review plus soft launch M3 (active members 6+ months, Bay Area) → full launch Q3. <strong>WoM acceleration:</strong> San Jose and Menlo Park local paid plus reactivation push to bring them past the inflection threshold; every other clinic has crossed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ -->
+<!-- CH06 — THE PLAN             -->
+<!-- ═══════════════════════════ -->
+<section id="ch06">
+  <div class="section-inner">
+    <div class="ch-num"><span>06</span> · The Plan</div>
+    <h2>Fix the instruments. Stop the bleed. Claim the territories. Compound.</h2>
+    <p class="implication">The sequence matters. Until attribution works, every scaling decision compounds the wrong signal. Once it works, the critical path to paid LTV lift is creative qualification upstream plus the Medication Upsell flow downstream. The menopause and referral bets compound outside the paid channel. Everything not load-bearing for Tier 1 has been deliberately deferred. The 90-day window is for the work that moves the outcome.</p>
+
+    <div class="roadmap">
+      <div class="roadmap-col">
+        <div class="roadmap-header" style="border-top: 3px solid var(--red);">
+          <div class="roadmap-month">Month 1 · Weeks 1–4</div>
+          <div class="roadmap-theme">Fix the instruments + stop the bleed</div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">
+            <div class="roadmap-dot red"></div>
+            <div>
+              <div class="roadmap-item-text">Fix Meta CAPI, consolidate Google primary conversion to booked-and-paid, wire Salesforce Offline API</div>
+              <div class="roadmap-item-val red">Measurement gate</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot red"></div>
+            <div>
+              <div class="roadmap-item-text">Restore 2 paid LPs (404s) + trust-badge above fold + WP Rocket + Cloudflare for LCP</div>
+              <div class="roadmap-item-val">Direct revenue recovery</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot red"></div>
+            <div>
+              <div class="roadmap-item-text">Pause: Reddit, LA/OC Meta, 12 frustration creatives, Audience Network. Archive 34 non-performing. Consolidate to 3 CBOs.</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot red"></div>
+            <div>
+              <div class="roadmap-item-text">Re-enable Lead Nurture Email (rebuilt content) + after-hours auto-responder</div>
+              <div class="roadmap-item-val red">+22.9 pp on 28% of leads</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot red"></div>
+            <div>
+              <div class="roadmap-item-text">Brief 4 video UGC creators (HealingFromPCOS / TakeControlScience templates)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-col">
+        <div class="roadmap-header" style="border-top: 3px solid var(--amber);">
+          <div class="roadmap-month">Month 2 · Weeks 5–8</div>
+          <div class="roadmap-theme">Claim the territories</div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">Menopause LP V2 + GEO rewrite (cited stats, physician quotes, FAQPage schema) + 3 menopausal creative variants</div>
+              <div class="roadmap-item-val amber">Paid + organic + AI Overview</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">Meta video spend share to 50% by Day 60 (from 29%)</div>
+              <div class="roadmap-item-val amber">Models ~$70 CPL, +400 leads/yr</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">GLP-1 Medication Upsell email flow shipped: week-4, week-8, week-12</div>
+              <div class="roadmap-item-val amber">Highest-LTV email lever</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">Referral program design + CEO stakeholder review</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">LA/OC Meta efficiency-gap diagnostic (root-cause: targeting / tracking / clinic-level)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-col">
+        <div class="roadmap-header" style="border-top: 3px solid var(--green);">
+          <div class="roadmap-month">Month 3 · Weeks 9–13</div>
+          <div class="roadmap-theme">Compound</div>
+        </div>
+        <div class="roadmap-items">
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">Warm Retargeting CBO stand-up, sequenced education → social proof → book CTA</div>
+              <div class="roadmap-item-val green">Returning users 4.4× CVR</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">Referral program soft launch (active members 6+ months, Bay Area)</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">Search Menopause budget scale post-IS recovery + P-Max Online reactivation</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">San Jose and Menlo Park local paid push: drive the two clinics past the WoM inflection</div>
+              <div class="roadmap-item-val green">Flywheel accelerator</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">First paid-media 60-day medication-conversion cohort read</div>
+              <div class="roadmap-item-val green">Tier 1 signal check</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="roadmap-target">
+      <div>
+        <div class="roadmap-target-label">Today · paid-media 12m LTV</div>
+        <div class="roadmap-target-val">$120</div>
+      </div>
+      <div style="font-size:28px; color:#4b5563;">→</div>
+      <div>
+        <div class="roadmap-target-label">Q3 target</div>
+        <div class="roadmap-target-val accent">$250+</div>
+      </div>
+      <div style="font-size:13px; color:#9ca3af; max-width:240px; line-height:1.6;">
+        Plus referral mix shift, menopausal capacity opened, email program recovered. Each phase compounds the last.
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>What's deliberately not in this 90-day plan</summary>
+      <div class="expand-body">
+        <p class="body">Q2 is critical-path only. High-value work has been deferred to Q3 or Q4 to protect the 5-workstream coordination capacity inside the first 30 days. Every item below has a Q3/Q4 slot and an explicit trigger to pull forward if Month-1 gates clear early.</p>
+        <div class="divider"></div>
+        <table>
+          <thead><tr><th>Deferred item</th><th>Why not Q2</th><th>Queued to</th></tr></thead>
+          <tbody>
+            <tr><td>Full SEO schema rollout across 14 location pages plus homepage MedicalOrganization</td><td>Organic impact lands 60–90 days after shipping; front-loading starves the critical path</td><td class="trend-fl">Q3</td></tr>
+            <tr><td>Author bylines and publish dates across 111 blog posts; blog cadence restoration</td><td>YMYL E-E-A-T fix; not load-bearing for Q2 LTV lift</td><td class="trend-fl">Q3</td></tr>
+            <tr><td>Essential Journey V1–V7 consolidation</td><td>Cleanup, not a Q2 lever. Ships with deliverability recovery.</td><td class="trend-fl">Q3</td></tr>
+            <tr><td>Deliverability recovery protocol (90-day suppression, etc.)</td><td>Prerequisite for volume scaling; not needed until volume scale is the move</td><td class="trend-fl">Q3</td></tr>
+            <tr><td>Lapsed Member Re-engagement flow</td><td>1,700 lapsed members valuable, but scaling volume before deliverability recovers damages the transactional channel</td><td class="trend-fl">Q3</td></tr>
+            <tr><td>"JumpstartMD Insider" newsletter cadence scale-up</td><td>Voice is proven; scale waits for deliverability recovery</td><td class="trend-fl">Q3</td></tr>
+            <tr><td>Per-clinic GBP optimisation (14 locations)</td><td>Highest-intent channel at 11.57% CVR but execution-heavy. Pays back Q3</td><td class="trend-fl">Q3</td></tr>
+            <tr><td>24/7 async booking and payment live</td><td>JSMD engineering dependency; scoping begins Q2, live end of Q3</td><td class="trend-fl">Q3</td></tr>
+            <tr><td>Supplement e-commerce MVP (Shopify plus Meta/Google Shopping)</td><td>Standalone revenue play, not on the paid-LTV critical path</td><td class="trend-fl">Q3</td></tr>
+            <tr><td>Remaining 34 Google RSA rewrites (top 10 ship in Q2)</td><td>Batchable</td><td class="trend-fl">Q3</td></tr>
+            <tr><td>T3 Optimizer creative track (Biohacker segment)</td><td>Requires strict audience segregation to avoid contaminating T1</td><td class="trend-fl">Q4</td></tr>
+            <tr><td>Clinical-staff script alignment (food-noise fluency across sales and clinical teams)</td><td>BL-08 consistency: valuable but operational, not media</td><td class="trend-fl">Q4</td></tr>
+            <tr><td>Reddit ads reactivation</td><td>Not until organic Reddit presence exists; buying attention the brand hasn't earned conversationally is paying twice</td><td class="trend-fl">Not scheduled</td></tr>
+            <tr><td>TikTok ads</td><td>Not until Meta prospecting is working; splitting budget before one channel lands amplifies inefficiency</td><td class="trend-fl">Not scheduled</td></tr>
+          </tbody>
+        </table>
+        <div class="callout blue"><strong>Triggers to pull forward:</strong> attribution backbone lands ahead of schedule (Week 4 vs Week 8) → advance SEO schema rollout into Q2 Month 3. Meta creative shift hits $80–90 CPL + ≥20% med conversion trend by Month 2 → advance Warm RT CBO build. Menopause LP V2 bounces ≤70% → advance perimenopausal email track into late Q2.</div>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">The one-line version</div>
+      <p>The business has a 17-year clinical moat, an uncontested integrated-care territory, and a flywheel its own customers are already running. The work is fixing the instruments that have been hiding that, and making the marketing match the medicine.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>JumpstartMD · Growth Audit · April 2026</p>
+  <p>Data sourced from Meta Ads Manager, Google Ads, Salesforce Health Cloud, HubSpot, GA4, SEO audit, WoM Tipping Point analysis, MMM V5, Market Pulse + Social Listening, and independent market research (S1–S5).</p>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  const NAV_H = 64;
+
+  function updateNav() {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - NAV_H - 20) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) window.scrollTo({ top: target.offsetTop - NAV_H + 1, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
