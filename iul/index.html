@@ -4,38 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IUL.org · Growth Audit · May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #ffffff;
-    --bg-alt: #f9fafb;
-    --red: #dc2626;
+    --bg: #f5f0e8;
+    --bg-alt: #ece6d7;
+    --red: #b91c1c;
     --red-bg: #fef2f2;
     --red-border: #fecaca;
-    --green: #16a34a;
+    --green: #2d6a22;
     --green-bg: #f0fdf4;
     --green-border: #bbf7d0;
-    --amber: #d97706;
+    --amber: #b45309;
     --amber-bg: #fffbeb;
     --amber-border: #fde68a;
-    --accent: #1b4f9f;
-    --accent-bg: #eff4ff;
-    --accent-border: #bfdbfe;
-    --text: #111827;
-    --text-2: #374151;
-    --text-3: #6b7280;
-    --text-4: #9ca3af;
-    --border: #e5e7eb;
-    --border-2: #f3f4f6;
+    --accent: #1a3d6e;
+    --accent-bg: #eef3f9;
+    --accent-border: #bfd0e8;
+    --text: #1a1815;
+    --text-2: #3a342d;
+    --text-3: #6b6158;
+    --text-4: #9b9183;
+    --border: #cfc8b8;
+    --border-2: #e4ddd0;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --nav-h: 60px;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: var(--sans);
     background: var(--bg);
     color: var(--text);
     font-size: 15px;
@@ -43,12 +48,14 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  h1, h2 { font-family: var(--serif); }
+
   /* NAV */
   nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(255,255,255,0.97);
+    background: rgba(245,240,232,0.97);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
     height: var(--nav-h);
@@ -332,7 +339,7 @@
   .tag.gray { background: var(--bg-alt); color: var(--text-3); }
 
   /* ROADMAP */
-  .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+  .roadmap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 20px; }
   .roadmap-col { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
   .roadmap-header { padding: 14px 16px; border-bottom: 1px solid var(--border-2); }
   .roadmap-month { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-4); margin-bottom: 3px; }
@@ -359,9 +366,9 @@
     gap: 12px;
     margin-top: 6px;
   }
-  .roadmap-target-label { font-size: 11px; color: #9ca3af; margin-bottom: 3px; }
+  .roadmap-target-label { font-size: 11px; color: #9b9183; margin-bottom: 3px; }
   .roadmap-target-val { font-size: 22px; font-weight: 800; color: white; }
-  .roadmap-target-val.accent { color: #93c5fd; }
+  .roadmap-target-val.accent { color: #93b8e0; }
 
   /* UTILS */
   .callout {
@@ -375,8 +382,8 @@
     margin-top: 14px;
   }
   .callout strong { color: #78350f; }
-  .callout.blue { background: var(--accent-bg); border-color: var(--accent-border); color: #1e3a8a; }
-  .callout.blue strong { color: #1e40af; }
+  .callout.blue { background: var(--accent-bg); border-color: var(--accent-border); color: #1a3d6e; }
+  .callout.blue strong { color: #163364; }
   .callout.red { background: var(--red-bg); border-color: var(--red-border); color: #991b1b; }
   .callout.red strong { color: #7f1d1d; }
   .divider { height: 1px; background: var(--border-2); margin: 16px 0; }
@@ -526,7 +533,7 @@
         <p class="body">The pre-educated leads angle is IUL.org's actual differentiator — leads who have received email education on IUL basics before being called. This is the mechanism that sets the product apart from commodity co-reg. But it relies on a claim that agents cannot verify independently, in a category where unverifiable claims are the norm.</p>
         <p class="body" style="margin-top:10px;">The current conversion evidence (Stripe Verified Purchaser badges with real agent names) is the strongest signal in the market — but it's not independently audited. Two risks:</p>
         <p class="body" style="margin-top:10px;"><strong>1. Community exposure:</strong> If any agent shares a substantiated negative experience in r/InsuranceAgent, the trust architecture has no buffer. A single credible negative post in a high-trust community can outweigh 800 positive testimonials in a category already primed for distrust.</p>
-        <p class="body" style="margin-top:10px;"><strong>2. TrustedForm gap:</strong> The TrustedForm certification is claimed throughout the landing page but the TrustedForm script is not installed. This is both a legal exposure and a credibility exposure if scrutinized by a compliance-minded agency buyer or a competitor running opposition research.</p>
+        <p class="body" style="margin-top:10px;"><strong>2. TrustedForm gap:</strong> The TrustedForm certification is claimed throughout the landing page but the TrustedForm script is not installed. This is both a legal and credibility exposure. The FTC's $145M joint action against MediaAlpha and Assurance IQ (Aug 2025) put the entire lead generation industry on notice — the core charge was that consumers didn't understand how their data would be used. TrustedForm exists specifically to document consent at form-fill. Claiming it's in place when it isn't removes that proof layer at the exact moment it matters most: if scrutinized by a compliance-minded agency buyer, an FTC inquiry, or a competitor running opposition research.</p>
         <div class="callout" style="margin-top:12px;">The offer's strength is real. The fragility is that it rests on a single trust mechanic (Stripe badges) with no redundant proof layer. Agent testimonial video — even one strong case study — creates a second trust signal that can't be fabricated.</div>
       </div>
     </details>
@@ -827,7 +834,7 @@
           <tr>
             <td><strong>TrustedForm</strong></td>
             <td><span class="track-status fail">MISSING</span></td>
-            <td>Claimed in LP copy but script not detected</td>
+            <td>Claimed 3× in LP copy but script not detected — legal exposure in the current lead gen enforcement climate (FTC's $145M MediaAlpha/Assurance IQ action, Aug 2025)</td>
           </tr>
           <tr>
             <td><strong>Purchase pixel event</strong></td>
@@ -1135,11 +1142,11 @@
 <section id="ch06">
   <div class="section-inner">
     <div class="ch-num"><span>06</span> — The 90-Day Plan</div>
-    <h2>Three phases. Stop the bleeding, fix the foundation, build the growth engine.</h2>
-    <p class="implication">Three strategic bets — in order. First: stop revenue that's already leaking through payment failures and dispute risk. Second: fix the signal infrastructure so every spend decision is backed by real data, not phantom attribution. Third: break the creative ceiling with a 4-angle demand point system that finally tells us what this market actually responds to. The sequence is strict — the growth work is only as good as the measurement beneath it.</p>
+    <h2>Q2 — build the foundation. Q3 — build the growth engine.</h2>
+    <p class="implication">Two quarters, each with a clear job. Q2 is about building the infrastructure that makes every decision reliable — attribution, tracking, payment recovery, and finding the creative angle that actually works. Q3 is about scale: a second channel, a creative system that compounds, and LTV infrastructure that makes each customer worth more. The Q2 sequence is strict. You don't scale spend until the signal is clean.</p>
 
     <div class="what-wed-do" style="margin-bottom:28px;">
-      <div class="wwd-label">Month 1 creative bets — the 4-angle demand point test</div>
+      <div class="wwd-label">Q2 creative strategy — the 4-angle demand point test</div>
       <p style="font-size:13px;color:var(--text-2);line-height:1.65;margin-bottom:10px;">Run all four angles simultaneously at $50/day each — not sequenced by preference. Let the converting audience reveal which demand point actually moves them. Never kill the unit economics angle (B) until something definitively beats it in a controlled test: it produced the highest ROAS in the pre-engagement audit.</p>
       <table>
         <thead>
@@ -1182,29 +1189,54 @@
     <div class="roadmap">
       <div class="roadmap-col">
         <div class="roadmap-header">
-          <div class="roadmap-month" style="color:var(--red);">Week 1</div>
-          <div class="roadmap-theme">Stop the Bleeding</div>
+          <div class="roadmap-month" style="color:var(--accent);">Q2 2026</div>
+          <div class="roadmap-theme">Build the Foundation</div>
         </div>
         <div class="roadmap-items">
           <div class="roadmap-item">
-            <div class="roadmap-dot red"></div>
+            <div class="roadmap-dot" style="background:var(--text-3);"></div>
+            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">Paid Ads &amp; Creatives</div></div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot"></div>
             <div>
-              <div class="roadmap-item-text">Recover revenue that already exists but isn't being captured</div>
-              <div class="roadmap-item-val red">→ $31.8K in soft-decline failures; Smart Retry + card-update automation is a 30-min config</div>
+              <div class="roadmap-item-text">Best-performing message angle identified — 4-angle test run across 6–8 new assets including first agent talking-head video</div>
+              <div class="roadmap-item-val">Proof · Economics · Mechanism · Conquest</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot" style="background:var(--text-3);"></div>
+            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">CRO</div></div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">Conversion tracking complete — GA4, GTM, CAPI live; Stripe-Meta gap closed from 58% to under 20%</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot amber"></div>
+            <div>
+              <div class="roadmap-item-text">Landing page mobile-optimized and tested against winning messaging angles</div>
+              <div class="roadmap-item-val">88% of traffic is mobile; the leak is the page, not the offer</div>
             </div>
           </div>
           <div class="roadmap-item">
             <div class="roadmap-dot red"></div>
             <div>
-              <div class="roadmap-item-text">Eliminate the surprise billing that drives disputes before the Stripe review threshold</div>
-              <div class="roadmap-item-val red">→ 0.78% dispute rate, 10bps from Stripe account review; pre-renewal notifications prevent most of it</div>
+              <div class="roadmap-item-text">Soft-decline recovery active — Stripe Smart Retries + card-update prompt live</div>
+              <div class="roadmap-item-val red">→ Up to $31.8K in failed revenue recovered</div>
             </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot" style="background:var(--text-3);"></div>
+            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">Email</div></div>
           </div>
           <div class="roadmap-item">
             <div class="roadmap-dot red"></div>
             <div>
-              <div class="roadmap-item-text">Establish a channel attribution baseline before any optimization decisions are made</div>
-              <div class="roadmap-item-val">UTM tagging on all ad URLs — prerequisite to reading any performance data</div>
+              <div class="roadmap-item-text">Pre-renewal notifications live — dispute rate pulled below 0.9% Stripe review threshold</div>
+              <div class="roadmap-item-val red">Currently 0.78% — 10bps from account review</div>
             </div>
           </div>
         </div>
@@ -1212,66 +1244,47 @@
 
       <div class="roadmap-col">
         <div class="roadmap-header">
-          <div class="roadmap-month" style="color:var(--amber);">Month 1</div>
-          <div class="roadmap-theme">Fix the Foundation</div>
-        </div>
-        <div class="roadmap-items">
-          <div class="roadmap-item">
-            <div class="roadmap-dot amber"></div>
-            <div>
-              <div class="roadmap-item-text">Give ad platforms real signal to optimize on</div>
-              <div class="roadmap-item-val amber">→ CAPI + Advanced Matching closes the 58% attribution gap (114 vs 273 April customers); every scaling decision after this is backed by actual data</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot amber"></div>
-            <div>
-              <div class="roadmap-item-text">Test 4 messaging territories to find the angle that breaks the creative ceiling</div>
-              <div class="roadmap-item-val amber">→ proof platform, unit economics, mechanism, conquest — all running simultaneously; cost per purchase at $101 and rising means a new winner is required now</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot amber"></div>
-            <div>
-              <div class="roadmap-item-text">Test whether proof-led LP framing converts better than the current founder-written page</div>
-              <div class="roadmap-item-val">88% mobile traffic; a CRO pass is a larger lever than any media optimization at current traffic volumes</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot amber"></div>
-            <div>
-              <div class="roadmap-item-text">Widen reach and add a performance floor to cold prospecting</div>
-              <div class="roadmap-item-val">Stripe customer lookalike expands beyond interest-only targeting; kill-rules prevent budget waste on zero-conversion ads</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="roadmap-col">
-        <div class="roadmap-header">
-          <div class="roadmap-month" style="color:var(--green);">Months 2–3</div>
+          <div class="roadmap-month" style="color:var(--green);">Q3 2026</div>
           <div class="roadmap-theme">Build the Growth Engine</div>
         </div>
         <div class="roadmap-items">
           <div class="roadmap-item">
+            <div class="roadmap-dot" style="background:var(--text-3);"></div>
+            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">Paid Ads</div></div>
+          </div>
+          <div class="roadmap-item">
             <div class="roadmap-dot green"></div>
             <div>
-              <div class="roadmap-item-text">Capture the 238 agents per month already searching for IUL leads — before competitors do</div>
-              <div class="roadmap-item-val">Google intent layer complements Meta's interruption model; sole high-intent channel currently untouched</div>
+              <div class="roadmap-item-text">Google Search live — targeting 238 agents/month searching for IUL leads</div>
+              <div class="roadmap-item-val green">First acquisition channel outside Meta operational</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot" style="background:var(--text-3);"></div>
+            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">Creatives</div></div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">Creative system producing 10–20 new assets/month, built around winning angles from Q2</div>
+              <div class="roadmap-item-val green">Account no longer dependent on two images</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot" style="background:var(--text-3);"></div>
+            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">Email</div></div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-dot green"></div>
+            <div>
+              <div class="roadmap-item-text">Post-purchase LTV stack live — $750 backend tested and integrated into sequence timed to lead depletion</div>
+              <div class="roadmap-item-val green">→ Median LTV above $150 (up from $111)</div>
             </div>
           </div>
           <div class="roadmap-item">
             <div class="roadmap-dot green"></div>
             <div>
-              <div class="roadmap-item-text">Build community equity and long-term word of mouth</div>
-              <div class="roadmap-item-val green">→ Agent of the Month case study program: paid acquisition builds customers, community trust builds a moat; Caboom built 14× branded search this way</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot green"></div>
-            <div>
-              <div class="roadmap-item-text">Convert warm audiences at a lower CAC than cold prospecting</div>
-              <div class="roadmap-item-val">Site-visitor retargeting typically runs at 30–60% lower CPA; high-intent pool currently converting zero</div>
+              <div class="roadmap-item-text">Agent of the Month newsletter launched — Stripe-verified outcomes in agent communities, building branded search from zero</div>
             </div>
           </div>
         </div>
@@ -1280,11 +1293,11 @@
 
     <div class="roadmap-target">
       <div>
-        <div class="roadmap-target-label">The compounding effect</div>
-        <div class="roadmap-target-val">Fix Week 1 + Month 1 before increasing spend.</div>
+        <div class="roadmap-target-label">The sequence</div>
+        <div class="roadmap-target-val">Q2 foundation before Q3 growth.</div>
       </div>
-      <div style="max-width:340px; font-size:13px; color:#d1d5db; line-height:1.6;">
-        Better signal → better optimization → more efficient growth at the same budget. Every dollar spent before the tracking foundation is fixed is a dollar optimized against incomplete data.
+      <div style="max-width:340px; font-size:13px; color:#c8beaf; line-height:1.6;">
+        Clean attribution → reliable creative decisions → scalable spend. Every Q3 initiative depends on the infrastructure built in Q2.
       </div>
     </div>
   </div>
