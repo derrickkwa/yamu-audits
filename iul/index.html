@@ -447,7 +447,6 @@
     <a href="#ch03">03 Attribution</a>
     <a href="#ch04">04 Creative Analysis</a>
     <a href="#ch05">05 Market Position</a>
-    <a href="#ch06">06 Recommendations</a>
   </div>
 </nav>
 
@@ -531,17 +530,17 @@
       <summary>The offer's proof points — and their fragility</summary>
       <div class="expand-body">
         <p class="body">The pre-educated leads angle is IUL.org's actual differentiator — leads who have received email education on IUL basics before being called. This is the mechanism that sets the product apart from commodity co-reg. But it relies on a claim that agents cannot verify independently, in a category where unverifiable claims are the norm.</p>
-        <p class="body" style="margin-top:10px;">The current conversion evidence (Stripe Verified Purchaser badges with real agent names) is the strongest signal in the market — but it's not independently audited. Two risks:</p>
+        <p class="body" style="margin-top:10px;">Stripe Verified Purchaser badges tie testimonials to actual purchase records — the verification is platform-level, not independently audited by a third party. Two limitations worth noting:</p>
         <p class="body" style="margin-top:10px;"><strong>1. Community exposure:</strong> If any agent shares a substantiated negative experience in r/InsuranceAgent, the trust architecture has no buffer. A single credible negative post in a high-trust community can outweigh 800 positive testimonials in a category already primed for distrust.</p>
         <p class="body" style="margin-top:10px;"><strong>2. TrustedForm gap:</strong> The TrustedForm certification is claimed throughout the landing page but the TrustedForm script is not installed. This is both a legal and credibility exposure. The FTC's $145M joint action against MediaAlpha and Assurance IQ (Aug 2025) put the entire lead generation industry on notice — the core charge was that consumers didn't understand how their data would be used. TrustedForm exists specifically to document consent at form-fill. Claiming it's in place when it isn't removes that proof layer at the exact moment it matters most: if scrutinized by a compliance-minded agency buyer, an FTC inquiry, or a competitor running opposition research.</p>
-        <div class="callout" style="margin-top:12px;">The offer's strength is real. The fragility is that it rests on a single trust mechanic (Stripe badges) with no redundant proof layer. Agent testimonial video — even one strong case study — creates a second trust signal that can't be fabricated.</div>
+        <div class="callout" style="margin-top:12px;">The proof architecture currently rests on a single mechanism: Stripe Verified Purchaser badges. No video testimonials, independently published agent reviews, or third-party verification of lead quality outcomes exist. The TrustedForm gap (claimed but not installed) adds a separate compliance exposure.</div>
       </div>
     </details>
 
     <details class="expand">
       <summary>How the account grew — the ramp from $33 to $22K/month</summary>
       <div class="expand-body">
-        <p class="body">The spend ramp from October 2025 to April 2026 is one of the sharper account growths in this category. What makes it notable isn't the final number — it's how much was proven before any real infrastructure was in place.</p>
+        <p class="body">Meta Ads Manager data shows spend increasing from $33 in October 2025 to $22,050 in April 2026. The ramp occurred without changes to tracking infrastructure, creative concepts, or landing page — the same two static images and browser-only pixel ran throughout.</p>
         <div class="divider"></div>
         <div class="chart-area" style="max-width:580px; margin-top:8px;">
           <div class="chart-label">Monthly Meta spend — Jun 2025 through Apr 2026</div>
@@ -617,9 +616,9 @@
 <!-- ════════════════════════════════════ -->
 <section id="ch02">
   <div class="section-inner">
-    <div class="ch-num"><span>02</span> — Revenue You're Not Capturing</div>
-    <h2>32.7% of payment attempts fail. $31.8K of that is recoverable this week.</h2>
-    <p class="implication">Across 9 months of Stripe history (Aug 2025 – May 2026), IUL.org booked $161K gross / $137K net across 685 unique customers. The most consequential finding is operational: 32.7% of all card attempts fail, and an estimated $31.8K of that sits in soft-decline categories (insufficient funds, do-not-honor, try-again-later) — meaning the card could have processed with a retry. There is currently no retry infrastructure, no card-update prompt, and no SMS on decline. This is revenue sitting in Stripe with no system to catch it.</p>
+    <div class="ch-num"><span>02</span> — Revenue &amp; Payment Analysis</div>
+    <h2>32.7% of card attempts failed over the 9-month period. Stripe records no retry infrastructure, card-update prompts, or decline-triggered communications.</h2>
+    <p class="implication">Stripe transaction history (Aug 2025–May 2026) shows $161K gross / $137K net across 685 unique customers. The overall card decline rate is 32.7% against an industry average of 10–15%. Of the $51K in failed charges, approximately 62% fall into soft-decline categories (insufficient funds, do-not-honor, try-again-later) — codes that Stripe classifies as potentially retryable. No automated retry rules, card-update prompts, or decline-triggered communications are currently configured.</p>
 
     <div class="stats-row">
       <div class="stat-card red">
@@ -657,7 +656,7 @@
           <div class="bar-track"><div class="bar-fill red" style="width:38%;"></div></div>
           <div class="bar-val red">~38%</div>
         </div>
-        <div class="chart-note">Soft declines include: insufficient funds, do-not-honor, try-again-later. With Stripe Smart Retries, 40–60% of these resolve on a subsequent attempt within 7 days.</div>
+        <div class="chart-note">Soft declines include: insufficient funds, do-not-honor, try-again-later. Stripe's published data on Smart Retry performance indicates 40–60% of soft declines resolve on a subsequent attempt within 7 days, though actual recovery rates vary by industry and card type.</div>
       </div>
       <div class="chart-area" style="flex:1; min-width:220px;">
         <div class="chart-label">LTV reality vs. quoted figure</div>
@@ -694,18 +693,18 @@
             <tr><td>Resolve 11 disputes currently in "needs response" status</td><td>Prevents automatic Stripe ruling against account</td><td>Urgent — this week</td></tr>
           </tbody>
         </table>
-        <div class="callout red" style="margin-top:12px;">If Stripe places the account under review, all payouts pause until review completes. This is not a strategic risk — it's an operational one with a binary outcome. Address the 11 open disputes before anything else.</div>
+        <div class="callout red" style="margin-top:12px;">Stripe's dispute review process pauses all payouts until review completes. 11 disputes are currently in "needs response" status — unanswered disputes result in automatic rulings against the account.</div>
       </div>
     </details>
 
     <details class="expand">
-      <summary>The recurring layer — what 71% participation actually means</summary>
+      <summary>Auto-recharge participation — what the Stripe data shows</summary>
       <div class="expand-body">
-        <p class="body">71% of front-end customers trigger at least one auto-recharge of their GHL wallet. That sounds like strong recurring behavior. But the median recharger does exactly one recharge, with a median lifetime of 0 days — they top up once and disappear.</p>
-        <p class="body" style="margin-top:10px;">Auto-recharges contribute 8.4% of total revenue, not the 30%+ the high participation rate implies. The wallet credits are too small ($10 median) and customer engagement decays too fast to compound.</p>
+        <p class="body">71% of front-end customers trigger at least one auto-recharge of their GHL wallet. However, the median recharger completes exactly one recharge with a median lifetime of 0 days. Auto-recharges account for 8.4% of total revenue — significantly below what the participation rate alone would imply.</p>
+        <p class="body" style="margin-top:10px;">The median recharge amount is $10, well below the front-end $100 purchase. The Stripe data does not include timing information relative to lead consumption, so it's not possible from this data alone to determine whether the recharge behavior is driven by lead depletion or other factors.</p>
         <div class="divider"></div>
-        <p class="body">The recurring layer exists but is not currently a meaningful revenue driver. The unlock is a post-purchase email sequence (7/14/30 days) that re-engages customers when their leads have been consumed — timed to the natural refill cycle rather than arbitrary cadence.</p>
-        <div class="callout" style="margin-top:12px;">The recurring revenue ceiling is not a product problem — leads get consumed and agents need more. It's a timing problem. The sequence needs to catch customers at the moment of depletion, not at an arbitrary 30-day mark.</div>
+        <p class="body">The 27.9% leads_refill take rate ($203 average) represents the more significant recurring revenue signal. No structured post-purchase email sequence is currently in place to trigger refill offers at any defined interval after the front-end purchase.</p>
+        <div class="callout" style="margin-top:12px;">The pattern is consistent with a customer base that is open to repurchasing (71% recharge participation, 27.9% leads_refill rate) but is not being re-engaged systematically — there is no automated sequence tied to lead consumption timing.</div>
       </div>
     </details>
 
@@ -722,7 +721,7 @@
             <tr><td>Bottom 50% of customers</td><td style="font-weight:700; color:var(--text-3);">~$111 lifetime</td><td style="color:var(--text-3);">One-and-done front-end buyers who did not refill</td></tr>
           </tbody>
         </table>
-        <div class="callout" style="margin-top:12px;">The acquisition strategy should optimize for volume of $100–$200 buyers, not for rare high-value accounts. The CAC target should reflect the $111 median, not the $194 mean — the mean is inflated by a small repeat-buyer cohort that won't scale proportionally.</div>
+        <div class="callout" style="margin-top:12px;">The gap between mean ($194.83) and median ($111) indicates a right-skewed distribution. The mean is pulled up by a small cohort of repeat buyers; the median reflects the more typical customer who purchases the front-end and does not refill. CAC benchmarking against the mean rather than the median would overstate unit economics for the majority of the customer base.</div>
       </div>
     </details>
 
@@ -892,8 +891,8 @@
 <section id="ch04">
   <div class="section-inner">
     <div class="ch-num"><span>04</span> — Creative Analysis</div>
-    <h2>Five creatives cleared the $100 spend threshold over 90 days. All five are static images using the same dark-blue layout. Cost per purchase rose from $27 in January to $101 in April.</h2>
-    <p class="implication">Meta Ads Manager data (90-day window through April 2026) shows five creatives with sufficient spend for analysis. All five use static image format; all five use a text-on-dark-blue layout; all five use a direct-offer hook. Two — "Ego" and "Waste" — have a visual similarity score of 0.748 (scale: 0 = entirely different, 1 = identical) and account for 79% of 90-day spend. Frequency on the main campaign reached 6.24× by April 2026, up from 1.16× in January. Over the same period, cost per purchase rose from $27 to $101. The correlation between rising frequency and rising cost per purchase is consistent with creative saturation, though without a CAPI-corrected signal, the purchase counts underlying the CPA figures carry the attribution caveat noted in Section 03.</p>
+    <h2>Five creatives cleared the $100 spend threshold over 90 days. All five are static images with similar visual layouts. Cost per purchase rose from $27 in January to $101 in April.</h2>
+    <p class="implication">Meta Ads Manager data (90-day window through April 2026) shows five creatives with sufficient spend for analysis. All five use static image format with similar direct-offer layouts. Two — "Ego" and "Waste" — have a visual similarity score of 0.748 (scale: 0 = entirely different, 1 = identical) and account for 79% of 90-day spend. Frequency on the main campaign reached 6.24× by April 2026, up from 1.16× in January. Over the same period, cost per purchase rose from $27 to $101. The correlation between rising frequency and rising cost per purchase is consistent with creative saturation — the same audience repeatedly exposed to functionally identical ads. Without a CAPI-corrected signal, the purchase counts underlying these CPA figures carry the attribution caveat noted in Section 03, so the specific dollar figures should be treated as directional.</p>
 
     <div class="stats-row">
       <div class="stat-card red">
@@ -1009,7 +1008,7 @@
 
     <div class="what-wed-do">
       <div class="wwd-label">What the data suggests</div>
-      <p>The account's creative pool is narrow by any standard — two functionally identical static images carry nearly 80% of 90-day spend. The existing performance data points to three angles worth testing: the pre-educated leads mechanism (highest observed ROAS, currently underweighted), agent outcome testimonials (zero video exists despite agent willingness to participate), and unit economics framing (proven in static format, not yet tested in video or alternate visual treatments). The kill-rule gap — no automated rules to pause underperforming ads — means budget has been spent on ads with no conversion history.</p>
+      <p>Two functionally identical static images carry 79% of 90-day spend, with frequency at 6.24× and cost per purchase trending upward in parallel. The existing performance data points to three angles with positive ROAS signals: the pre-educated leads mechanism (1.54× ROAS, 24% of spend — underweighted relative to its performance), agent outcome testimonials (zero video exists in the account), and unit economics framing (1.63× ROAS, the highest observed). If creative diversification reduces frequency while maintaining or improving ROAS, the CPA trajectory would likely flatten or reverse — based on the frequency-CPA correlation observed in the account data. No automated kill rules are in place, which means underperforming ads have continued spending past the point where the data would have flagged them.</p>
     </div>
   </div>
 </section>
@@ -1132,173 +1131,6 @@
     <div class="what-wed-do">
       <div class="wwd-label">What the data suggests</div>
       <p>The SEO gaps identified (GA4 missing, GSC not verified, sitemap absent, no schema markup) are configuration items independent of content strategy. The Google intent volume — 238 solution-seekers/month — is narrow but consists of buyers actively searching for the product IUL.org sells; the category is too specialized for broader SEO investment to make sense before these fundamentals are in place. The share-of-search data does not indicate IUL.org can replicate Caboom's community trajectory quickly — but it does identify the mechanism Caboom used, which is available to any participant.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════ -->
-<!-- CH06 — THE 90-DAY PLAN        -->
-<!-- ══════════════════════════════ -->
-<section id="ch06">
-  <div class="section-inner">
-    <div class="ch-num"><span>06</span> — Recommendations</div>
-    <h2>Q2 — attribution, tracking, and creative test. Q3 — channel expansion, creative system, and LTV stack.</h2>
-    <p class="implication">The findings across the four preceding sections point to two sequencing priorities. The first is measurement: the attribution gap (Section 03), the absence of behavioral analytics, and the uncollected soft-decline revenue (Section 02) are foundational issues whose resolution makes subsequent decisions more reliable. The second is creative: the current two-image portfolio shows frequency and cost-per-purchase trends consistent with saturation (Section 04), and without new creative inventory, spend efficiency will continue to deteriorate regardless of tracking improvements. The Q2 recommendations address both in parallel. Q3 recommendations are contingent on Q2 outcomes — specifically, clean attribution data for 14+ days and at least one creative angle with measurable CPA data.</p>
-
-    <div class="what-wed-do" style="margin-bottom:28px;">
-      <div class="wwd-label">Q2 creative recommendation — 4-angle demand point test</div>
-      <p style="font-size:13px;color:var(--text-2);line-height:1.65;margin-bottom:10px;">The existing data points to three angles with positive ROAS signals (unit economics, pre-educated mechanism, and income/proof framing) and one with a strongly negative signal (discount framing). A structured 4-angle test run simultaneously at equal budget ($50/day each) would produce comparable creative performance data for the first time, using the existing workhorse statics as a control baseline. The unit economics angle (B) should remain live as the highest observed ROAS until an angle definitively outperforms it in a controlled comparison.</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Territory</th>
-            <th>Demand point</th>
-            <th>Hook</th>
-            <th>Kill criterion</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>A — Proof platform</strong></td>
-            <td>Income uplift, verified outcome</td>
-            <td>"This agent invested $100 and closed $60K in IUL policies. Stripe-verified."</td>
-            <td>CTR &lt;0.8% / 15K impr / 2 wks</td>
-          </tr>
-          <tr>
-            <td><strong>B — Economics</strong></td>
-            <td>Price/income math</td>
-            <td>"200 pre-educated IUL leads for $100. $0.50 a lead. What are you paying now?"</td>
-            <td>CPA &gt;2× baseline / 3 wks</td>
-          </tr>
-          <tr>
-            <td><strong>C — Mechanism</strong></td>
-            <td>Pre-educated leads</td>
-            <td>"Your leads already know what IUL is before you call."</td>
-            <td>CTR &lt;0.7% / 15K impr / 2 wks</td>
-          </tr>
-          <tr>
-            <td><strong>D — Conquest</strong></td>
-            <td>Burned-by-vendors</td>
-            <td>"Every vendor says exclusive. We let you verify."</td>
-            <td>CTR &lt;0.6% / 15K impr / 2 wks</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="roadmap">
-      <div class="roadmap-col">
-        <div class="roadmap-header">
-          <div class="roadmap-month" style="color:var(--accent);">Q2 2026</div>
-          <div class="roadmap-theme">Build the Foundation</div>
-        </div>
-        <div class="roadmap-items">
-          <div class="roadmap-item">
-            <div class="roadmap-dot" style="background:var(--text-3);"></div>
-            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">Paid Ads &amp; Creatives</div></div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot"></div>
-            <div>
-              <div class="roadmap-item-text">Best-performing message angle identified — 4-angle test run across 6–8 new assets including first agent talking-head video</div>
-              <div class="roadmap-item-val">Proof · Economics · Mechanism · Conquest</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot" style="background:var(--text-3);"></div>
-            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">CRO</div></div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot amber"></div>
-            <div>
-              <div class="roadmap-item-text">Conversion tracking complete — GA4, GTM, CAPI live; Stripe-Meta gap closed from 58% to under 20%</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot amber"></div>
-            <div>
-              <div class="roadmap-item-text">Landing page mobile-optimized and tested against winning messaging angles</div>
-              <div class="roadmap-item-val">88% of traffic is mobile; the leak is the page, not the offer</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot red"></div>
-            <div>
-              <div class="roadmap-item-text">Soft-decline recovery active — Stripe Smart Retries + card-update prompt live</div>
-              <div class="roadmap-item-val red">→ Up to $31.8K in failed revenue recovered</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot" style="background:var(--text-3);"></div>
-            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">Email</div></div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot red"></div>
-            <div>
-              <div class="roadmap-item-text">Pre-renewal notifications live — dispute rate pulled below 0.9% Stripe review threshold</div>
-              <div class="roadmap-item-val red">Currently 0.78% — 10bps from account review</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="roadmap-col">
-        <div class="roadmap-header">
-          <div class="roadmap-month" style="color:var(--green);">Q3 2026</div>
-          <div class="roadmap-theme">Build the Growth Engine</div>
-        </div>
-        <div class="roadmap-items">
-          <div class="roadmap-item">
-            <div class="roadmap-dot" style="background:var(--text-3);"></div>
-            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">Paid Ads</div></div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot green"></div>
-            <div>
-              <div class="roadmap-item-text">Google Search live — targeting 238 agents/month searching for IUL leads</div>
-              <div class="roadmap-item-val green">First acquisition channel outside Meta operational</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot" style="background:var(--text-3);"></div>
-            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">Creatives</div></div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot green"></div>
-            <div>
-              <div class="roadmap-item-text">Creative system producing 10–20 new assets/month, built around winning angles from Q2</div>
-              <div class="roadmap-item-val green">Account no longer dependent on two images</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot" style="background:var(--text-3);"></div>
-            <div><div class="roadmap-item-text" style="font-weight:700; color:var(--text);">Email</div></div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot green"></div>
-            <div>
-              <div class="roadmap-item-text">Post-purchase LTV stack live — $750 backend tested and integrated into sequence timed to lead depletion</div>
-              <div class="roadmap-item-val green">→ Median LTV above $150 (up from $111)</div>
-            </div>
-          </div>
-          <div class="roadmap-item">
-            <div class="roadmap-dot green"></div>
-            <div>
-              <div class="roadmap-item-text">Agent of the Month newsletter launched — Stripe-verified outcomes in agent communities, building branded search from zero</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="roadmap-target">
-      <div>
-        <div class="roadmap-target-label">Sequencing rationale</div>
-        <div class="roadmap-target-val">Q2 measurement before Q3 scale.</div>
-      </div>
-      <div style="max-width:340px; font-size:13px; color:#c8beaf; line-height:1.6;">
-        Q3 initiatives — Google Ads, a scaled creative system, and LTV email sequencing — each require Q2 infrastructure: clean attribution data, GA4 and GTM installed, and at least one creative angle with measured performance. The Q3 recommendations are listed conditionally on those outcomes.
-      </div>
     </div>
   </div>
 </section>
