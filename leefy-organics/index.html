@@ -422,7 +422,7 @@ footer p { font-size: 12px; color: var(--text-4); }
             <tr><td>Incrementality</td><td style="color:var(--red);font-weight:700">0.78x</td><td>$128,200</td><td>2,377</td><td>−40%</td></tr>
           </tbody>
         </table>
-        <p class="body">The gap between incrementality (0.78x) and 7-day click (0.82x) is narrow — Meta's own causal estimate closely tracks the click window, suggesting the 7-day click ROAS is the most reliable operational signal for this account. The 28-day click window adds only 125 purchases over the 7-day window (5% lift), confirming what the adstock data shows: people buy within the week or they don't return.</p>
+        <p class="body">The default window (7D click + 1D view) is 3,546 purchases vs 7-day click at 2,478 — a gap of 1,068 purchases and $78,289 in revenue, which is exactly the 1-day view increment. That 36.8% gap is what separates the reported 1.30x from the click-only 0.82x. Meta's incrementality model returns 0.78x — nearly identical to the 7-day click figure, not close to the default. This suggests the view-through purchases are largely not causal: holdout testing doesn't find them as incremental, meaning they likely would have happened without the ad impression. Meta is optimizing toward the combined 1.30x signal, which means Smart Bidding is partly learning to target people who show the view-through pattern — users already deep in the purchase funnel from another channel who get served an impression just before checkout. The 28-day click window adds only 125 purchases over the 7-day window (5% lift), consistent with what the adstock data shows: people buy within the week of clicking or don't return.</p>
       </div>
     </details>
 
@@ -446,7 +446,7 @@ footer p { font-size: 12px; color: var(--text-4); }
 
     <div class="what-wed-do">
       <div class="wwd-label">What the data suggests</div>
-      <p>With 42.9% of default-window revenue attributed to view-through — people who saw an ad but may have purchased through another path — the headline ROAS materially overstates true incremental impact. The 7-day click ROAS (0.82x) and Meta's incrementality model (0.78x) are closely aligned and represent the most reliable floor for true causal returns. <strong>Both are below breakeven, meaning Meta spend is currently a drag on absolute contribution margin — not because the product lacks demand, but because spend is reaching the wrong audiences with the wrong creative angles.</strong></p>
+      <p>The gap between the default window (1.30x) and the 7-day click window (0.82x) is 36.8% — and that gap is the 1-day view component. Meta's incrementality model returns 0.78x, nearly identical to the click-only figure. This suggests most of the view-through volume is not causal: people who were served an impression shortly before purchasing through another path — organic, email, direct — with the ad having little effect on the decision. Because Meta optimizes toward the default 1.30x signal, <strong>Smart Bidding may be partly learning to find people already in the purchase funnel rather than incremental new buyers.</strong> The 7-day click ROAS (0.82x) is the more reliable signal, and it is below breakeven.</p>
     </div>
   </div>
 </section>
