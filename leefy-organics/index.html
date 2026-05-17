@@ -272,38 +272,39 @@ footer p { font-size: 12px; color: var(--text-4); }
     </details>
 
     <details class="expand">
-      <summary>The creative library — built entirely for buyers who are ready to purchase</summary>
+      <summary>The creative library — volume skewed 2:1 toward solution-aware, all on conversion objective</summary>
       <div class="expand-body">
-        <p class="body">Creative feature analysis across 53 ads and $32,417 in spend confirms that the creative library is structured as a bottom-funnel, conversion-first asset pool — with no consideration-stage content at all.</p>
+        <p class="body">Creative feature analysis across 53 ads and $32,417 in spend shows a volume imbalance between awareness stages — and a structural limitation that applies to all of them.</p>
         <table>
-          <thead><tr><th>Awareness stage</th><th>Spend</th><th>Spend %</th><th>Avg ROAS</th><th>What this means</th></tr></thead>
+          <thead><tr><th>Awareness stage</th><th>Ad count</th><th>Total spend</th><th>Avg spend / ad</th><th>Avg ROAS</th></tr></thead>
           <tbody>
-            <tr><td>Solution-aware</td><td>$16,498</td><td>50.9%</td><td style="color:var(--red);font-weight:700">1.07x</td><td>Buyers who already know they want a supplement — "which one should I buy?"</td></tr>
-            <tr><td>Problem-aware</td><td>$15,732</td><td>48.5%</td><td style="color:var(--red);font-weight:700">0.87x</td><td>Buyers addressed at the symptom level (inflammation, joint pain) — but on a conversion campaign</td></tr>
-            <tr><td>Consideration/awareness</td><td>$0</td><td>0%</td><td>—</td><td>No creative running outside of a purchase objective</td></tr>
+            <tr><td>Solution-aware (knows supplements can help)</td><td>36</td><td>$16,498</td><td>$458</td><td style="color:var(--red);font-weight:700">1.07x</td></tr>
+            <tr><td>Problem-aware (symptom-led: inflammation, joint pain)</td><td>16</td><td>$15,732</td><td style="color:var(--accent);font-weight:700">$983</td><td style="color:var(--red);font-weight:700">0.87x</td></tr>
+            <tr><td>Product-aware (brand/product specific)</td><td>1</td><td>$187</td><td>$187</td><td>0.23x</td></tr>
           </tbody>
         </table>
-        <p class="body" style="margin-top:12px">The problem-aware category looks like consideration content — ads that lead with "joint pain" or "inflammation" — but all of it runs on a conversion objective with purchase bidding. This instructs Meta to find people likely to buy right now, not people who are problem-aware but still researching. The creative addresses their problem; the campaign delivery targets solution-ready buyers. The two are mismatched.</p>
+        <p class="body" style="margin-top:12px">The 16 problem-aware ads generate nearly as much spend as the 36 solution-aware ads — averaging ~$983/ad vs ~$458/ad. Meta's algorithm is allocating more budget per problem-aware creative, suggesting these ads are finding broader audiences. The constraint is production volume, not algorithm suppression: 68% of ads are solution-aware, 30% are problem-aware.</p>
+        <p class="body" style="margin-top:8px">The structural limitation applies to both categories: all 53 ads run on a conversion objective with purchase bidding. Problem-aware creative that leads with "joint pain" or "inflammation" still instructs Meta's delivery to find people likely to buy right now. The creative framing addresses the problem; the campaign objective routes it to solution-ready buyers. The growing pool of problem-aware searchers — who need time and education before purchasing — is not being reached by either category.</p>
         <div class="divider"></div>
-        <p class="body"><strong>Top 5 ads by ROAS — all conversion/product assets:</strong></p>
+        <p class="body"><strong>Top 5 ads by spend</strong> (from gallery subset of 100 active ads):</p>
         <table>
-          <thead><tr><th>Ad</th><th>Type</th><th>ROAS</th></tr></thead>
+          <thead><tr><th>Ad</th><th>Spend</th><th>ROAS</th><th>Type</th></tr></thead>
           <tbody>
-            <tr><td>91-Report Reduced Collage</td><td>Product proof infographic</td><td style="color:var(--green);font-weight:700">3.62x</td></tr>
-            <tr><td>No-More-Choking Dropper Icons</td><td>Format comparison (product vs capsule)</td><td style="color:var(--green);font-weight:700">3.88x</td></tr>
-            <tr><td>BIGGESTSALE (Black Friday)</td><td>Sale/offer</td><td style="color:var(--green);font-weight:700">3.98x</td></tr>
-            <tr><td>[IMG] Tasty Way</td><td>Sensory product in use</td><td style="color:var(--green);font-weight:700">3.10x</td></tr>
-            <tr><td>Single – Prana Benefits</td><td>Product benefits static</td><td style="color:var(--green);font-weight:700">5.34x</td></tr>
+            <tr><td>[IMG] Tasty Way</td><td>$4,541</td><td style="color:var(--green);font-weight:700">3.10x</td><td>Sensory/product in use — solution-aware</td></tr>
+            <tr><td>Formulated-By-Holistic Dr</td><td>$2,919</td><td style="color:var(--green);font-weight:700">2.74x</td><td>Authority/credibility — solution-aware</td></tr>
+            <tr><td>Health-Support Family</td><td>$2,377</td><td style="color:var(--green);font-weight:700">3.27x</td><td>Family health — problem-aware</td></tr>
+            <tr><td>UGC V1 (Prana demo)</td><td>$986</td><td style="color:var(--green);font-weight:700">2.75x</td><td>Product demonstration — solution-aware</td></tr>
+            <tr><td>Clean Ingredients static</td><td>$830</td><td style="color:var(--red);font-weight:700">0.77x</td><td>Ingredient proof — solution-aware</td></tr>
           </tbody>
         </table>
-        <p class="body" style="margin-top:10px">Every top performer is a product-focused, direct-response asset designed to close a buyer who is already interested. None are educational, story-driven, or built to introduce the brand to someone who has not yet considered it. The dominant opening hook style across the account is "claim" — used in 73.9% of spend — a format that works on buyers ready to evaluate, not on buyers who are still learning they have a problem worth solving.</p>
-        <div class="callout blue"><strong>The structural gap:</strong> The fastest-growing buyer segment (problem-aware, +390% YoY) needs content that meets them at the health outcome — not a product claim and a "shop now." The current creative library has no assets built for that entry point. Every ad in the account, regardless of framing, is asking for a purchase.</div>
+        <p class="body" style="margin-top:10px">4 of the top 5 by spend are solution-aware. One problem-aware ad (Health-Support Family, $2,377) appears in the top 3 — consistent with the per-ad spend signal above. The dominant opening hook across the account is "claim" at 73.9% of spend — a format built for buyers evaluating options, not buyers still identifying their problem.</p>
+        <div class="callout blue"><strong>The volume signal:</strong> Problem-aware ads are outperforming their count — 30% of ads generating 49% of spend. The market data shows problem-aware searchers growing fastest (+390% YoY). The creative library is under-indexed on this segment by volume, and the ones that exist are still asking for a purchase rather than building the case for one.</div>
       </div>
     </details>
 
     <div class="what-wed-do">
       <div class="wwd-label">What the data suggests</div>
-      <p>The buyers who already know they want a greens powder are a shrinking pool. The buyers who have a health problem and are still figuring out the solution are the growing pool — 245,857 monthly searches vs 3,421 for comparison-shopping terms. <strong>Current Leefy media infrastructure reaches only the first group: conversion-optimized, product-specific, bottom-of-funnel.</strong> The creative library confirms this — 53 ads, $32k spend, zero consideration-stage assets. There is no mechanism to reach, engage, or hold the problem-aware buyer who finds an ad interesting but isn't ready to buy that week.</p>
+      <p>The buyers who already know they want a greens powder are a shrinking pool. The buyers who have a health problem and are still figuring out the solution are the growing pool — 245,857 monthly searches vs 3,421 for comparison-shopping terms. <strong>The creative library is 68% solution-aware by ad count, but the 16 problem-aware ads are generating disproportionate spend ($983/ad vs $458/ad) — suggesting the algorithm finds these audiences responsive.</strong> The binding constraint is not performance: it is that all creative, regardless of framing, runs on a conversion objective — and none of it is designed to hold a buyer through a multi-week consideration window.</p>
     </div>
   </div>
 </section>
