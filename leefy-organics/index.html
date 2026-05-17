@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leefy Organics · Growth Audit · May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+h1, h2 { font-family: var(--serif); }
+
+:root {
+  --bg: #f5f0e8;
+  --bg-alt: #ece6d7;
+  --red: #b91c1c;
+  --red-bg: #fef2f2;
+  --red-border: #fecaca;
+  --green: #2d6a22;
+  --green-bg: #f0fdf4;
+  --green-border: #bbf7d0;
+  --amber: #b45309;
+  --amber-bg: #fffbeb;
+  --amber-border: #fde68a;
+  --accent: #1a3d6e;
+  --accent-bg: #eef3f9;
+  --accent-border: #bfd0e8;
+  --text: #1a1815;
+  --text-2: #3a342d;
+  --text-3: #6b6158;
+  --text-4: #9b9183;
+  --border: #cfc8b8;
+  --border-2: #e4ddd0;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --nav-h: 60px;
+}
+
+nav { position: sticky; top: 0; z-index: 100; background: rgba(245,240,232,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); height: var(--nav-h); display: flex; align-items: center; }
+.nav-inner { max-width: 980px; margin: 0 auto; padding: 0 24px; width: 100%; display: flex; align-items: center; overflow-x: auto; scrollbar-width: none; gap: 2px; }
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-brand { font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap; margin-right: 20px; flex-shrink: 0; }
+.nav-brand span { color: var(--text-3); font-weight: 400; }
+nav a { text-decoration: none; font-size: 12px; font-weight: 600; color: var(--text-3); padding: 6px 11px; border-radius: 6px; white-space: nowrap; transition: color 0.15s, background 0.15s; flex-shrink: 0; }
+nav a:hover { color: var(--text); background: var(--bg-alt); }
+nav a.active { color: var(--accent); background: var(--accent-bg); }
+
+.hero { max-width: 980px; margin: 0 auto; padding: 64px 24px 52px; border-bottom: 1px solid var(--border); }
+.hero-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-4); margin-bottom: 18px; }
+.hero h1 { font-size: clamp(26px, 3.8vw, 42px); font-weight: 800; line-height: 1.15; color: var(--text); margin-bottom: 18px; max-width: 680px; }
+.hero p { font-size: 16px; color: var(--text-2); max-width: 580px; line-height: 1.75; margin-bottom: 32px; }
+.hero-stats { display: flex; gap: 36px; flex-wrap: wrap; }
+.hero-stat-num { font-size: 30px; font-weight: 800; color: var(--text); line-height: 1; margin-bottom: 5px; }
+.hero-stat-num.red { color: var(--red); }
+.hero-stat-num.accent { color: var(--accent); }
+.hero-stat-num.green { color: var(--green); }
+.hero-stat-num.amber { color: var(--amber); }
+.hero-stat-label { font-size: 12px; color: var(--text-4); }
+
+section { border-bottom: 1px solid var(--border); scroll-margin-top: var(--nav-h); }
+section:nth-child(even) { background: var(--bg-alt); }
+.section-inner { max-width: 980px; margin: 0 auto; padding: 56px 24px; }
+.ch-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-4); margin-bottom: 10px; }
+.ch-num span { color: var(--accent); }
+.section-inner h2 { font-size: clamp(21px, 2.8vw, 30px); font-weight: 800; line-height: 1.25; color: var(--text); margin-bottom: 10px; max-width: 700px; }
+.implication { font-size: 15px; color: var(--text-2); max-width: 640px; line-height: 1.7; margin-bottom: 32px; }
+
+.stats-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px; align-items: flex-start; }
+.stat-card { flex: 1; min-width: 128px; max-width: 190px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 17px; }
+.stat-card.red { background: var(--red-bg); border-color: var(--red-border); }
+.stat-card.green { background: var(--green-bg); border-color: var(--green-border); }
+.stat-card.amber { background: var(--amber-bg); border-color: var(--amber-border); }
+.stat-card.accent { background: var(--accent-bg); border-color: var(--accent-border); }
+.stat-num { font-size: 28px; font-weight: 800; line-height: 1; margin-bottom: 5px; color: var(--text); }
+.stat-card.red .stat-num { color: var(--red); }
+.stat-card.green .stat-num { color: var(--green); }
+.stat-card.amber .stat-num { color: var(--amber); }
+.stat-card.accent .stat-num { color: var(--accent); }
+.stat-label { font-size: 12px; color: var(--text-3); margin-bottom: 3px; }
+.stat-bench { font-size: 11px; color: var(--text-4); }
+
+.chart-area { flex: 2; min-width: 260px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+.chart-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-4); margin-bottom: 14px; }
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.bar-name { font-size: 12px; color: var(--text-2); min-width: 130px; flex-shrink: 0; }
+.bar-name.wide { min-width: 180px; }
+.bar-track { flex: 1; background: var(--border-2); border-radius: 4px; height: 9px; overflow: hidden; }
+.bar-fill { height: 9px; border-radius: 4px; background: var(--accent); }
+.bar-fill.red { background: var(--red); }
+.bar-fill.green { background: var(--green); }
+.bar-fill.amber { background: var(--amber); }
+.bar-fill.gray { background: var(--border); }
+.bar-val { font-size: 12px; font-weight: 700; color: var(--text-2); min-width: 50px; text-align: right; flex-shrink: 0; }
+.bar-val.red { color: var(--red); }
+.bar-val.green { color: var(--green); }
+.bar-val.amber { color: var(--amber); }
+.chart-note { margin-top: 14px; background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: 6px; padding: 9px 12px; font-size: 12px; color: #92400e; line-height: 1.55; }
+
+.chart-canvas-wrap { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin-bottom: 14px; }
+.chart-canvas-wrap canvas { max-height: 220px; }
+
+details.expand { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 12px; background: var(--bg); }
+details.expand summary { padding: 13px 18px; font-size: 13px; font-weight: 600; color: var(--accent); cursor: pointer; list-style: none; display: flex; align-items: center; gap: 7px; user-select: none; }
+details.expand summary::-webkit-details-marker { display: none; }
+details.expand summary::before { content: '▸'; font-size: 11px; transition: transform 0.2s; display: inline-block; }
+details.expand[open] summary::before { transform: rotate(90deg); }
+details.expand summary:hover { background: var(--accent-bg); }
+.expand-body { padding: 4px 18px 20px; border-top: 1px solid var(--border-2); }
+
+.what-wed-do { background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-top: 12px; }
+.wwd-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 5px; }
+.what-wed-do p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.what-wed-do strong { color: var(--text); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+th { text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-4); padding: 8px 12px; border-bottom: 1px solid var(--border); background: var(--bg-alt); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border-2); color: var(--text-2); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+.tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+.tag.red { background: var(--red-bg); color: var(--red); }
+.tag.green { background: var(--green-bg); color: var(--green); }
+.tag.amber { background: var(--amber-bg); color: var(--amber); }
+.tag.gray { background: var(--bg-alt); color: var(--text-3); }
+
+.track-status { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+.track-status.pass { background: var(--green-bg); color: var(--green); }
+.track-status.fail { background: var(--red-bg); color: var(--red); }
+.track-status.warn { background: var(--amber-bg); color: var(--amber); }
+
+.funnel { display: flex; flex-direction: column; gap: 4px; margin: 16px 0; }
+.funnel-step { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); }
+.funnel-step.highlight { background: var(--red-bg); border-color: var(--red-border); }
+.funnel-num { font-size: 20px; font-weight: 800; min-width: 90px; color: var(--text); }
+.funnel-num.red { color: var(--red); }
+.funnel-label { font-size: 13px; color: var(--text-2); flex: 1; }
+.funnel-rate { font-size: 12px; font-weight: 700; color: var(--text-3); }
+.funnel-rate.red { color: var(--red); }
+.funnel-arrow { text-align: center; color: var(--text-4); font-size: 12px; margin-left: 16px; }
+
+.callout { background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: 8px; padding: 12px 15px; font-size: 13px; color: #92400e; line-height: 1.6; margin-top: 14px; }
+.callout strong { color: #78350f; }
+.callout.blue { background: var(--accent-bg); border-color: var(--accent-border); color: #1a3d6e; }
+.callout.blue strong { color: #163364; }
+.callout.red { background: var(--red-bg); border-color: var(--red-border); color: #991b1b; }
+.callout.red strong { color: #7f1d1d; }
+
+.divider { height: 1px; background: var(--border-2); margin: 16px 0; }
+p.body { font-size: 13px; color: var(--text-2); line-height: 1.75; margin-top: 8px; }
+.trend-up { color: var(--green); font-weight: 700; }
+.trend-dn { color: var(--red); font-weight: 700; }
+
+footer { max-width: 980px; margin: 0 auto; padding: 36px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+footer p { font-size: 12px; color: var(--text-4); }
+
+@media (max-width: 640px) {
+  .stats-row { flex-direction: column; }
+  .stat-card { max-width: 100%; }
+  .chart-area { min-width: 100%; }
+  .bar-name { min-width: 80px; font-size: 11px; }
+  .hero-stats { gap: 20px; }
+  .nav-brand { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Leefy Organics <span>· May 2026</span></div>
+    <a href="#ch01" class="active">01 Attribution</a>
+    <a href="#ch02">02 Meta Spend</a>
+    <a href="#ch03">03 Creative</a>
+    <a href="#ch04">04 Google</a>
+    <a href="#ch05">05 Site &amp; Email</a>
+    <a href="#ch06">06 Market</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Growth Audit · May 2026</div>
+  <h1>Leefy Organics Growth Audit — May 2026</h1>
+  <p>This audit covers 12 months of Meta Ads (May 2025–May 2026), 90 days of Google Ads, a full Klaviyo email audit, CRO analysis across 15,888 GA4 sessions, Media Mix Modelling (PyMC + Robyn, 124 weeks), and category-level market research across 55 keyword groups. The brand has strong fundamentals — 80% gross margins, 250k+ customers, 4.9/5 at scale — and a performance infrastructure that is structurally misaligned with them.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">$164k</div>
+      <div class="hero-stat-label">Meta spend (12 months)</div>
+    </div>
+    <div>
+      <div class="hero-stat-num red">0.78x</div>
+      <div class="hero-stat-label">True incremental ROAS (Meta incrementality)</div>
+    </div>
+    <div>
+      <div class="hero-stat-num amber">−43%</div>
+      <div class="hero-stat-label">Meta ROAS decline, early 2025 → early 2026</div>
+    </div>
+    <div>
+      <div class="hero-stat-num green">$66.9k</div>
+      <div class="hero-stat-label">Annual email revenue (Klaviyo)</div>
+    </div>
+    <div>
+      <div class="hero-stat-num red">260</div>
+      <div class="hero-stat-label">Monthly branded searches (down from 4,400 peak)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 01: ATTRIBUTION ===================== -->
+<section id="ch01">
+  <div class="section-inner">
+    <div class="ch-num"><span>01</span> — Attribution</div>
+    <h2>The 1.30x reported ROAS breaks down to 0.78x on a true incremental basis. Every isolated attribution window is below breakeven.</h2>
+    <p class="implication">Meta Ads Manager reports a 12-month blended ROAS of 1.30x ($164,053 spend → $212,926 revenue, 3,546 purchases). The Attribution tab in Ads Manager shows this figure is a combined count across multiple windows simultaneously. When each window is isolated, no single one replicates the 1.30x — and every isolated window, including Meta's own incrementality model, comes in below 1.0x. GA4 first-click attribution (property 396523834) shows campaign-level ROAS of 0.25x–0.43x across the largest campaigns.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">0.78x</div>
+        <div class="stat-label">Incrementality ROAS</div>
+        <div class="stat-bench">Meta's own causal model: 2,377 purchases</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">0.82x</div>
+        <div class="stat-label">7-Day Click ROAS</div>
+        <div class="stat-bench">2,478 purchases — reported window</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">42.9%</div>
+        <div class="stat-label">View-through share</div>
+        <div class="stat-bench">Of default window revenue (7D click + 1D view)</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">0.43x</div>
+        <div class="stat-label">GA4 first-click ROAS</div>
+        <div class="stat-bench">Best-performing large campaign (GA4 property 396523834)</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-num">1.30x</div>
+        <div class="stat-label">Ads Manager default</div>
+        <div class="stat-bench">7D click + 1D view combined — reported figure</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>Attribution window comparison — all windows below 1.0x in isolation</summary>
+      <div class="expand-body">
+        <table>
+          <thead>
+            <tr><th>Window</th><th>ROAS</th><th>Revenue</th><th>Purchases</th><th>vs. Default</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Default (7D Click + 1D View)</strong></td><td>1.30x</td><td>$212,926</td><td>3,546</td><td>—</td></tr>
+            <tr><td>1-Day Click</td><td style="color:var(--red);font-weight:700">0.69x</td><td>$113,364</td><td>2,166</td><td>−46%</td></tr>
+            <tr><td>7-Day Click</td><td style="color:var(--red);font-weight:700">0.82x</td><td>$134,637</td><td>2,478</td><td>−37%</td></tr>
+            <tr><td>28-Day Click</td><td style="color:var(--red);font-weight:700">0.88x</td><td>$144,062</td><td>2,603</td><td>−32%</td></tr>
+            <tr><td>1-Day View</td><td style="color:var(--red);font-weight:700">0.50x</td><td>$81,625</td><td>1,111</td><td>−62%</td></tr>
+            <tr><td>7-Day View</td><td style="color:var(--red);font-weight:700">0.62x</td><td>$100,934</td><td>1,378</td><td>−53%</td></tr>
+            <tr><td>Incrementality</td><td style="color:var(--red);font-weight:700">0.78x</td><td>$128,200</td><td>2,377</td><td>−40%</td></tr>
+          </tbody>
+        </table>
+        <p class="body">The 28-day click window adds only 125 purchases over the 7-day click window (2,603 vs 2,478 — a 5% lift). This means the consideration window is short: people either convert within a week of clicking or they don't return. The view-through first vs all split for the 7-day view window shows 1,342 first-conversion vs 1,378 all-conversions — a 3% difference, indicating view-through is not significantly double-counting across impressions.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>ROAS trend — 43% decline from early 2025 to early 2026</summary>
+      <div class="expand-body">
+        <div class="chart-canvas-wrap">
+          <div class="chart-label">Meta ROAS by Month (May 2025 – May 2026)</div>
+          <canvas id="roasChart"></canvas>
+        </div>
+        <p class="body">Meta monthly-trends data shows ROAS averaged 1.64x in May–Sep 2025, peaked at 3.10x in October 2025 (Black Friday prep, lowest spend month at $5,688), then declined to 0.84–0.88x in Mar–Apr 2026. The peak coincided with the lowest spend and highest creative efficiency — the MJ batch running at $16.30 CPM vs the current $32.71 average. The declining trend reflects increasing spend into a stale creative pool, not a loss of category demand.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>MMM channel attribution — model confidence LOW due to channel co-launch</summary>
+      <div class="expand-body">
+        <p class="body">The Media Mix Model (PyMC + Robyn, 124 weeks of Shopify revenue data) was run to assess true channel contribution. Both models converged technically (PyMC max R-hat 1.002, Robyn RSSD 0.0021) but diverge substantially on channel splits — Meta: 45% (PyMC) vs 76% (Robyn); Google: 55% (PyMC) vs 24% (Robyn). This divergence reflects a fundamental data limitation: both channels launched simultaneously in late 2024 and scaled together (r = 0.53 collinearity), making clean attribution separation unreliable.</p>
+        <table>
+          <thead><tr><th>Component</th><th>PyMC estimate</th><th>Robyn estimate</th><th>Implication</th></tr></thead>
+          <tbody>
+            <tr><td>Organic / baseline (brand, SEO, email, Amazon-to-DTC)</td><td>~78%</td><td>~78%</td><td style="color:var(--green);font-weight:600">Consistent — strong organic foundation</td></tr>
+            <tr><td>Meta (paid)</td><td>~9.9%</td><td>~17%</td><td>Over-weighted relative to efficiency signal</td></tr>
+            <tr><td>Google (paid)</td><td>~12%</td><td>~5%</td><td>Under-weighted — PyMC suggests significant under-allocation</td></tr>
+          </tbody>
+        </table>
+        <div class="callout" style="margin-top:12px"><strong>Adstock finding:</strong> Both channels show a 0.8–0.9 week half-life. Approximately 80–90% of each channel's revenue effect occurs within the spend week. There is minimal carryover — each week's revenue is almost entirely dependent on that week's spend. The saturation parameter (k = 0.01) on both channels indicates neither is near its saturation ceiling at current spend levels.</div>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What the data suggests</div>
+      <p>The 1.30x Ads Manager figure is a combination of real-click attribution and view-through attribution counted simultaneously. With 42.9% of default-window revenue attributed to view-through, and every isolated click window below breakeven, the account's true economic performance is materially below what the dashboard headline shows. <strong>The incrementality model (0.78x) and GA4 first-click (0.25–0.43x) represent the floor and directional ceiling of true incremental returns.</strong> The gap between 7-day click (0.82x) and incrementality (0.78x) is narrow — Meta's own causal estimate closely tracks the click-only window, suggesting the 7-day click ROAS is the most reliable operational metric for this account.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 02: META SPEND ALLOCATION ===================== -->
+<section id="ch02">
+  <div class="section-inner">
+    <div class="ch-num"><span>02</span> — Meta Spend Allocation</div>
+    <h2>45% of Meta spend goes to the 65+ cohort at 1.03x ROAS. The 35–44 cohort delivers 2.0x ROAS on just 10.5% of budget.</h2>
+    <p class="implication">Meta Ads age-breakdown data (May 2025–May 2026, $164,053 total spend) shows a systematic misalignment between where budget is allocated and where performance is strongest. The two oldest cohorts (65+ and 55–64) absorb 70.9% of spend and return a combined blended ROAS of 1.06x — below the already-low account average of 1.30x. The two highest-performing cohorts (35–44 and 25–34) receive 14.9% of spend combined but deliver 2.0x and 1.74x ROAS respectively.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">45%</div>
+        <div class="stat-label">65+ spend share</div>
+        <div class="stat-bench">1.03x ROAS · $73,587 spend · $52.45 CAC</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">2.0x</div>
+        <div class="stat-label">35–44 ROAS</div>
+        <div class="stat-bench">Only 10.5% of budget · $34.37 CAC</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">1.74x</div>
+        <div class="stat-label">25–34 ROAS</div>
+        <div class="stat-bench">Only 4.6% of budget · $34.34 CAC</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">2.7%</div>
+        <div class="stat-label">MOF retargeting spend share</div>
+        <div class="stat-bench">1.72x ROAS · $4,371 total spend</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="chart-area" style="flex:3">
+        <div class="chart-label">Spend share vs ROAS by age cohort</div>
+        <div class="bar-row">
+          <span class="bar-name">65+ spend share</span>
+          <div class="bar-track"><div class="bar-fill red" style="width:100%"></div></div>
+          <span class="bar-val red">44.9%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">65+ ROAS</span>
+          <div class="bar-track"><div class="bar-fill red" style="width:51.5%"></div></div>
+          <span class="bar-val red">1.03x</span>
+        </div>
+        <div class="divider"></div>
+        <div class="bar-row">
+          <span class="bar-name">55–64 spend share</span>
+          <div class="bar-track"><div class="bar-fill amber" style="width:57.9%"></div></div>
+          <span class="bar-val amber">26.0%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">55–64 ROAS</span>
+          <div class="bar-track"><div class="bar-fill amber" style="width:59.3%"></div></div>
+          <span class="bar-val amber">1.19x</span>
+        </div>
+        <div class="divider"></div>
+        <div class="bar-row">
+          <span class="bar-name">35–44 spend share</span>
+          <div class="bar-track"><div class="bar-fill green" style="width:23.3%"></div></div>
+          <span class="bar-val green">10.5%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">35–44 ROAS</span>
+          <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+          <span class="bar-val green">2.0x</span>
+        </div>
+        <div class="divider"></div>
+        <div class="bar-row">
+          <span class="bar-name">25–34 spend share</span>
+          <div class="bar-track"><div class="bar-fill green" style="width:10.2%"></div></div>
+          <span class="bar-val green">4.6%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">25–34 ROAS</span>
+          <div class="bar-track"><div class="bar-fill green" style="width:86.9%"></div></div>
+          <span class="bar-val green">1.74x</span>
+        </div>
+        <div class="chart-note">35–44 and 25–34 combined absorb 14.9% of spend, produce an estimated 21.2% of purchases, and share the lowest CAC in the account ($34). The 65+ cohort's elevated ROAS is likely inflated by view-through attribution — older users are over-represented in the viewthrough signal.</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>Campaign structure — top campaigns by spend and efficiency</summary>
+      <div class="expand-body">
+        <table>
+          <thead><tr><th>Campaign</th><th>Spend</th><th>ROAS</th><th>Purchases</th><th>CAC</th><th>CPM</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>[DL] ASC | PRANA | Testing</td><td>$59,160</td><td>1.20x</td><td>1,346</td><td>$43.95</td><td>$48.89</td><td><span class="tag amber">Paused</span></td></tr>
+            <tr><td>05 | Prana Product</td><td>$29,334</td><td>1.12x</td><td>540</td><td>$54.32</td><td>$29.04</td><td><span class="tag green">Active</span></td></tr>
+            <tr><td>[DL] TOF | CT | PRANA</td><td>$25,870</td><td>1.11x</td><td>512</td><td>$50.53</td><td>$29.34</td><td><span class="tag amber">Paused</span></td></tr>
+            <tr><td>05 | Prospecting Test | DOE Media</td><td>$11,561</td><td>0.60x</td><td>113</td><td>$102.31</td><td>$42.05</td><td><span class="tag amber">Paused</span></td></tr>
+            <tr><td>TOF | MJ Black Friday Batch</td><td>$9,921</td><td>2.13x</td><td>264</td><td>$37.58</td><td>$28.08</td><td><span class="tag amber">Paused</span></td></tr>
+            <tr><td>MJ | Creative Test | ABO</td><td>$9,722</td><td style="color:var(--green);font-weight:700">2.77x</td><td>392</td><td style="color:var(--green);font-weight:700">$24.80</td><td style="color:var(--green);font-weight:700">$16.30</td><td><span class="tag amber">Paused</span></td></tr>
+            <tr><td>MOF | MJ | Retargeting</td><td>$4,371</td><td style="color:var(--green);font-weight:700">1.72x</td><td>116</td><td>$37.68</td><td>$32.34</td><td><span class="tag amber">Paused</span></td></tr>
+          </tbody>
+        </table>
+        <p class="body">The two highest-ROAS campaigns (MJ Creative Test at 2.77x and Black Friday Batch at 2.13x) are both paused. The MJ Creative Test ran structured ABO tests with controlled audiences and a CPM of $16.30 — less than a third of the ASC campaign's $48.89 CPM. The MOF retargeting campaign shows 1.72x in-platform and 1.84x on GA4 first-click — the only campaign with statistically confirmed positive marginal returns in the MMM analysis (b=1.203, R²=0.767).</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>35–44 frequency risk — saturation at current spend levels</summary>
+      <div class="expand-body">
+        <p class="body">The age breakdown flags the 35–44 cohort as having the highest frequency in the account at 12.74x — despite being the top-ROAS cohort on limited budget. The 25–34 cohort shows 10.93x frequency on a sub-5% budget share. This indicates the current small budget allocated to younger cohorts has likely already saturated the specific audience being reached within those cohorts. Budget expansion must be paired with broader creative reach, not just increased bids into the same audience pool.</p>
+        <table>
+          <thead><tr><th>Cohort</th><th>Frequency</th><th>ROAS</th><th>Spend share</th><th>Signal</th></tr></thead>
+          <tbody>
+            <tr><td>35–44</td><td>12.74x</td><td>2.00x</td><td>10.5%</td><td><span class="tag amber">Saturation risk at current audience size</span></td></tr>
+            <tr><td>25–34</td><td>10.93x</td><td>1.74x</td><td>4.6%</td><td><span class="tag amber">Likely saturated within current reach</span></td></tr>
+            <tr><td>65+</td><td>5.98x</td><td>1.03x</td><td>44.9%</td><td><span class="tag red">Over-weighted, below-average ROAS</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What the data suggests</div>
+      <p>The top two cohorts by spend (65+ and 55–64) deliver a combined ROAS of 1.06x on 70.9% of budget — actively diluting the account's already-low blended return. The highest-efficiency cohorts (35–44 at 2.0x, 25–34 at 1.74x) are receiving less than 15% of spend combined. <strong>The MOF retargeting campaign has the clearest marginal return signal in the account (b=1.203, R²=0.767) and has received $4,371 in total lifetime spend</strong> — a structural underfunding relative to its confirmed performance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 03: CREATIVE ===================== -->
+<section id="ch03">
+  <div class="section-inner">
+    <div class="ch-num"><span>03</span> — Creative Performance</div>
+    <h2>Sensory and convenience-framed ads deliver 2.47× the ROAS of clinical framing, yet clinical angles receive 19% of budget and sensory angles receive 7%.</h2>
+    <p class="implication">Meta creative-feature analysis and ad-breakdown data (May 2025–May 2026) segments ad performance by hook type and visual angle. The "sublingual absorption" and clinical bioavailability framing, which leads with the mechanism of action in scientific terms, averages 0.70x ROAS across ads on that angle. The sensory/convenience framing — leading with taste, ease, daily ritual, and the dropper format — averages 1.43–2.50x ROAS. The three highest-ROAS individual ads in the account are all static formats, not video or UGC.</p>
+
+    <div class="stats-row">
+      <div class="stat-card green">
+        <div class="stat-num">3.88x</div>
+        <div class="stat-label">Top ad ROAS (Static)</div>
+        <div class="stat-bench">"No-More-Choking Dropper Icons" — $723 spend</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">3.10x</div>
+        <div class="stat-label">Top volume ad ROAS</div>
+        <div class="stat-bench">"[IMG] Tasty Way" — $4,541 spend, 228 purchases</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">0.70x</div>
+        <div class="stat-label">Clinical framing ROAS</div>
+        <div class="stat-bench">"Sublingual absorption" angle — 19% of budget</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">22</div>
+        <div class="stat-label">Unanswered VoC objections</div>
+        <div class="stat-bench">"Tried turmeric, didn't work" — 0% brand reply rate</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="chart-area" style="flex:3">
+        <div class="chart-label">Top-performing ads by ROAS (with spend context)</div>
+        <div class="bar-row">
+          <span class="bar-name wide">Static: No-More-Choking Dropper</span>
+          <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+          <span class="bar-val green">3.88x</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name wide">Static: 91-Report Collage</span>
+          <div class="bar-track"><div class="bar-fill green" style="width:93.3%"></div></div>
+          <span class="bar-val green">3.62x</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name wide">[IMG] Tasty Way</span>
+          <div class="bar-track"><div class="bar-fill green" style="width:79.9%"></div></div>
+          <span class="bar-val green">3.10x</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name wide">Black Friday Batch avg</span>
+          <div class="bar-track"><div class="bar-fill amber" style="width:54.9%"></div></div>
+          <span class="bar-val amber">2.13x</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name wide">Account blended ROAS</span>
+          <div class="bar-track"><div class="bar-fill gray" style="width:33.5%"></div></div>
+          <span class="bar-val">1.30x</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name wide">Clinical / sublingual angle</span>
+          <div class="bar-track"><div class="bar-fill red" style="width:18.0%"></div></div>
+          <span class="bar-val red">0.70x</span>
+        </div>
+        <div class="chart-note"><strong>Static informational formats outperform video in this account.</strong> The MJ Creative Test (which produced the two top-ROAS ads) ran structured ABO tests at a CPM of $16.30 — vs $48.89 CPM in the ASC campaign running uncontrolled creative. Controlled testing methodology appears to be a meaningful factor in the performance gap, independent of creative angle.</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>VoC signal — 22 unanswered "turmeric didn't work" objections in ad comments</summary>
+      <div class="expand-body">
+        <p class="body">VoC analysis of ad comments (Meta VoC agent, May 2026) surfaced 22 instances of the objection "I've tried turmeric before and it didn't work" or close variants across comment threads. The brand reply rate to this specific objection is 0%. This objection represents the primary conversion barrier for a product that works via a differentiated delivery mechanism — the turmeric capsule failure is the exact reason liquid tincture absorption delivers different results. Other users reading the same threads observe the unanswered objection.</p>
+        <p class="body">Additional VoC signals: multiple self-identified pregnant and postpartum women engaging with inflammation and brain-fog content, with zero dedicated creative currently running to this segment. VoC also shows a self-selected verification-first buyer profile requesting COA documentation and third-party testing transparency — a demand point that zero competitors are addressing in paid ads.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>UGC performance context — high spend, conversion-objective framing</summary>
+      <div class="expand-body">
+        <p class="body">The account carries significant UGC spend across the "05 | Prana Product" campaign (98 active ads, $29,334 spend, 1.12x ROAS). UGC creative at 1.12x underperforms the account's static-format winners (3.88x, 3.62x). The performance gap is not purely a creative quality issue — the adstock analysis (0.8–0.9 week half-life on Meta) indicates that regardless of format, the current campaign objective configuration (conversion-optimized, ROAS bidding) directs spend toward audiences most likely to convert immediately. This means UGC is performing the same function as catalog ads: capturing in-market demand, not building memory or reach for problem-aware buyers. Format changes alone will not change this — campaign objective and bidding strategy determine who sees the content.</p>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What the data suggests</div>
+      <p>The creative angle producing 2.47x the ROAS of the account's dominant angle is running at approximately 7% of budget. The angle at 0.70x ROAS — clinical sublingual framing — is running at 19%. <strong>The static-format winners (3.88x, 3.62x, 3.10x) share three characteristics: sensory or convenience lead, informational format, and structured ABO test methodology.</strong> The VoC objection data suggests there is a high-intent warm audience in comments actively signaling purchase consideration that is currently receiving no brand response.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 04: GOOGLE ===================== -->
+<section id="ch04">
+  <div class="section-inner">
+    <div class="ch-num"><span>04</span> — Google Ads</div>
+    <h2>Google delivers 1.74x ROAS on $11,594 spend, but Smart Goal is co-primary alongside purchase events — diluting Smart Bidding's optimization signal on every active campaign.</h2>
+    <p class="implication">Google Ads data covers the 90-day period to May 2026. Account ROAS of 1.74x ($11,594 spend → $20,186 revenue, 320 conversions) is above the account average but the conversion tracking audit reveals two CRITICAL flags: Smart Goal (HIDDEN, ENGAGEMENT category, Included=True, Primary=True) is included as a primary conversion action alongside Google Shopping App Purchase (PURCHASE, Included=True, Primary=True). Smart Bidding uses all primary conversion signals simultaneously — a co-primary engagement proxy trains the algorithm away from purchase maximization.</p>
+
+    <div class="stats-row">
+      <div class="stat-card green">
+        <div class="stat-num">1.74x</div>
+        <div class="stat-label">Google account ROAS</div>
+        <div class="stat-bench">$11,594 spend · $20,186 revenue · 320 conv.</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">2 CRIT</div>
+        <div class="stat-label">Critical tracking failures</div>
+        <div class="stat-bench">Smart Goal co-primary + micro-events as primary</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">64.3%</div>
+        <div class="stat-label">Wasted search spend</div>
+        <div class="stat-bench">$476 on zero-conversion search terms</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">9</div>
+        <div class="stat-label">Dead hours (ROAS &lt;1.0x)</div>
+        <div class="stat-bench">Including 3pm at 0.37x, 7pm at 0.25x</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">17.7%</div>
+        <div class="stat-label">Impression share (top campaign)</div>
+        <div class="stat-bench">15.1% lost to budget · 67.2% lost to rank</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>Conversion tracking audit — full primary conversion signal list</summary>
+      <div class="expand-body">
+        <table>
+          <thead><tr><th>Conversion Action</th><th>Category</th><th>Included</th><th>Primary</th><th>Assessment</th></tr></thead>
+          <tbody>
+            <tr><td>Google Shopping App Purchase</td><td>PURCHASE</td><td>✓</td><td>✓</td><td><span class="tag green">Correct</span></td></tr>
+            <tr><td>Smart Goal (All Web Site Data)</td><td>ENGAGEMENT</td><td>✓</td><td>✓</td><td><span class="tag red">Wrong primary — demote to secondary</span></td></tr>
+            <tr><td>Calls from Smart Campaign Ads</td><td>PHONE_CALL_LEAD</td><td>✓</td><td>✓</td><td><span class="tag red">Wrong primary</span></td></tr>
+            <tr><td>Google Shopping App Page View</td><td>PAGE_VIEW</td><td>✗</td><td>✗</td><td><span class="tag amber">Flagged — wrong signal type</span></td></tr>
+            <tr><td>Google Shopping App View Item</td><td>PAGE_VIEW</td><td>✗</td><td>✗</td><td><span class="tag amber">Flagged</span></td></tr>
+            <tr><td>Google Shopping App Begin Checkout</td><td>BEGIN_CHECKOUT</td><td>✗</td><td>✗</td><td><span class="tag amber">Flagged</span></td></tr>
+            <tr><td>Leefy Organics - GA4 (web) purchase</td><td>PURCHASE</td><td>✗</td><td>✗</td><td><span class="tag gray">Available — not included</span></td></tr>
+          </tbody>
+        </table>
+        <p class="body">Smart Goal is a hidden, auto-generated proxy metric based on engagement behavior. When included as a primary conversion action, Smart Bidding optimizes for a blend of engagement and purchase — not pure purchase intent. The Shopping App Purchase event is correctly configured and firing; the issue is signal dilution from the co-primary engagement metric.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Campaign performance — top Shopping campaign constrained by budget and rank</summary>
+      <div class="expand-body">
+        <table>
+          <thead><tr><th>Campaign</th><th>Spend</th><th>ROAS</th><th>Conv.</th><th>IS%</th><th>Lost to Rank</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>GE | SS | Catch All (Shopping)</td><td>$9,319</td><td>1.85x</td><td>269</td><td>17.7%</td><td>67.2%</td><td><span class="tag green">Active</span></td></tr>
+            <tr><td>GE | Pmax | Catch All</td><td>$1,230</td><td>1.59x</td><td>36</td><td>19.0%</td><td>81.0%</td><td><span class="tag green">Active</span></td></tr>
+            <tr><td>GE | SS | Prana Products</td><td>$433</td><td>0.92x</td><td>7</td><td>29.8%</td><td>58.2%</td><td><span class="tag amber">Paused</span></td></tr>
+            <tr><td>GE | SS | Brand Low 2</td><td>$82</td><td>0.73x</td><td>1</td><td>10.0%</td><td>3.1%</td><td><span class="tag amber">Paused — budget constrained</span></td></tr>
+          </tbody>
+        </table>
+        <p class="body">The Brand Low 2 campaign is paused and losing 90% of impression share to budget. Brand search is the highest-intent, lowest-CAC traffic in the account — it captures people who already know Leefy and are in active purchase mode. The brand is currently not competing for its own branded search at meaningful scale. The top Shopping campaign loses 67.2% of impression share to rank, suggesting Quality Score and bidding strategy gaps rather than pure budget constraints.</p>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What the data suggests</div>
+      <p>Google's 1.74x ROAS is achieved despite structural conversion tracking issues — not because of clean infrastructure. Smart Goal as co-primary dilutes the bidding signal on every campaign that runs Smart Bidding. <strong>The primary Shopping campaign (Catch All) loses 67.2% of impression share to rank on the highest-performing campaign in the account, while the branded search campaign is paused and losing 90% of impression share to budget.</strong> The MMM model (PyMC) estimates Google contributes ~12% of total Shopify web revenue on 24% of budget — the most capital-efficient channel in the paid media mix by either model.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 05: SITE & EMAIL ===================== -->
+<section id="ch05">
+  <div class="section-inner">
+    <div class="ch-num"><span>05</span> — Site &amp; Email</div>
+    <h2>The site's second-highest-traffic landing page converts at 1.23% vs the 3.6% site average, costing an estimated $4,800/month in foregone revenue. The email list has 70–80% open rates and 0.3–0.8% CTOR.</h2>
+    <p class="implication">CRO analysis covers 15,888 GA4 sessions (Apr 16–May 13, 2026, property 396523834). Email data from Klaviyo audit (May 2026) covers all live flows and recent campaigns. The site converts well when traffic reaches the right pages — the issue is routing. Email has a highly engaged audience by open-rate standards; the activation gap is in click-through-to-purchase conversion.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">1.23%</div>
+        <div class="stat-label">/pages/5-reasons CVR</div>
+        <div class="stat-bench">3,007 sessions/mo · est. $4,800/mo foregone vs site avg</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">15.45%</div>
+        <div class="stat-label">Prana LP CVR (/pages/prana)</div>
+        <div class="stat-bench">$36.31 CAC vs $66.15 CAC on /products/prana PDP</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">0.3–0.8%</div>
+        <div class="stat-label">Email CTOR (all campaigns)</div>
+        <div class="stat-bench">Benchmark: 2%+ · 70–80% open rate</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">$66.9k</div>
+        <div class="stat-label">Total email revenue</div>
+        <div class="stat-bench">$30.3k flows + $36.6k campaigns (Klaviyo)</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-num">10.96%</div>
+        <div class="stat-label">Klaviyo email session CVR</div>
+        <div class="stat-bench">$8.96/session vs $2.11 site average · 1,058 sessions/mo</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>Landing page CVR by destination — same product, 3.6x CAC difference</summary>
+      <div class="expand-body">
+        <div class="funnel">
+          <div class="funnel-step">
+            <div class="funnel-num">18.49%</div>
+            <div class="funnel-label">Prana-Nidra-Immunity Bundle page CVR</div>
+            <div class="funnel-rate green">$16.85/session</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-num">15.45%</div>
+            <div class="funnel-label">/pages/prana (Prana Landing Page)</div>
+            <div class="funnel-rate green">$36.31 CAC</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-num">5.29%</div>
+            <div class="funnel-label">Homepage CVR</div>
+            <div class="funnel-rate">$2.11/session</div>
+          </div>
+          <div class="funnel-step highlight">
+            <div class="funnel-num red">4.24%</div>
+            <div class="funnel-label">/products/prana (PDP)</div>
+            <div class="funnel-rate red">$66.15 CAC — same product, 3.6× higher CAC than LP</div>
+          </div>
+          <div class="funnel-step highlight">
+            <div class="funnel-num red">1.23%</div>
+            <div class="funnel-label">/pages/5-reasons (2nd-highest traffic landing page)</div>
+            <div class="funnel-rate red">$0.51/session vs $2.11 site avg · est. $4,800/mo foregone</div>
+          </div>
+        </div>
+        <div class="callout"><strong>CRO note on /pages/5-reasons:</strong> This page's content and CTA ("CHECK AVAILABILITY") structure suggests it may serve an FTC or regulatory compliance function for a supplement brand. The revenue impact is measurable, but any routing changes require a compliance audit to confirm whether the page's content fulfills a legal obligation before traffic is redirected.</div>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>GA4 tracking — critical mid-funnel gap (begin_checkout fires fewer times than purchase)</summary>
+      <div class="expand-body">
+        <table>
+          <thead><tr><th>GA4 Event</th><th>Users</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>session_start</td><td>13,367</td><td><span class="track-status pass">OK</span></td></tr>
+            <tr><td>view_item</td><td>7,088</td><td><span class="track-status pass">OK</span></td></tr>
+            <tr><td>add_to_cart</td><td>943</td><td><span class="track-status pass">OK</span></td></tr>
+            <tr><td>begin_checkout</td><td>469</td><td><span class="track-status fail">BROKEN — fires fewer times than purchase</span></td></tr>
+            <tr><td>add_payment_info</td><td>138</td><td><span class="track-status fail">BROKEN — 3.5× below purchase count</span></td></tr>
+            <tr><td>purchase</td><td>481</td><td><span class="track-status pass">OK</span></td></tr>
+          </tbody>
+        </table>
+        <p class="body">begin_checkout (469) fires fewer times than purchase (481) — logically impossible. Every purchase must pass through checkout. Likely cause: the GA4 tag fires on the Shopify storefront but not on Shopify's native hosted checkout pages (checkout.leefyorganics.com subdomain). As a result, checkout drop-off is invisible — the funnel cannot measure where cart abandonment occurs or identify checkout friction points.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Email performance — offer-driven campaigns outperform educational 2:1</summary>
+      <div class="expand-body">
+        <table>
+          <thead><tr><th>Campaign</th><th>Open Rate</th><th>CTOR</th><th>Revenue</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td>End-of-month flash offer (24-48hr sub)</td><td>72.6%</td><td style="color:var(--green);font-weight:700">0.8%</td><td style="color:var(--green);font-weight:700">$5,226</td><td><span class="tag green">Offer</span></td></tr>
+            <tr><td>Mother's Day Urgency Reminder</td><td>66.8%</td><td>0.7%</td><td>$3,917</td><td><span class="tag green">Offer</span></td></tr>
+            <tr><td>Kid-Approved: Parent's Guide to Prana</td><td>67.7%</td><td>0.5%</td><td>$3,684</td><td><span class="tag amber">Content</span></td></tr>
+            <tr><td>04.04 Why Liquid Beats Pills (Education)</td><td>73.7%</td><td>0.5%</td><td>$2,225</td><td><span class="tag amber">Education</span></td></tr>
+            <tr><td>16.4 What 250,000 Families Already Know</td><td>76.2%</td><td>0.3%</td><td>$1,642</td><td><span class="tag gray">Social proof</span></td></tr>
+          </tbody>
+        </table>
+        <p class="body">Flow coverage audit: Welcome series is 3 emails (benchmark 7+), no branching. Browse Abandon flow is missing. Nurture series is missing. Post Purchase is in draft status (not live). The ReCharge subscription infrastructure is live — Subscription Started flow (70.3% open, 4.9% click) has generated $456 in total revenue, indicating the subscription offer exists but is not being meaningfully promoted through email.</p>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What the data suggests</div>
+      <p>Two structural gaps are visible in the site data. First, Meta paid traffic is being routed to a page that converts at 1.23% when a dedicated landing page for the same product exists at 15.45% CVR. The compliance context of /pages/5-reasons makes this a conditional rather than a simple routing fix. Second, the Klaviyo list achieves 70–80% open rates — indicating a highly engaged audience — but 0.3–0.8% CTOR, indicating the content-to-click conversion step is weak. <strong>Offer-driven emails generate approximately 2× the revenue of educational emails on equivalent open rates, suggesting the list is price-responsive rather than content-responsive.</strong> The ReCharge subscription infrastructure is already live; the subscription offer is generating near-zero revenue through email channels.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 06: MARKET ===================== -->
+<section id="ch06">
+  <div class="section-inner">
+    <div class="ch-num"><span>06</span> — Market Position</div>
+    <h2>Branded search has declined 94% from its 4,400/month peak to 260/month today. The category is contracting −23.7% YoY while problem-aware searches are up +390%.</h2>
+    <p class="implication">Market-state analysis covers 55 keyword groups tracked monthly via DataForSEO (May 2026 run). Data spans 12 months of search volume across the category, competition set, and problem/solution layer searches. Share of Search (SoS) calculated across 11 brands in the organic supplement / greens powder category. The adstock finding from the MMM (0.8–0.9 week half-life) is directly relevant here: paid media is not building brand memory, which is the structural driver of branded search decline.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-num">260</div>
+        <div class="stat-label">Monthly branded searches (Mar 2026)</div>
+        <div class="stat-bench">Down from 4,400/mo peak (Nov 2020). All-time low.</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">0.04%</div>
+        <div class="stat-label">Share of Search</div>
+        <div class="stat-bench">AG1: 41% · MudWTR: 33% · Ka'Chava: 14%</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-num">−23.7%</div>
+        <div class="stat-label">Category YoY (greens powder)</div>
+        <div class="stat-bench">Solution-ready category searches contracting</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">+390%</div>
+        <div class="stat-label">Problem-aware search YoY</div>
+        <div class="stat-bench">Antioxidant, gut health, immune support surging</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-num">0.014</div>
+        <div class="stat-label">Market Sophistication Index</div>
+        <div class="stat-bench">71 problem searches per 1 solution search</div>
+      </div>
+    </div>
+
+    <details class="expand">
+      <summary>Category demand shift — problem layer vs solution layer divergence</summary>
+      <div class="expand-body">
+        <table>
+          <thead><tr><th>Search Group</th><th>12-mo avg/mo</th><th>YoY Change</th><th>Direction</th></tr></thead>
+          <tbody>
+            <tr><td>Category (greens powder, superfood supplement)</td><td>56,988</td><td style="color:var(--red);font-weight:700">−23.7%</td><td>↓ Contracting</td></tr>
+            <tr><td>Problem-aware (antioxidant, gut health, immune support)</td><td>245,857</td><td style="color:var(--green);font-weight:700">+390.9%</td><td>↑ Surging</td></tr>
+            <tr><td>Solution-seeking (best greens powder, comparison)</td><td>3,421</td><td style="color:var(--red);font-weight:700">−47.8%</td><td>↓ Declining sharply</td></tr>
+            <tr><td>Enablers (longevity, organic supplement, functional wellness)</td><td>16,843</td><td style="color:var(--green);font-weight:700">+185.5%</td><td>↑ Growing</td></tr>
+          </tbody>
+        </table>
+        <p class="body">The problems group is dominated by three keyword surges: "antioxidant supplement" (from ~5K/mo in 2024 to 165K/mo in 2026), "gut health supplement" (15K → 40K/mo), and "immune support supplement" (2K → 60K/mo). These are health-outcome searches, not category searches. A buyer searching "antioxidant supplement" is not looking for a greens powder specifically — they are looking for a product that delivers the outcome. This means Leefy's primary competition for the growing market segment is not AG1 — it is any supplement claiming the same health outcomes.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>Branded search trajectory — 5-year context</summary>
+      <div class="expand-body">
+        <table>
+          <thead><tr><th>Period</th><th>Monthly Searches</th><th>Leefy SoS</th><th>Signal</th></tr></thead>
+          <tbody>
+            <tr><td>Peak (Nov 2020)</td><td>4,400</td><td>~0.6%+</td><td><span class="tag green">Peak brand awareness</span></td></tr>
+            <tr><td>Apr–May 2025</td><td>590</td><td>0.08%</td><td><span class="tag amber">Significant decline</span></td></tr>
+            <tr><td>Oct–Nov 2025</td><td>320</td><td>0.06%</td><td><span class="tag red">Continued decline</span></td></tr>
+            <tr><td>Feb–Mar 2026</td><td>260</td><td>0.04%</td><td><span class="tag red">All-time low sustained</span></td></tr>
+          </tbody>
+        </table>
+        <p class="body">The adstock finding (0.8–0.9 week half-life on Meta) directly explains the branded search decline: the paid media infrastructure builds almost no memory across weeks. Meta spend creates impressions that convert or don't in the same week — there is minimal residual awareness carrying forward. This is consistent with the 28-day click window adding only 5% over the 7-day window: people who see Leefy ads are either buying immediately or not returning. Branded search accretes from memory — if ads don't build memory, branded search doesn't grow.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>SEO infrastructure — clean foundation, zero content strategy</summary>
+      <div class="expand-body">
+        <table>
+          <thead><tr><th>Area</th><th>Status</th><th>Finding</th></tr></thead>
+          <tbody>
+            <tr><td>Core Web Vitals</td><td><span class="track-status pass">PASS</span></td><td>Homepage mobile LCP 2.1s, CLS 0.0 — no rankings risk</td></tr>
+            <tr><td>AggregateRating schema</td><td><span class="track-status fail">MISSING</span></td><td>2,555 reviews at 4.9★ are invisible in Google SERPs — no star ratings showing</td></tr>
+            <tr><td>GA4 + Search Console</td><td><span class="track-status fail">NOT INSTALLED</span></td><td>Zero organic traffic visibility — no GSC data available</td></tr>
+            <tr><td>robots.txt /policies/</td><td><span class="track-status warn">WARN</span></td><td>Policies blocked — YMYL trust signals not crawlable</td></tr>
+            <tr><td>AI discoverability (llms.txt/MCP)</td><td><span class="track-status pass">PASS</span></td><td>Best-in-class infrastructure — llms.txt, UCP, MCP endpoint live</td></tr>
+            <tr><td>Content / blog</td><td><span class="track-status fail">MISSING</span></td><td>Zero blog content — no content-to-product link structure, no topical authority</td></tr>
+            <tr><td>sameAs schema</td><td><span class="track-status fail">BROKEN</span></td><td>sameAs field set to '#' — no social profile entity association for Google Knowledge Graph</td></tr>
+          </tbody>
+        </table>
+        <p class="body">The brand's AI infrastructure (llms.txt, UCP, MCP endpoint) is genuinely best-in-class for a DTC supplement brand. This creates discoverability for AI-assisted search (ChatGPT, Perplexity, Google AI Overviews) that most competitors do not have. However, the missing AggregateRating schema means the 4.9/5 star rating across 2,555+ reviews never appears as rich results in standard Google SERP listings — the brand's strongest proof point is absent from organic search.</p>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What the data suggests</div>
+      <p>The branded search data tells a specific story: paid media is currently generating impressions without building sustained brand awareness. The adstock carryover of &lt;1 week means spend creates near-zero residual memory week-over-week. Combined with the market-state finding — the buyer population most likely to search "leefy organics" (solution-aware, category-specific) is in structural decline, while the buyer population searching "antioxidant supplement" or "gut health supplement" is growing fast — the brand's current media architecture is optimised for a shrinking pool of buyers. <strong>The Market Sophistication Index of 0.014 means 71 problem-aware searches occur for every 1 solution-seeking search: the market has not consolidated around greens powder as the answer to these health concerns.</strong> This is both the challenge (harder to convert) and the opportunity (unclaimed territory, no dominant solution-layer brand for problem-aware buyers).</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Prepared by Yamu · May 2026 · Confidential</p>
+  <p>Leefy Organics Growth Audit</p>
+</footer>
+
+<script>
+// ROAS trend chart
+(function(){
+  const ctx = document.getElementById('roasChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['May\'25','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan\'26','Feb','Mar','Apr'],
+      datasets: [{
+        label: 'Meta ROAS',
+        data: [1.38, 1.07, 1.25, 1.30, 1.73, 3.10, 2.46, 1.19, 1.23, 1.22, 0.88, 0.84],
+        borderColor: '#b91c1c',
+        backgroundColor: 'rgba(185,28,28,0.07)',
+        borderWidth: 2.5,
+        pointRadius: 4,
+        pointBackgroundColor: '#b91c1c',
+        tension: 0.3,
+        fill: true
+      },{
+        label: 'Breakeven (1.0x)',
+        data: [1,1,1,1,1,1,1,1,1,1,1,1],
+        borderColor: '#cfc8b8',
+        borderWidth: 1.5,
+        borderDash: [5,4],
+        pointRadius: 0,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true, labels: { font: { size: 11 }, color: '#6b6158' } }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 3.5,
+          ticks: { font: { size: 11 }, color: '#9b9183', callback: v => v.toFixed(1) + 'x' },
+          grid: { color: '#e4ddd0' }
+        },
+        x: {
+          ticks: { font: { size: 11 }, color: '#9b9183' },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+})();
+
+// Nav scroll highlighting
+(function(){
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector('nav a[href="#' + entry.target.id + '"]');
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+})();
+</script>
+</body>
+</html>
