@@ -549,14 +549,6 @@ footer p { font-size: 12px; color: var(--text-4); }
       </div>
     </div>
 
-    <details class="expand">
-      <summary>MOF retargeting — most underfunded campaign in the account</summary>
-      <div class="expand-body">
-        <p class="body">The MOF retargeting campaign (MJ | Retargeting | OBJ: Purchase | CBO) delivered 1.72x in-platform ROAS and 1.84x on GA4 first-click attribution — the only campaign in the account with statistically confirmed positive marginal returns in the MMM analysis (b=1.203, R²=0.767). Total lifetime spend: $4,371. It is currently paused.</p>
-        <p class="body">The mechanism is straightforward: people who have already engaged with Prana ads convert at a meaningfully higher rate when shown a dedicated retargeting message. GA4 first-click gives credit only when retargeting is the original touchpoint — so 1.84x is a floor, not a ceiling. At 2.7% of total account spend, the campaign is structurally underfunded relative to its confirmed performance.</p>
-      </div>
-    </details>
-
     <div class="what-wed-do">
       <div class="wwd-label">What the data suggests</div>
       <p>Two concurrent misallocations explain a significant portion of the account's below-breakeven performance: 70.9% of spend routes to the two oldest cohorts at a combined 1.06x ROAS, while the two highest-performing cohorts (35–44 and 25–34) share 15% of budget. Simultaneously, the creative angle producing 2.47× the account average ROAS receives 7% of budget while the underperforming angle receives 19%. <strong>The October 2025 peak (3.10x ROAS, lowest spend month, MJ structured ABO batch) demonstrates what the account can produce with the right creative-audience configuration — it is not a structural ceiling problem.</strong></p>
@@ -706,12 +698,12 @@ footer p { font-size: 12px; color: var(--text-4); }
             <tr><td>session_start</td><td>13,367</td><td><span class="track-status pass">OK</span></td></tr>
             <tr><td>view_item</td><td>7,088</td><td><span class="track-status pass">OK</span></td></tr>
             <tr><td>add_to_cart</td><td>943</td><td><span class="track-status pass">OK</span></td></tr>
-            <tr><td>begin_checkout</td><td>469</td><td><span class="track-status fail">BROKEN — lower than purchase count</span></td></tr>
-            <tr><td>add_payment_info</td><td>138</td><td><span class="track-status fail">BROKEN — 3.5× below purchase</span></td></tr>
+            <tr><td>begin_checkout</td><td>469</td><td><span class="track-status warn">INVESTIGATE — lower than purchase count</span></td></tr>
+            <tr><td>add_payment_info</td><td>138</td><td><span class="track-status warn">INVESTIGATE — 3.5× below purchase</span></td></tr>
             <tr><td>purchase</td><td>481</td><td><span class="track-status pass">OK</span></td></tr>
           </tbody>
         </table>
-        <p class="body">begin_checkout (469) firing fewer times than purchase (481) is logically impossible. Likely cause: GA4 tag fires on the Shopify storefront but not on Shopify's native hosted checkout subdomain (checkout.leefyorganics.com). Checkout abandonment is currently invisible — the funnel cannot measure where cart drop-off occurs.</p>
+        <p class="body">begin_checkout (469) firing fewer times than purchase (481) is unexpected. Two possible explanations: the GA4 tag fires on the Shopify storefront but not on Shopify's hosted checkout subdomain (checkout.leefyorganics.com), causing mid-funnel events to be undercounted; or Shopify's 1-click buy / accelerated checkout (Shop Pay, Apple Pay) bypasses the standard checkout flow entirely, meaning some purchases never trigger begin_checkout. Both are worth investigating — the practical effect either way is that checkout abandonment is not measurable from GA4 alone.</p>
       </div>
     </details>
 
