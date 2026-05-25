@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrilliantPad · Growth Audit · May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+h1, h2 { font-family: var(--serif); }
+
+:root {
+  --bg: #f5f0e8;
+  --bg-alt: #ece6d7;
+  --red: #b91c1c;
+  --red-bg: #fef2f2;
+  --red-border: #fecaca;
+  --green: #2d6a22;
+  --green-bg: #f0fdf4;
+  --green-border: #bbf7d0;
+  --amber: #b45309;
+  --amber-bg: #fffbeb;
+  --amber-border: #fde68a;
+  --accent: #1a3d6e;
+  --accent-bg: #eef3f9;
+  --accent-border: #bfd0e8;
+  --text: #1a1815;
+  --text-2: #3a342d;
+  --text-3: #6b6158;
+  --text-4: #9b9183;
+  --border: #cfc8b8;
+  --border-2: #e4ddd0;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --nav-h: 60px;
+}
+
+nav { position: sticky; top: 0; z-index: 100; background: rgba(245,240,232,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); height: var(--nav-h); display: flex; align-items: center; }
+.nav-inner { max-width: 980px; margin: 0 auto; padding: 0 24px; width: 100%; display: flex; align-items: center; overflow-x: auto; scrollbar-width: none; gap: 2px; }
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-brand { font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap; margin-right: 20px; flex-shrink: 0; }
+.nav-brand span { color: var(--text-3); font-weight: 400; }
+nav a { text-decoration: none; font-size: 12px; font-weight: 600; color: var(--text-3); padding: 6px 11px; border-radius: 6px; white-space: nowrap; transition: color 0.15s, background 0.15s; flex-shrink: 0; }
+nav a:hover { color: var(--text); background: var(--bg-alt); }
+nav a.active { color: var(--accent); background: var(--accent-bg); }
+
+.hero { max-width: 980px; margin: 0 auto; padding: 64px 24px 52px; border-bottom: 1px solid var(--border); }
+.hero-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-4); margin-bottom: 18px; }
+.hero h1 { font-size: clamp(26px, 3.8vw, 42px); font-weight: 800; line-height: 1.15; color: var(--text); margin-bottom: 18px; max-width: 680px; }
+.hero p { font-size: 16px; color: var(--text-2); max-width: 600px; line-height: 1.75; margin-bottom: 32px; }
+.hero-stats { display: flex; gap: 36px; flex-wrap: wrap; }
+.hero-stat-num { font-size: 30px; font-weight: 800; color: var(--text); line-height: 1; margin-bottom: 5px; }
+.hero-stat-num.red { color: var(--red); }
+.hero-stat-num.accent { color: var(--accent); }
+.hero-stat-num.green { color: var(--green); }
+.hero-stat-num.amber { color: var(--amber); }
+.hero-stat-label { font-size: 12px; color: var(--text-4); }
+
+section { border-bottom: 1px solid var(--border); scroll-margin-top: var(--nav-h); }
+section:nth-child(even) { background: var(--bg-alt); }
+.section-inner { max-width: 980px; margin: 0 auto; padding: 56px 24px; }
+.ch-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-4); margin-bottom: 10px; }
+.ch-num span { color: var(--accent); }
+.section-inner h2 { font-size: clamp(21px, 2.8vw, 30px); font-weight: 800; line-height: 1.25; color: var(--text); margin-bottom: 10px; max-width: 700px; }
+.implication { font-size: 15px; color: var(--text-2); max-width: 640px; line-height: 1.7; margin-bottom: 32px; }
+
+.stats-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px; align-items: flex-start; }
+.stat-card { flex: 1; min-width: 128px; max-width: 190px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 17px; }
+.stat-card.red { background: var(--red-bg); border-color: var(--red-border); }
+.stat-card.green { background: var(--green-bg); border-color: var(--green-border); }
+.stat-card.amber { background: var(--amber-bg); border-color: var(--amber-border); }
+.stat-card.accent { background: var(--accent-bg); border-color: var(--accent-border); }
+.stat-num { font-size: 28px; font-weight: 800; line-height: 1; margin-bottom: 5px; color: var(--text); }
+.stat-card.red .stat-num { color: var(--red); }
+.stat-card.green .stat-num { color: var(--green); }
+.stat-card.amber .stat-num { color: var(--amber); }
+.stat-card.accent .stat-num { color: var(--accent); }
+.stat-label { font-size: 12px; color: var(--text-3); margin-bottom: 3px; }
+.stat-bench { font-size: 11px; color: var(--text-4); }
+
+.chart-area { flex: 2; min-width: 260px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+.chart-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-4); margin-bottom: 14px; }
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.bar-name { font-size: 12px; color: var(--text-2); min-width: 150px; flex-shrink: 0; }
+.bar-name.wide { min-width: 200px; }
+.bar-track { flex: 1; background: var(--border-2); border-radius: 4px; height: 9px; overflow: hidden; }
+.bar-fill { height: 9px; border-radius: 4px; background: var(--accent); }
+.bar-fill.red { background: var(--red); }
+.bar-fill.green { background: var(--green); }
+.bar-fill.amber { background: var(--amber); }
+.bar-fill.gray { background: var(--border); }
+.bar-val { font-size: 12px; font-weight: 700; color: var(--text-2); min-width: 55px; text-align: right; flex-shrink: 0; }
+.bar-val.red { color: var(--red); }
+.bar-val.green { color: var(--green); }
+.bar-val.amber { color: var(--amber); }
+.chart-note { margin-top: 14px; background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: 6px; padding: 9px 12px; font-size: 12px; color: #92400e; line-height: 1.55; }
+
+details.expand { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 12px; background: var(--bg); }
+details.expand summary { padding: 13px 18px; font-size: 13px; font-weight: 600; color: var(--accent); cursor: pointer; list-style: none; display: flex; align-items: center; gap: 7px; user-select: none; }
+details.expand summary::-webkit-details-marker { display: none; }
+details.expand summary::before { content: '▸'; font-size: 11px; transition: transform 0.2s; display: inline-block; }
+details.expand[open] summary::before { transform: rotate(90deg); }
+details.expand summary:hover { background: var(--accent-bg); }
+.expand-body { padding: 4px 18px 20px; border-top: 1px solid var(--border-2); }
+
+.what-wed-do { background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-top: 12px; }
+.wwd-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 5px; }
+.what-wed-do p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.what-wed-do strong { color: var(--text); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+th { text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-4); padding: 8px 12px; border-bottom: 1px solid var(--border); background: var(--bg-alt); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border-2); color: var(--text-2); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+.tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+.tag.red { background: var(--red-bg); color: var(--red); }
+.tag.green { background: var(--green-bg); color: var(--green); }
+.tag.amber { background: var(--amber-bg); color: var(--amber); }
+.tag.gray { background: var(--bg-alt); color: var(--text-3); }
+
+.track-status { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+.track-status.pass { background: var(--green-bg); color: var(--green); }
+.track-status.fail { background: var(--red-bg); color: var(--red); }
+.track-status.warn { background: var(--amber-bg); color: var(--amber); }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.two-col-wide { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; align-items: start; }
+
+.callout { background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: 8px; padding: 12px 15px; font-size: 13px; color: #92400e; line-height: 1.6; margin-top: 14px; }
+.callout strong { color: #78350f; }
+.callout.blue { background: var(--accent-bg); border-color: var(--accent-border); color: #1a3d6e; }
+.callout.blue strong { color: #163364; }
+.callout.red { background: var(--red-bg); border-color: var(--red-border); color: #991b1b; }
+.callout.red strong { color: #7f1d1d; }
+.callout.green { background: var(--green-bg); border-color: var(--green-border); color: #166534; }
+.callout.green strong { color: #14532d; }
+
+.divider { height: 1px; background: var(--border-2); margin: 16px 0; }
+p.body { font-size: 13px; color: var(--text-2); line-height: 1.75; margin-top: 8px; }
+
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+.tl-item { position: relative; margin-bottom: 18px; }
+.tl-item::before { content: ''; position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: var(--border); border: 2px solid var(--bg); }
+.tl-item.good::before { background: var(--green); }
+.tl-item.bad::before { background: var(--red); }
+.tl-item.warn::before { background: var(--amber); }
+.tl-date { font-size: 11px; font-weight: 700; color: var(--text-4); margin-bottom: 2px; }
+.tl-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+.tl-text strong { color: var(--text); }
+
+.cohort-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin: 20px 0; }
+.cohort-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.cohort-card.highlight { background: var(--accent-bg); border-color: var(--accent-border); }
+.cohort-name { font-size: 12px; font-weight: 700; color: var(--text-3); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.cohort-ltv { font-size: 26px; font-weight: 800; color: var(--text); line-height: 1; margin-bottom: 4px; }
+.cohort-card.highlight .cohort-ltv { color: var(--accent); }
+.cohort-meta { font-size: 12px; color: var(--text-4); line-height: 1.5; }
+
+footer { max-width: 980px; margin: 0 auto; padding: 36px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+footer p { font-size: 12px; color: var(--text-4); }
+
+@media (max-width: 640px) {
+  .stats-row { flex-direction: column; }
+  .stat-card { max-width: 100%; }
+  .chart-area { min-width: 100%; }
+  .bar-name { min-width: 100px; font-size: 11px; }
+  .hero-stats { gap: 20px; }
+  .nav-brand { display: none; }
+  .two-col, .two-col-wide { grid-template-columns: 1fr; }
+  .cohort-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">BrilliantPad <span>· May 2026</span></div>
+    <a href="#ch01" class="active">01 Acquisition</a>
+    <a href="#ch02">02 Attribution</a>
+    <a href="#ch03">03 Shopify Cohort</a>
+    <a href="#ch04">04 Site</a>
+    <a href="#ch05">05 Email</a>
+    <a href="#ch06">06 Google</a>
+    <a href="#ch07">07 The Prize</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Growth Audit · May 2026 · Shopify · Google Ads · Klaviyo · CRO</div>
+  <h1>The product works. The acquisition doesn't.</h1>
+  <p>BrilliantPad has a 71.4% repeat rate, $1,143 mean LTV, and customers who stay subscribed for years. The crisis is entirely on the acquisition side — and it's more fixable than it looks.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num red">−95%</div>
+      <div class="hero-stat-label">New customers since Jan 2024 (677→32/mo)</div>
+    </div>
+    <div>
+      <div class="hero-stat-num red">64.4%</div>
+      <div class="hero-stat-label">Revenue with no channel attribution</div>
+    </div>
+    <div>
+      <div class="hero-stat-num green">$1,143</div>
+      <div class="hero-stat-label">Mean LTV · 71.4% repeat rate</div>
+    </div>
+    <div>
+      <div class="hero-stat-num accent">$0</div>
+      <div class="hero-stat-label">Post-purchase email revenue (flow is live)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 1: ACQUISITION CLIFF ─── -->
+<section id="ch01">
+  <div class="section-inner">
+    <div class="ch-num">Chapter <span>01</span></div>
+    <h2>The acquisition cliff</h2>
+    <p class="implication">Revenue looks flat. It isn't. The 2024 cohort is still active on subscription rolls — masking a 95% collapse in new customer volume that has no replacement in the pipeline.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-label">New customers/mo</div>
+        <div class="stat-num">32</div>
+        <div class="stat-bench">Was 677/mo · Jan 2024</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-label">Monthly revenue (flat)</div>
+        <div class="stat-num">~$75K</div>
+        <div class="stat-bench">Sustained by 2024 cohort only</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Repeat rate (existing)</div>
+        <div class="stat-num">71.4%</div>
+        <div class="stat-bench">Extraordinary for D2C</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">Time before revenue falls</div>
+        <div class="stat-num">~12mo</div>
+        <div class="stat-bench">As 2024 cohort cycles through</div>
+      </div>
+    </div>
+
+    <div class="chart-area" style="max-width:520px; margin-bottom:20px;">
+      <div class="chart-label">New customers per month — Jan 2024 → May 2026</div>
+      <div class="bar-row">
+        <div class="bar-name">Jan 2024</div>
+        <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+        <div class="bar-val green">677</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">Jun 2024</div>
+        <div class="bar-track"><div class="bar-fill amber" style="width:44%"></div></div>
+        <div class="bar-val amber">~295</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">Jan 2025</div>
+        <div class="bar-track"><div class="bar-fill amber" style="width:18%"></div></div>
+        <div class="bar-val amber">~121</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">Jun 2025</div>
+        <div class="bar-track"><div class="bar-fill red" style="width:9%"></div></div>
+        <div class="bar-val red">~63</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">May 2026</div>
+        <div class="bar-track"><div class="bar-fill red" style="width:5%"></div></div>
+        <div class="bar-val red">32</div>
+      </div>
+      <div class="chart-note">Revenue has held flat at ~$73–78K/month only because the January 2024 cohort (677 customers at 71.4% repeat rate) is still cycling through roll purchases. When those customers' subscriptions complete, there is no replacement volume behind them.</div>
+    </div>
+
+    <p class="body">This is not a slow decline — it's a math problem with a deadline. At the current trajectory, BrilliantPad will have fewer than 400 active customers by end of 2026. The monthly revenue from 400 customers at 71.4% retention cannot sustain $75K/month. The acquisition restart is not a growth initiative. It's a survival prerequisite.</p>
+
+    <div class="what-wed-do" style="margin-top:20px;">
+      <div class="wwd-label">What we'd do</div>
+      <p>Restart acquisition in two phases: <strong>immediate</strong> — Google brand + rolls retargeting (both proven, both measurable without attribution infrastructure) + breeder/PuppySpot expansion; <strong>month 2–3</strong> — Meta relaunch once attribution is clean. The priority is not scale. It's restarting the pipeline before the 2024 cohort's roll cycles end.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 2: ATTRIBUTION ─── -->
+<section id="ch02">
+  <div class="section-inner">
+    <div class="ch-num">Chapter <span>02</span></div>
+    <h2>Flying blind — 64.4% of revenue has no channel</h2>
+    <p class="implication">Before any paid channel can be scaled meaningfully, BrilliantPad needs to know what it's paying for. Right now, nearly two-thirds of all revenue is unattributed — making ROAS unmeasurable and optimization impossible.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-label">Revenue · unknown channel</div>
+        <div class="stat-num">64.4%</div>
+        <div class="stat-bench">$1.31M of $2.1M (29 months)</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-label">Revenue · Google (paid)</div>
+        <div class="stat-num">28.5%</div>
+        <div class="stat-bench">Last-non-direct attribution</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-label">Revenue · Klaviyo</div>
+        <div class="stat-num">9.7%</div>
+        <div class="stat-bench">Likely underreported</div>
+      </div>
+    </div>
+
+    <p class="body">The "unknown" bucket almost certainly contains organic direct traffic, subscription repeat orders, and Amazon-to-D2C conversion — sources where UTM parameters are missing or lost. This isn't just an analytics problem. Any paid media investment at meaningful scale right now will produce ROAS numbers that claim credit for organic conversions, creating a false signal that causes either premature scale or premature kill decisions. Both outcomes have played out in BrilliantPad's Google history.</p>
+
+    <div class="callout" style="margin-top:16px;">
+      <strong>The attribution gap is the prerequisite, not the afterthought.</strong> Every previous agency likely encountered this and tried to optimize on dirty data. Fixing this before scaling paid media is what separates a restartable growth model from another failed scale attempt.
+    </div>
+
+    <div class="what-wed-do" style="margin-top:16px;">
+      <div class="wwd-label">What we'd do</div>
+      <p>Four-week infrastructure sprint: <strong>confirm GA4 purchase events match Shopify order count</strong> (currently divergent by estimated 20%+); <strong>deploy UTM tagging</strong> on all paid sources including email, breeder links, and affiliate; <strong>reconcile the "unknown" bucket</strong> — identify what share is subscription repeat vs. organic vs. untagged. Target: &lt;40% unknown before Meta launches. Paid media starts the moment that bar is cleared, not before.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 3: SHOPIFY COHORT ─── -->
+<section id="ch03">
+  <div class="section-inner">
+    <div class="ch-num">Chapter <span>03</span></div>
+    <h2>Who actually buys — and what they're worth</h2>
+    <p class="implication">29 months of Shopify order data reveals exactly which buyers convert, retain, and drive LTV. The product economics are exceptional. The acquisition strategy has systematically ignored the buyers the data points to.</p>
+
+    <div class="stats-row">
+      <div class="stat-card green">
+        <div class="stat-label">Mean portfolio LTV</div>
+        <div class="stat-num">$1,143</div>
+        <div class="stat-bench">29-month cohort · 14,289 customers</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Repeat rate (all customers)</div>
+        <div class="stat-num">71.4%</div>
+        <div class="stat-bench">Extraordinary for D2C hardware</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-label">Avg orders per customer</div>
+        <div class="stat-num">4.67</div>
+        <div class="stat-bench">Avg 29-month tenure</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-label">Auto-delivery LTV (best cohort)</div>
+        <div class="stat-num">$913</div>
+        <div class="stat-bench">89.1% repeat · 8.96 avg orders</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px; font-weight:700; color:var(--text); margin:24px 0 12px;">LTV by first-order type</h3>
+    <p class="body" style="margin-bottom:16px;">The most important finding in the data: nearly a third of all customers buy hardware and rolls together in their first order. This is the natural behavior of a buyer who understands the system from the start — and it's never been formalized as an explicit offer.</p>
+
+    <div class="cohort-grid">
+      <div class="cohort-card">
+        <div class="cohort-name">Hardware only</div>
+        <div class="cohort-ltv">$385</div>
+        <div class="cohort-meta">31.4% of customers · 41% repeat · 3.4 avg orders</div>
+      </div>
+      <div class="cohort-card highlight">
+        <div class="cohort-name">Hardware + Rolls (bundle) ← untested as offer</div>
+        <div class="cohort-ltv">$581</div>
+        <div class="cohort-meta">30.4% of customers · 47% repeat · 4.5 avg orders</div>
+      </div>
+      <div class="cohort-card">
+        <div class="cohort-name">Rolls only (existing HW owners)</div>
+        <div class="cohort-ltv">$692</div>
+        <div class="cohort-meta">25.8% of customers · 66% repeat · 6.9 avg orders</div>
+      </div>
+      <div class="cohort-card">
+        <div class="cohort-name">Other / accessory</div>
+        <div class="cohort-ltv">$392</div>
+        <div class="cohort-meta">12.4% of customers · 42% repeat</div>
+      </div>
+    </div>
+
+    <div class="callout blue" style="margin-top:4px;">
+      <strong>On rolls-only LTV:</strong> Rolls-only D2C buyers show high LTV ($692) because they're existing hardware owners — purchased via Amazon, Chewy, or retail — arriving to buy consumables. Only 5.1% of them ever purchase hardware via D2C (median lag: 390 days). Their LTV is a channel selection effect, not an acquisition creative signal. You can't sell rolls to someone who doesn't own the machine.
+    </div>
+
+    <div class="divider" style="margin:24px 0;"></div>
+
+    <h3 style="font-size:15px; font-weight:700; color:var(--text); margin-bottom:12px;">The two ICPs that convert and retain</h3>
+    <p class="body" style="margin-bottom:16px;">Every prior campaign targeted all dog owners. The data points to two segments that work — and nothing else.</p>
+
+    <div class="two-col">
+      <div class="chart-area">
+        <div class="chart-label">ICP 1 — Existing pad users (pad upgraders)</div>
+        <p class="body">Already spending money on flat pads. Already managing the problem. BrilliantPad is an upgrade, not a new category to evaluate. 83% consumable attach in targeted cohorts. The pad-upgrader creative hook ("You already use pads — here's one you never touch again") is completely unclaimed by every competitor.</p>
+        <div class="callout green" style="margin-top:10px;"><strong>Addressable audience:</strong> 25K–80K/month searching flat-pad terms. The acquisition channel already exists — it's just never been messaged to with ICP precision.</div>
+      </div>
+      <div class="chart-area">
+        <div class="chart-label">ICP 2 — New small-breed puppy owners</div>
+        <p class="body">During the vet-mandated vaccination window, these owners have a forced indoor potty need with zero outdoor option. The timing creates near-perfect purchase intent. PuppySpot is already delivering this exact audience at zero CAC with 93% new customer rate. Alan's list of 7–8 target breeds narrows this further.</p>
+        <div class="callout green" style="margin-top:10px;"><strong>Addressable channel:</strong> Breeder partnerships deliver this ICP at acquisition for zero marginal CAC. Currently underscaled at 1 partnership.</div>
+      </div>
+    </div>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p>Make the bundle the explicit acquisition offer: <strong>hardware + first roll shipment at subscription-committed pricing</strong>. 30.4% of customers already do this naturally — formalizing it as the primary offer starts the subscription relationship at acquisition, rather than hoping post-purchase flows convert hardware buyers later. Test bundle vs. hardware-only as a head-to-head — measure 90-day repeat rate, not first-purchase ROAS.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 4: SITE ─── -->
+<section id="ch04">
+  <div class="section-inner">
+    <div class="ch-num">Chapter <span>04</span></div>
+    <h2>Three things bleeding every ad click</h2>
+    <p class="implication">The primary acquisition landing page fails mobile Core Web Vitals. The email capture popup fires with blank copy on mobile. The highest-converting page on the site has no subscription offer. All three are fixable in days — and all three must be fixed before any paid traffic is scaled.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-label">Smart PDP mobile LCP</div>
+        <div class="stat-num">4.1s</div>
+        <div class="stat-bench">Threshold: &lt;2.5s · FAIL</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">Mobile popup body copy</div>
+        <div class="stat-num">Blank</div>
+        <div class="stat-bench">CSS render bug · fires immediately</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-label">Rolls page CVR</div>
+        <div class="stat-num">14.1%</div>
+        <div class="stat-bench">No subscribe CTA on page</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-label">Rolls page rev/session</div>
+        <div class="stat-num">$17.16</div>
+        <div class="stat-bench">5× site average of $3.02</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Issue</th>
+          <th>Impact</th>
+          <th>Fix</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Smart PDP mobile LCP 4.1s</strong><br><span style="font-size:12px;color:var(--text-4);">Primary acquisition page · #2 by session volume · 65.6% of sessions are mobile</span></td>
+          <td>Page abandons before content renders for a material share of mobile visitors</td>
+          <td>Compress/lazy-load hero image; defer non-critical JS</td>
+          <td><span class="tag red">Critical</span></td>
+        </tr>
+        <tr>
+          <td><strong>Mobile popup blank copy</strong><br><span style="font-size:12px;color:var(--text-4);">$20 off email capture · fires before hero is visible · copy invisible on mobile</span></td>
+          <td>First impression is a modal with no readable text blocking the product hero</td>
+          <td>CSS or font-loading fix; delay popup trigger by 3s</td>
+          <td><span class="tag red">Critical</span></td>
+        </tr>
+        <tr>
+          <td><strong>Rolls page: no subscription CTA</strong><br><span style="font-size:12px;color:var(--text-4);">14.1% CVR · $17.16/session · highest-converting page on the site</span></td>
+          <td>One-time roll purchases instead of auto-delivery enrollment at the highest-intent moment</td>
+          <td>Add "Subscribe &amp; Save" as primary CTA above the fold</td>
+          <td><span class="tag red">Critical</span></td>
+        </tr>
+        <tr>
+          <td><strong>9 blog posts · $0 revenue · ~2,100 sessions</strong><br><span style="font-size:12px;color:var(--text-4);">Informational content with no product path</span></td>
+          <td>Organic traffic landing in a dead end with no conversion route</td>
+          <td>Inline CTAs matching intent; rolls purchase banner</td>
+          <td><span class="tag amber">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Homepage pass · 2.4s LCP</strong><br><span style="font-size:12px;color:var(--text-4);">Primary landing page passes Core Web Vitals</span></td>
+          <td>No issue — clean technical foundation</td>
+          <td>No action needed</td>
+          <td><span class="tag green">Pass</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:16px;">
+      <strong>The rolls page is the clearest quick win in this audit.</strong> 14.1% CVR and $17.16/session — 5× the site average — with zero subscription offer visible. Every visitor landing here is a returning customer who already owns hardware and is ready to reorder. Adding a "Subscribe &amp; Save" CTA as the primary button on this page is the single highest-conversion-impact action available, requiring no design budget and no paid media.
+    </div>
+
+    <div class="what-wed-do" style="margin-top:12px;">
+      <div class="wwd-label">What we'd do</div>
+      <p>Week 1 sprint — three fixes before any paid traffic runs: <strong>(1)</strong> Smart PDP hero image compression + JS defer; <strong>(2)</strong> popup CSS fix + 3-second delay trigger; <strong>(3)</strong> Subscribe &amp; Save as primary CTA on the rolls PDP. None of these require design approval or engineering cycles. They're configuration and CSS changes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 5: EMAIL ─── -->
+<section id="ch05">
+  <div class="section-inner">
+    <div class="ch-num">Chapter <span>05</span></div>
+    <h2>The email machine is off</h2>
+    <p class="implication">Klaviyo generates $9.38/session — the highest efficiency channel in the account. The post-purchase machine flow (the mechanism that converts hardware buyers to roll subscribers) is live but generating $0. 9,317 subscribers have received nothing since February 2026.</p>
+
+    <div class="stats-row">
+      <div class="stat-card red">
+        <div class="stat-label">Post-purchase machine flow</div>
+        <div class="stat-num">$0</div>
+        <div class="stat-bench">67 opens · flow is live · CTA broken</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">Roll replenishment flow</div>
+        <div class="stat-num">$544</div>
+        <div class="stat-bench">On $224K in roll orders · 0.24%</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-label">Dormant subscribers</div>
+        <div class="stat-num">9,317</div>
+        <div class="stat-bench">No email since Feb 2026</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Email rev/session</div>
+        <div class="stat-num">$9.38</div>
+        <div class="stat-bench">Highest of any channel</div>
+      </div>
+    </div>
+
+    <div class="chart-area" style="margin-bottom:20px; max-width:560px;">
+      <div class="chart-label">Flow revenue — last 90 days (all flows)</div>
+      <div class="bar-row">
+        <div class="bar-name wide">Subscription management flows</div>
+        <div class="bar-track"><div class="bar-fill green" style="width:82%"></div></div>
+        <div class="bar-val green">$11,377</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name wide">Win-back flow</div>
+        <div class="bar-track"><div class="bar-fill accent" style="width:19%"></div></div>
+        <div class="bar-val">$2,708</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name wide">Welcome series</div>
+        <div class="bar-track"><div class="bar-fill accent" style="width:15%"></div></div>
+        <div class="bar-val">$2,123</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name wide">Roll replenishment</div>
+        <div class="bar-track"><div class="bar-fill amber" style="width:4%"></div></div>
+        <div class="bar-val amber">$544</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name wide">Post-purchase machine flow</div>
+        <div class="bar-track"><div class="bar-fill red" style="width:0.5%"></div></div>
+        <div class="bar-val red">$0</div>
+      </div>
+      <div class="chart-note">The post-purchase machine flow has 67 email opens — meaning the emails fire and get read. The $0 revenue means the CTA is broken (wrong URL, broken link, or dead offer). This is an execution bug, not an audience problem. It is the highest-ROI fix in the entire Klaviyo account.</div>
+    </div>
+
+    <details class="expand">
+      <summary>Why the post-purchase machine flow matters so much</summary>
+      <div class="expand-body">
+        <p class="body">Hardware buyers have a 41% repeat rate. Auto-delivery roll subscribers have an 89% repeat rate. That 48-point gap represents $261 in LTV per hardware buyer who never subscribes to rolls. The post-purchase machine flow — a 3-email sequence that introduces the roll subscription, explains the cost-per-use economics, and presents auto-delivery as the obvious next step — is the mechanism that closes this gap. It's already built. It's already live. The only thing broken is the CTA link. Fixing it is a 30-minute task with potentially hundreds of dollars per customer in downstream LTV impact.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>The replenishment flow: $544 on $224K in roll orders</summary>
+      <div class="expand-body">
+        <p class="body">The roll replenishment flow — designed to remind non-subscriber hardware buyers to reorder — is enrolling only 122 people per 90-day period while $224K in roll orders flows through the account. This means the flow's trigger audience is too narrow or misconfigured. Every hardware buyer without an active auto-delivery subscription should be in this flow within 30 days of purchase. At $224K in annual roll revenue, even a 5% capture improvement is worth ~$11K/year in directly attributable email revenue.</p>
+      </div>
+    </details>
+
+    <details class="expand">
+      <summary>9,317 dormant subscribers — how to reactivate without burning the list</summary>
+      <div class="expand-body">
+        <p class="body">In February 2026, a broadcast campaign to a broad segment produced a 2.7% unsubscribe rate — 9× above threshold. The list has been dark since. The right reactivation path: <strong>resume to 90-day engaged openers only</strong> (those who opened an email in the last 90 days — a fraction of the 9,317). Build a sunset suppression flow to filter long-inactive subscribers before they can damage deliverability. Monthly cadence: roll subscription pitch, Mini hardware announcement, seasonal triggers (spring puppy peak, holiday gifting). Never broad-blast the full list.</p>
+      </div>
+    </details>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p>Week 1: Fix the post-purchase machine flow CTA — verify the link, test the offer, confirm revenue attribution. Week 2: Expand the replenishment flow trigger to catch all hardware buyers without active auto-delivery at 30 days. Week 5: Resume broadcast to 90-day engaged segment only. Governance audit of 95 draft flows before any new flow work — 95 drafts with no authoritative version is an execution liability.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 6: GOOGLE ─── -->
+<section id="ch06">
+  <div class="section-inner">
+    <div class="ch-num">Chapter <span>06</span></div>
+    <h2>Google: proven, then broken by keyword drift</h2>
+    <p class="implication">Brand exact keywords have produced 12.57x ROAS consistently — through every market cycle. The account's ROAS collapsed not from scale failure but from keyword expansion into audiences who fundamentally don't convert at $300. The fix is subtraction, not addition.</p>
+
+    <div class="stats-row">
+      <div class="stat-card green">
+        <div class="stat-label">Brand exact ROAS</div>
+        <div class="stat-num">12.57x</div>
+        <div class="stat-bench">Consistent across all periods</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Rolls retargeting ROAS</div>
+        <div class="stat-num">10x</div>
+        <div class="stat-bench">Existing customers · highest intent</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">Apartment / generic ROAS</div>
+        <div class="stat-num">0.20x</div>
+        <div class="stat-bench">$4,883 spent · 5 conversions</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">PMax ROAS</div>
+        <div class="stat-num">0.63x</div>
+        <div class="stat-bench">$10,736 spend · cannibalized branded</div>
+      </div>
+    </div>
+
+    <div class="timeline" style="margin:20px 0 24px;">
+      <div class="tl-item good">
+        <div class="tl-date">Jan 2021</div>
+        <div class="tl-text"><strong>5.8x ROAS</strong> — Best Google performance. Predominantly branded search + tight keyword set.</div>
+      </div>
+      <div class="tl-item warn">
+        <div class="tl-date">Mid 2021</div>
+        <div class="tl-text"><strong>ROAS begins declining</strong> — Keyword expansion into "apartment dog potty", "indoor dog potty", "self-cleaning pee pad" categories. These audiences price-shop at $300 and don't convert.</div>
+      </div>
+      <div class="tl-item bad">
+        <div class="tl-date">Jan 2022</div>
+        <div class="tl-text"><strong>1.6x ROAS</strong> — Spend held at ~$8.5K/month but mix has shifted to generic terms. Apartment campaign producing 0.35x ROAS.</div>
+      </div>
+      <div class="tl-item bad">
+        <div class="tl-date">Jul 2022</div>
+        <div class="tl-text"><strong>0.86x ROAS</strong> — Full collapse. PMax added without audience signals — cannibalizes brand without incremental volume. Ads effectively paused.</div>
+      </div>
+      <div class="tl-item good">
+        <div class="tl-date">2025–2026</div>
+        <div class="tl-text"><strong>6.0x ROAS</strong> — Minimal spend (~$2K/month) on residual branded campaigns only. Brand exact is performing. The channel is suppressed, not broken.</div>
+      </div>
+    </div>
+
+    <div class="chart-area" style="margin-bottom:20px; max-width:540px;">
+      <div class="chart-label">ROAS by keyword theme (lifetime spend)</div>
+      <div class="bar-row">
+        <div class="bar-name">Brand exact</div>
+        <div class="bar-track"><div class="bar-fill green" style="width:100%"></div></div>
+        <div class="bar-val green">12.57x</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">Rolls retargeting</div>
+        <div class="bar-track"><div class="bar-fill green" style="width:79%"></div></div>
+        <div class="bar-val green">10x</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">Auto / self-cleaning intent</div>
+        <div class="bar-track"><div class="bar-fill accent" style="width:32%"></div></div>
+        <div class="bar-val">3–4x</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">Unbranded self-cleaning</div>
+        <div class="bar-track"><div class="bar-fill amber" style="width:9%"></div></div>
+        <div class="bar-val amber">0.72x</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">Apartment / indoor / generic</div>
+        <div class="bar-track"><div class="bar-fill red" style="width:2.5%"></div></div>
+        <div class="bar-val red">0.20x</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">PMax (no audience signals)</div>
+        <div class="bar-track"><div class="bar-fill red" style="width:5%"></div></div>
+        <div class="bar-val red">0.63x</div>
+      </div>
+      <div class="chart-note">Not one generic unbranded keyword produced positive ROAS across the entire account history. Every conversion came from brand-named terms or product-specific modifiers. This is not a Google limitation — it's a product-market fit signal: buyers who aren't already seeking BrilliantPad by name don't convert from search at $300.</div>
+    </div>
+
+    <div class="what-wed-do">
+      <div class="wwd-label">What we'd do</div>
+      <p><strong>Three buckets only, no exceptions:</strong> (1) Brand exact — keep running, increase budget, 12.57x is worth defending; (2) Rolls retargeting — dedicated campaign targeting existing customers and roll page visitors, 10x ROAS; (3) Automatic/self-cleaning intent — narrow focus, 3–4x ROAS, add negative keywords proactively. <strong>Hard stops:</strong> No apartment/indoor/generic keywords. No PMax without customer match seed audiences and brand exclusions. The historical data has already run this experiment — there's no reason to repeat it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECTION 7: THE PRIZE ─── -->
+<section id="ch07">
+  <div class="section-inner">
+    <div class="ch-num">Chapter <span>07</span></div>
+    <h2>The revenue ladder</h2>
+    <p class="implication">The retention model is proven. The product is proven. The unit economics support the CAC ceiling. The only variable is acquisition volume — and the data tells us exactly what each level of acquisition is worth.</p>
+
+    <div class="stats-row">
+      <div class="stat-card accent">
+        <div class="stat-label">Current run rate (32/mo)</div>
+        <div class="stat-num">$438K</div>
+        <div class="stat-bench">Annual from new customers only</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-label">At 200 new/mo (modest restart)</div>
+        <div class="stat-num">$2.7M</div>
+        <div class="stat-bench">Incremental annual revenue</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">At 400 new/mo</div>
+        <div class="stat-num">$5.5M</div>
+        <div class="stat-bench">Incremental annual revenue</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">At 677/mo (2024 peak)</div>
+        <div class="stat-num">$9.3M</div>
+        <div class="stat-bench">Incremental annual revenue</div>
+      </div>
+    </div>
+
+    <div class="callout blue" style="margin:4px 0 20px;">
+      <strong>LTV note:</strong> These figures use mean LTV ($1,143) × annual cohort build — not a simple multiplication. LTV accrues over ~29 months of average tenure. Year-1 revenue per acquired customer is approximately $400–600; the full $1,143 accumulates as cohorts compound. Sustained acquisition at 200/month over 3 years produces a $5M+ run rate as each cohort layers.
+    </div>
+
+    <h3 style="font-size:15px; font-weight:700; color:var(--text); margin-bottom:12px;">What makes the $150 CAC ceiling viable</h3>
+    <p class="body" style="margin-bottom:16px;">Alan's stated CAC ceiling is ~$150 — willing to break even on hardware. At $1,143 mean LTV, a $150 CAC produces a 7.6x LTV:CAC ratio. That is a strong business by any benchmark (3x is standard). The razor-and-blade model sustains this: consumable roll margins carry the acquisition cost over the customer lifetime, not the hardware margin alone.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>New customers/mo</th>
+          <th>CAC (target)</th>
+          <th>Monthly ad spend needed</th>
+          <th>Annual incremental revenue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Infrastructure restart</strong></td>
+          <td>50–100/mo</td>
+          <td>&lt;$150</td>
+          <td>$7.5–15K/mo</td>
+          <td>~$700K–$1.4M</td>
+        </tr>
+        <tr>
+          <td><strong>Validated scale</strong></td>
+          <td>200/mo</td>
+          <td>&lt;$120</td>
+          <td>$24K/mo</td>
+          <td>~$2.7M</td>
+        </tr>
+        <tr>
+          <td><strong>2024 peak restored</strong></td>
+          <td>400/mo</td>
+          <td>&lt;$100</td>
+          <td>$40K/mo</td>
+          <td>~$5.5M</td>
+        </tr>
+        <tr>
+          <td><strong>Full potential</strong></td>
+          <td>677/mo</td>
+          <td>&lt;$100</td>
+          <td>$67K/mo</td>
+          <td>~$9.3M</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="divider" style="margin:24px 0;"></div>
+
+    <h3 style="font-size:15px; font-weight:700; color:var(--text); margin-bottom:12px;">The 90-day execution sequence</h3>
+
+    <table>
+      <thead>
+        <tr><th>Week</th><th>Action</th><th>Channel</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Smart PDP mobile LCP fix · popup CSS fix · post-purchase flow CTA fix</td><td>Site / Klaviyo</td></tr>
+        <tr><td>2</td><td>GA4/Shopify reconciliation · UTM tagging deployed · rolls page subscribe CTA live</td><td>Attribution / Site</td></tr>
+        <tr><td>3</td><td>Google brand + rolls retargeting campaigns live · replenishment flow trigger expanded</td><td>Google / Klaviyo</td></tr>
+        <tr><td>4</td><td>Blog CTAs added · Klaviyo governance audit complete · bundle pricing aligned</td><td>Site / Klaviyo</td></tr>
+        <tr><td>5</td><td>Klaviyo broadcast resumed (90-day engaged segment) · win-back activated (275 cancelled)</td><td>Klaviyo</td></tr>
+        <tr><td>6–8</td><td>Breeder/PuppySpot expansion pitched · attribution coverage confirmed &gt;70%</td><td>Partnerships / Analytics</td></tr>
+        <tr><td>8</td><td>Meta relaunch: pad-upgrader creative + bundle offer CTA · head-to-head A/B begins</td><td>Meta</td></tr>
+        <tr><td>10–12</td><td>First Meta cohort performance review · 90-day repeat rate assessment</td><td>Meta</td></tr>
+        <tr><td>12</td><td>Go/no-go: scale or iterate based on validated CAC and repeat rate</td><td>All</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout green" style="margin-top:20px;">
+      <strong>The case for now:</strong> The Mini hardware launch in winter 2026 creates a natural PR moment, a new product story, and a reactivation hook for the dormant list. The optimal position is: acquisition restarted, attribution clean, email healthy, and a tested creative formula in place before the Mini launches — so the launch amplifies a working machine, not a cold start.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>BrilliantPad · Growth Audit · May 2026 · Yamu</p>
+  <p>Shopify (29mo · 18,181 orders) · Google Ads (2017–2026) · Klaviyo · CRO/GA4</p>
+</footer>
+
+<script>
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
